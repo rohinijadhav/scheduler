@@ -3,58 +3,91 @@
 <title>Scheduler</title>
 </head>
 <body>
-<h1>JOB scheduler</h1>
+<h1 align="center">JOB Scheduler</h1>
 
 <?php
 
 $con = mysqli_connect("localhost", "root", "root", "scheduler");
 
-$sql = "select * from jobschedule";
+$sql_event= "SET GLOBAL event_scheduler = 1";
 
-$result = mysqli_query($con,$sql);
+mysqli_query($con,$sql);
 
-$sql2= "SET GLOBAL event_scheduler = 1";
-	
-		mysqli_query($con,$sql2);
 ?>
-<table border ="1">
-	<tr>
-		<th>Name</th>
-		<th>Country Code</th>
-		<th>District</th>
-		<th>Population</th>
-	</tr>
+	<hr>
 
+	<!-- show event(scheduler) details table -->
+
+	<h2 align="center">Events Details</h2>
+	<table border ="1" align="center">
+		<tr>
+			<th>Database</th>
+			<th>Name</th>
+			<th>Definer</th>
+			<th>Time zone</th>
+			<th>Type</th>
+			<th>Execute at</th>
+			<th>Interval value</th>
+			<th>Interval field</th>
+			<th>Starts</th>
+			<th>Ends</th>
+			<th>Status</th>
+			<th>Originator</th>
+			<th>Edit</th>
+			<th>Delete</th>
+		</tr>
 <?php
-	$i=0;
-	while($row = mysqli_fetch_array($result))
+
+	$sql_event = "show events";
+
+	$result_event = mysqli_query($con,$sql_event);
+
+	while($row_event = mysqli_fetch_array($result_event))
 	{ 
-		$dbname = $row['DBName'];
-		$jobname = $row['JobName'];
-		
-		echo "outer";
+			
+?>	
+		<tr>
+			<td><?php echo $row_event['Db']; ?></td>
+			<td><?php echo $row_event['Name']; ?></td>
+			<td><?php echo $row_event['Definer']; ?></td>
+			<td><?php echo $row_event['Time zone']; ?></td>
+			<td><?php echo $row_event['Type']; ?></td>
+			<?php
+				if($row_event['Execute at'] == NULL)
+				{
+					echo "<td>"."Not Define"."</td>";
+				}
+				else
+				{
+					echo "<td>".$row_event['Execute at']."</td>";
+				}
+			?>
+			<td><?php echo $row_event['Interval value']; ?></td>
+			<td><?php echo $row_event['Interval field']; ?></td>
+			<td><?php echo $row_event['Starts']; ?></td>
+			<?php
+				if($row_event['Ends'] == NULL)
+				{
+					echo "<td>"."Not Define"."</td>";
+				}
+				else
+				{
+					echo "<td>".$row_event['Ends']."</td>";
+				}
+			?>
+			<td><?php echo $row_event['Status']; ?></td>
+			<td><?php echo $row_event['Originator']; ?></td>
+			<td><a href="#">Edit</a></td>
+			<td><a href="#">Delete</a></td>
+		</tr>
+<?php
 
-		$sql1 = "call $dbname.$jobname";
-		$result1 = mysqli_query($con,$sql1);
-
-		while($row1 = mysqli_fetch_array($result1))
-		{
-			echo "in ";
-
-		?>	
-			<tr>
-				<td><?php echo $row1['Name']; ?></td>
-				<td><?php echo $row1['CountryCode']; ?></td>
-				<td><?php echo $row1['District']; ?></td>
-				<td><?php echo $row1['Population']; ?></td>
-			</tr>
-		<?php
-
-		}	
-	
 	}
 ?>
-	</table>
+
+</table>
+<p align="center"><a href ="add_event.php"><input type="submit" name="submit" value="Add New"></a></p>
 		
+
 </body>
 </html>
