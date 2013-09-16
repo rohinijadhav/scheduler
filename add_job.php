@@ -1,6 +1,23 @@
 <html>
 <head>
 	<title>Add Job</title>
+	<script type="text/javascript" src="jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="jquery.validate.min.js"></script>
+	<script type="text/javascript">
+	function getValue()
+ 	 {
+ 		 var x=document.getElementById("jname");
+ 
+ 		 if(x!=null) {
+  			alert("sucees");
+
+  			}
+  			else
+  			{
+  			alert("no");
+  			}
+  }
+	</script>
 </head>
 <body>
 <?php
@@ -36,7 +53,7 @@
 				<b>Job Name:</b>
 			</td>
 			<td>
-				<input type="text" name='jname'>
+				<input type="text" name="jname" id="jname">
 			</td>	
 		</tr>
 		<tr>
@@ -49,7 +66,7 @@
 		</tr>
 		<tr>
 			<td>
-				<input type="submit" name="submit" value="submit">
+				<input type="submit" name="submit" value="submit" onclick="getValue()">
 			</td>
 		</tr>	
 		</table>
@@ -64,10 +81,16 @@ $query = $_POST['query'];
 
 if(isset($_POST['submit']))
 {
-	$sql_c = "CREATE PROCEDURE $db.$job() BEGIN $query; END;";
+
+	//$sql_insert = "DROP PROCEDURE IF EXISTS $db.$job";
+
+	//mysqli_query($con,$sql_insert) or die(mysql_error());	
 	
+	$sql_c = "CREATE PROCEDURE $db.$job() BEGIN $query END;";
+
 	mysqli_query($con,$sql_c) or die(mysql_error());
 	
+	header('Location:batches.php');
 }
 
 ?>
