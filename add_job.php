@@ -1,3 +1,7 @@
+<?php
+	require_once('php-sql-parser.php');
+
+?>
 <html>
 <head>
 	<title>Add Job</title>
@@ -25,8 +29,10 @@
 	$con = mysqli_connect("localhost", "root", "root", "scheduler");
 	
 	$sql= "show databases";
-
-	$result = mysqli_query($con,$sql);
+	$parser = new PHPSQLParser();
+	$parsed = $parser->parse($sql);
+	print_r($parsed);
+	//$result = mysqli_query($con,$sql);
 ?>
 	<h2 align="center">Add Job</h2><hr>
 	<form action="#" method="POST">
@@ -66,7 +72,7 @@
 		</tr>
 		<tr>
 			<td>
-				<input type="submit" name="submit" value="submit" onclick="getValue()">
+				<input type="submit" name="submit" value="submit">
 			</td>
 		</tr>	
 		</table>
@@ -77,18 +83,14 @@
 <?php 
 $db = $_POST['dbname'];
 $job = $_POST['jname'];
-$query = $_POST['query'];
+$query = trim(preg_replace('/\s\s+/', ' ', $_POST['query']));
 
 if(isset($_POST['submit']))
 {
 
-	//$sql_insert = "DROP PROCEDURE IF EXISTS $db.$job";
+	$sql_c = "DROP PROCEDURE IF EXISTS $db.$job; CREATE PROCEDURE $db.$job() BEGIN $query END;";
 
-	//mysqli_query($con,$sql_insert) or die(mysql_error());	
-	
-	$sql_c = "CREATE PROCEDURE $db.$job() BEGIN $query END;";
-
-	mysqli_query($con,$sql_c) or die(mysql_error());
+	mysqli_multi_query($con,$sql_c) or die(mysqli_error()."error");
 	
 	header('Location:batches.php');
 }
