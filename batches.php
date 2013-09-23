@@ -101,6 +101,7 @@ if(isset($_POST['submit']))
 	$sql_edit = "DROP PROCEDURE IF EXISTS $_POST[dbname].$_POST[jname]; CREATE PROCEDURE $_POST[dbname].$_POST[jname]() BEGIN $_POST[query]; END;";
 	mysqli_multi_query($con,$sql_edit) or die("Error in Qeury:".mysqli_error($con));
 	
+	echo "success";
 }
 
 ?>
