@@ -1,23 +1,71 @@
 <html>
 <head>
 <title>Scheduler</title>
+<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript">
+	function delete_event(event)
+	{
+		
+		$.ajax({
+				type:'POST',
+				url:'delete_event.php',
+				data:"ename="+event,
+				success:function(data){
+					alert('success')
+					location.reload(true)
+				}
+		});
+	}
+	function edit_event(event)
+	{	
+		var id =1;
+	
+		$.ajax({
+				type:'POST',
+				url:'edit_event.php',
+				data:"event="+ event +"&check="+ id,
+				success:function(data){
+					alert('success')
+					$('#edit_event').html(data);
+				}
+		});
+	}
+
+	function status(event,status)
+	{	
+		var id ='0';
+
+		$.ajax({
+				type:'POST',
+				url:'edit_event.php',
+				data:"ename="+ event +"&status="+ status +"&check=" + id,
+				success:function(data){
+					alert('success')
+					location.reload(true);
+				}
+		});
+	}
+</script>
 </head>
 <body>
 <h1 align="center">JOB Scheduler</h1>
 
 <?php
 
-$con = mysqli_connect("localhost", "root", "root", "scheduler");
+$con = mysqli_connect("localhost", "root", "root", "scheduler") or die("Error in Connection:".mysqli_error($con));
+	
 
-$sql_event= "SET GLOBAL event_scheduler = 1";
+$sql= "SET GLOBAL event_scheduler = 1";
 
-mysqli_query($con,$sql);
+mysqli_query($con,$sql) or die("Error in Set Event Schedule:".mysqli_error($con));
+	
 
 ?>
 	<hr>
 
 	<!-- show event(scheduler) details table -->
 
+	<a href="batches.php" align="left">Show Jobs</a>
 	<h2 align="center">Events Details</h2>
 	<table border ="1" align="center">
 		<tr>
@@ -32,7 +80,6 @@ mysqli_query($con,$sql);
 			<th>Starts</th>
 			<th>Ends</th>
 			<th>Status</th>
-			<th>Originator</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
@@ -40,13 +87,12 @@ mysqli_query($con,$sql);
 
 	$sql_event = "show events";
 
-	$result_event = mysqli_query($con,$sql_event);
-
+	$result_event = mysqli_query($con,$sql_event) or die("Error in Query:".mysqli_error($con));
+	
 	while($row_event = mysqli_fetch_array($result_event))
 	{ 
 			
-?>	
-		<tr>
+?>		<tr>
 			<td><?php echo $row_event['Db']; ?></td>
 			<td><?php echo $row_event['Name']; ?></td>
 			<td><?php echo $row_event['Definer']; ?></td>
@@ -61,11 +107,34 @@ mysqli_query($con,$sql);
 				{
 					echo "<td>".$row_event['Execute at']."</td>";
 				}
-			?>
-			<td><?php echo $row_event['Interval value']; ?></td>
-			<td><?php echo $row_event['Interval field']; ?></td>
-			<td><?php echo $row_event['Starts']; ?></td>
-			<?php
+
+				if ($row_event['Interval value'] == NULL)
+				{
+					echo "<td>"."Not Define"."</td>";
+				}
+				else
+				{
+					echo "<td>".$row_event['Interval value']."</td>"; 
+				}
+
+				if ($row_event['Interval field'] == NULL)
+				{
+					echo "<td>"."Not Define"."</td>";
+				}
+				else
+				{
+					echo "<td>".$row_event['Interval field']."</td>"; 
+				}	
+
+				if ($row_event['Starts'] == NULL)
+				{
+					echo "<td>"."Not Define"."</td>";
+				}
+				else
+				{
+					echo "<td>".$row_event['Starts']."</td>"; 
+				}	
+
 				if($row_event['Ends'] == NULL)
 				{
 					echo "<td>"."Not Define"."</td>";
@@ -75,10 +144,9 @@ mysqli_query($con,$sql);
 					echo "<td>".$row_event['Ends']."</td>";
 				}
 			?>
-			<td><?php echo $row_event['Status']; ?></td>
-			<td><?php echo $row_event['Originator']; ?></td>
-			<td><a href="#">Edit</a></td>
-			<td><a href="#">Delete</a></td>
+			<td><a href="#" onclick="status('<?php echo $row_event['Name']?>','<?php echo $row_event['Status']?>');"><?php echo $row_event['Status']; ?></a></td>
+			<td><a href="#" onclick="edit_event('<?php echo $row_event['Name']?>','<?php echo $row_event['Name']?>');">Edit</a></td>
+			<td><a href="#" onclick="delete_event('<?php echo $row_event['Name']?>');">Delete</a></td>
 		</tr>
 <?php
 
@@ -87,7 +155,11 @@ mysqli_query($con,$sql);
 
 </table>
 <p align="center"><a href ="add_event.php"><input type="submit" name="submit" value="Add New"></a></p>
+
+<div id="edit_event">
+
 		
+</div>		
 
 </body>
 </html>
