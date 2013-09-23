@@ -16,21 +16,7 @@
 				}
 		});
 	}
-	function edit_event(event)
-	{	
-		var id =1;
 	
-		$.ajax({
-				type:'POST',
-				url:'edit_event.php',
-				data:"event="+ event +"&check="+ id,
-				success:function(data){
-					alert('success')
-					$('#edit_event').html(data);
-				}
-		});
-	}
-
 	function status(event,status)
 	{	
 		var id ='0';
@@ -45,6 +31,23 @@
 				}
 		});
 	}
+
+	function edit_event(db,event)
+	{	
+		var id =1;
+		alert(db);
+		alert(event);
+	
+		$.ajax({
+				type:'POST',
+				url:'edit_event.php',
+				data:"dbname="+ db +"&event="+ event +"&check="+ id,
+				success:function(data){
+					alert('success')
+					$('#edit_event').html(data);
+				}
+		});
+	}
 </script>
 </head>
 <body>
@@ -54,7 +57,6 @@
 
 $con = mysqli_connect("localhost", "root", "root", "scheduler") or die("Error in Connection:".mysqli_error($con));
 	
-
 $sql= "SET GLOBAL event_scheduler = 1";
 
 mysqli_query($con,$sql) or die("Error in Set Event Schedule:".mysqli_error($con));
@@ -62,7 +64,7 @@ mysqli_query($con,$sql) or die("Error in Set Event Schedule:".mysqli_error($con)
 
 ?>
 	<hr>
-
+<div id="edit_event">
 	<!-- show event(scheduler) details table -->
 
 	<a href="batches.php" align="left">Show Jobs</a>
@@ -145,7 +147,7 @@ mysqli_query($con,$sql) or die("Error in Set Event Schedule:".mysqli_error($con)
 				}
 			?>
 			<td><a href="#" onclick="status('<?php echo $row_event['Name']?>','<?php echo $row_event['Status']?>');"><?php echo $row_event['Status']; ?></a></td>
-			<td><a href="#" onclick="edit_event('<?php echo $row_event['Name']?>','<?php echo $row_event['Name']?>');">Edit</a></td>
+			<td><a href="#" onclick="edit_event('<?php echo $row_event['Db']?>','<?php echo $row_event['Name']?>');">Edit</a></td>
 			<td><a href="#" onclick="delete_event('<?php echo $row_event['Name']?>');">Delete</a></td>
 		</tr>
 <?php
@@ -154,12 +156,34 @@ mysqli_query($con,$sql) or die("Error in Set Event Schedule:".mysqli_error($con)
 ?>
 
 </table>
-<p align="center"><a href ="add_event.php"><input type="submit" name="submit" value="Add New"></a></p>
-
-<div id="edit_event">
-
-		
+<p align="center"><a href ="add_event.php"><input type="submit" name="add" value="Add New"></a></p>
 </div>		
 
+<?php
+	if (isset($_POST['submit'])) 
+	{
+		$con = mysqli_connect("localhost", "root", "root", "scheduler") or die("Error in Connection:".mysqli_error($con));
+		if($_POST['schedule'] == 'AT')
+		{	
+			$sql_edit = "ALTER EVENT $_POST[ename] ON SCHEDULE $_POST[schedule] '$_POST[execute]' DO CALL $_POST[jobname]";			
+		}
+		else
+		{
+			if(($_POST['start'] != NULL) AND ($_POST['end'] != NULL))
+			{
+				$sql_edit = "ALTER EVENT $_POST[ename] ON SCHEDULE $_POST[schedule] $_POST[num] $_POST[interval] STARTS '$_POST[start]' ENDS '$_POST[end]' DO CALL $_POST[jobname]";			
+			}
+			elseif(($_POST['start'] != NULL) AND ($_POST['end'] == NULL))
+			{
+				$sql_edit = "ALTER EVENT $_POST[ename] ON SCHEDULE $_POST[schedule] $_POST[num] $_POST[interval] STARTS '$_POST[start]' DO CALL $_POST[jobname]";			
+			}
+			else
+			{		
+				$sql_edit = "ALTER EVENT $_POST[ename] ON SCHEDULE $_POST[schedule] $_POST[num] $_POST[interval] DO CALL $_POST[jobname]";			
+			}
+		}	
+		mysqli_query($con,$sql_edit) or die("Error in edit".mysqli_error());
+	}
+?>
 </body>
 </html>
