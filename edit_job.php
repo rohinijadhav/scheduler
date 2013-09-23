@@ -4,23 +4,20 @@
 	
 </head>
 <body>
-<form action="#" method="POST">
+<form action="batches.php" method="POST">
 <?php
 
-	$dbname = $_POST['dbname'];
-	$jobname = $_POST['jobname'];
-
-	$con = mysqli_connect("localhost", "root", "root", "scheduler");
+	$dbname = $_GET['dbname'];
+	$jobname = $_GET['jobname'];
 	
-	//$sql= "select * from jobschedule where DBName LIKE 'world' AND JobName LIKE 'job_city'";
-
+	$con = mysqli_connect("localhost", "root", "root", "scheduler") or die("Error in Connection:".mysqli_error($con));
+	
 	$sql = "show create procedure $dbname.$jobname"; 
-	$result = mysqli_query($con,$sql);
-
+	$result = mysqli_query($con,$sql) or die("Error in Query:".mysqli_error($con));
+	
 	while($row = mysqli_fetch_array($result))
 	{
 
-	//print_r($row);
 ?>
 	<table align="center">
 		<tr>
@@ -33,7 +30,7 @@
 		</tr>
 		<tr>
 		<td>Query</td>
-		<td><input type="text" id="query" name="query" value="<?php echo $query = trim(substr($row[2],strpos($row[2],"begin")+6),";end"); ?>"></td>
+		<td><input type="text" id="query" name="query" value="<?php echo trim(substr($row[2],strpos($row[2],"BEGIN")+6),"END"); ?>"></td>
 		</tr>
 		<tr>
 		<td><input type="submit" name="submit" value="Edit"></td>
@@ -41,14 +38,8 @@
 	</table>
 	</form>
 
-	<?php 
-	if(isset($_POST['submit']))
-	{
-		$sql_edit = "ALTER PROCEDURE $dbname.$jobname() BEGIN $query END;";
-		mysqli_query($con,$sql_edit);
-	}
-	} 
-		
-		?>
+<?php
+ }		
+?>
 	</body>
 </html>	
