@@ -98,7 +98,14 @@ if(isset($_POST['submit']))
 {
 	$con = mysqli_connect("localhost", "root", "root", "scheduler") or die("Error in Connection:".mysqli_error($con));
 
-	$sql_edit = "DROP PROCEDURE IF EXISTS $_POST[dbname].$_POST[jname]; CREATE PROCEDURE $_POST[dbname].$_POST[jname]() BEGIN $_POST[query]; END;";
+	require_once('php-sql-parser.php');
+	require_once('php-sql-creator.php');
+
+	$parser = new PHPSQLParser($_POST['query']);
+	$creator = new PHPSQLCreator($parser->parsed);
+	$query = $creator->created;
+
+	$sql_edit = "DROP PROCEDURE IF EXISTS $_POST[dbname].$_POST[jname]; CREATE PROCEDURE $_POST[dbname].$_POST[jname]() BEGIN $query; END;";
 	mysqli_multi_query($con,$sql_edit) or die("Error in Qeury:".mysqli_error($con));
 	
 	echo "success";
