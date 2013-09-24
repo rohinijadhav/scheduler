@@ -98,10 +98,12 @@
 		</tr>
 	</table>
 </form>
-<?php if(isset($_POST['submit']))
+<?php
+	if(isset($_POST['submit']))
 	{
-		if($_POST['schedule']=='EVERY')
-		{
+	switch ($_POST['schedule']) 
+	{
+		case 'EVERY':
 			if(($_POST['start'] != NULL) AND ($_POST['end'] != NULL))
 			{	
 				if(($_POST['num_str']!=NULL) AND ($_POST['num_end']!=NULL))
@@ -139,19 +141,24 @@
 				$sql = "CREATE EVENT IF NOT EXISTS $_POST[ename] ON SCHEDULE $_POST[schedule] $_POST[num] $_POST[interval] DO CALL $_POST[dbname].$_POST[jobname]";	
 			}
 
-		}
-		else
-		{
+				break;
+		case 'AT':
 			if($_POST['num_exe']!=NULL)
 			{	
-				$sql = "CREATE EVENT IF NOT EXISTS $_POST[ename] ON SCHEDULE $_POST[schedule] '$_POST[execute]' + INTERVAL $_POST[num_exe] $_POST[inter_exe] DO CALL $_POST[dbname].$_POST[jobname]";			}
+				$sql = "CREATE EVENT IF NOT EXISTS $_POST[ename] ON SCHEDULE $_POST[schedule] '$_POST[execute]' + INTERVAL $_POST[num_exe] $_POST[inter_exe] DO CALL $_POST[dbname].$_POST[jobname]";			
+			}
 			else
 			{
 
 				$sql = "CREATE EVENT IF NOT EXISTS $_POST[ename] ON SCHEDULE $_POST[schedule] '$_POST[execute]' DO CALL $_POST[dbname].$_POST[jobname]";			
 
 			}	
+				break;
+			default:
+				echo "wrong selection";
+				break;
 		}
+		
 		mysqli_query($con,$sql) or die("error:".mysqli_error());
 		header('Location: index.php');
 	}
