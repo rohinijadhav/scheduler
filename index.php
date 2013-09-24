@@ -162,13 +162,10 @@ mysqli_query($con,$sql) or die("Error in Set Event Schedule:".mysqli_error($con)
 <?php
 	if (isset($_POST['submit'])) 
 	{
-		$con = mysqli_connect("localhost", "root", "root", "scheduler") or die("Error in Connection:".mysqli_error($con));
-		if($_POST['schedule'] == 'AT')
-		{	
-			$sql_edit = "ALTER EVENT $_POST[ename] ON SCHEDULE $_POST[schedule] '$_POST[execute]' DO CALL $_POST[jobname]";			
-		}
-		else
-		{
+		
+	switch ($_POST['schedule']) 
+	{
+		case 'EVERY':
 			if(($_POST['start'] != NULL) AND ($_POST['end'] != NULL))
 			{
 				$sql_edit = "ALTER EVENT $_POST[ename] ON SCHEDULE $_POST[schedule] $_POST[num] $_POST[interval] STARTS '$_POST[start]' ENDS '$_POST[end]' DO CALL $_POST[jobname]";			
@@ -177,11 +174,20 @@ mysqli_query($con,$sql) or die("Error in Set Event Schedule:".mysqli_error($con)
 			{
 				$sql_edit = "ALTER EVENT $_POST[ename] ON SCHEDULE $_POST[schedule] $_POST[num] $_POST[interval] STARTS '$_POST[start]' DO CALL $_POST[jobname]";			
 			}
-			else
-			{		
-				$sql_edit = "ALTER EVENT $_POST[ename] ON SCHEDULE $_POST[schedule] $_POST[num] $_POST[interval] DO CALL $_POST[jobname]";			
+			else 
+			{
+				$sql_edit = "ALTER EVENT $_POST[ename] ON SCHEDULE $_POST[schedule] $_POST[num] $_POST[interval] DO CALL $_POST[jobname]";
 			}
-		}	
+				break;
+		case 'AT':
+				$sql_edit = "ALTER EVENT $_POST[ename] ON SCHEDULE $_POST[schedule] '$_POST[execute]' DO CALL $_POST[jobname]";			
+
+				break;	
+			default:
+				echo "wrong selection";
+				break;
+	}
+		
 		mysqli_query($con,$sql_edit) or die("Error in edit".mysqli_error());
 	}
 ?>
