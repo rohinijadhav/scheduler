@@ -6,7 +6,13 @@
 	$=jquery;
 	function change(db)
 	{
-		 $.getJSON("listbox.php",{dbname:db}, function(result){ $("#box").html(result.output)});
+		$.getJSON("listbox.php",{dbname:db}, function(result){ $("#box").html(result.output)});
+	}
+	
+	function scheduling(type)
+	{
+		//alert(type);
+		$.getJSON("schedule.php",{sch_type:type}, function(result){ $("#type").html(result.output)});
 	}
 	</script>
 </head>
@@ -41,58 +47,18 @@
 			<td><input type="text" name="ename"></td>
 		</tr>
 		<tr><td><b>Schedule On:</b></td>
-			<td><select name="schedule">
+			<td><select name="schedule" onchange="scheduling(this.value)">
+				<option value="0" selected>----select----</option>
 				<option value="EVERY">EVERY</option>
 				<option value="AT">AT</option>
-				</select>
-			<input type ="text" name="num">
-			<select name="interval">
-					<option value="YEAR">YEAR</option> 
-					<option value="MONTH">MONTH</option> 
-					<option value="DAY">DAY</option> 
-					<option value="HOUR">HOUR</option> 
-					<option value="MINUTE">MINUTE</option> 
-					<option value="WEEK">WEEK</option> 
 				</select></td>
 		</tr>
 		<tr>
-			<td><b>Start time:</b></td>
-			<td><input type="text" name="start"> + Interval <input type="text" name="num_str">
-			<select name="inter_str">
-					<option value="YEAR">YEAR</option> 
-					<option value="MONTH">MONTH</option> 
-					<option value="DAY">DAY</option> 
-					<option value="HOUR">HOUR</option> 
-					<option value="MINUTE">MINUTE</option> 
-					<option value="WEEK">WEEK</option> 
-				</select></td>
-		</tr>	
-		<tr>
-			<td><b>End time:</b></td>	
-			<td><input type="text" name="end"> + Interval <input type="text" name="num_end">
-			<select name="inter_end">
-					<option value="YEAR">YEAR</option> 
-					<option value="MONTH">MONTH</option> 
-					<option value="DAY">DAY</option> 
-					<option value="HOUR">HOUR</option> 
-					<option value="MINUTE">MINUTE</option> 
-					<option value="WEEK">WEEK</option> 
-				</select></td>	
+			<td>
+				<div id ="type">
+				</div>		
+			</td>	
 		</tr>
-		<tr>
-			<td><b>Execute At:</b></td>	
-			<td><input type="text" name="execute"> + Interval <input type="text" name="num_exe">
-			<select name="inter_exe">
-					<option value="YEAR">YEAR</option> 
-					<option value="MONTH">MONTH</option> 
-					<option value="DAY">DAY</option> 
-					<option value="HOUR">HOUR</option> 
-					<option value="MINUTE">MINUTE</option> 
-					<option value="WEEK">WEEK</option> 
-				</select></td>	
-		</tr>
-		
-
 		<tr>
 			<td><input type="submit" name="submit" value="Add"></td>
 		</tr>
