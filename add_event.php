@@ -12,7 +12,7 @@
 	function scheduling(type)
 	{
 		//alert(type);
-		$.getJSON("schedule.php",{sch_type:type}, function(result){ $("#type").html(result.output)});
+		$.getJSON("schedule_type.php",{sch_type:type}, function(result){ $("#type").html(result.output)});
 	}
 	</script>
 </head>
