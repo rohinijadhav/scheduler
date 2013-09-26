@@ -1,6 +1,7 @@
 <html>
 <head>
 	<title>Add Event</title>
+	<link rel="stylesheet" type="text/css" href="css/add_event.css">
 	<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
 	<script type="text/javascript">
 	$=jquery;
@@ -17,7 +18,6 @@
 	</script>
 </head>
 <body>
-
 <?php
 	
 	$con = mysqli_connect("localhost", "root", "root", "scheduler") or die("Error in Connection:".mysqli_error($con));
@@ -26,44 +26,48 @@
 
 	$result_db = mysqli_query($con,$sql_db) or die("Error in query:".mysqli_error($con));
 ?>
-	<h2 align="center">Add Event</h2><hr>
-	<a href="index.php">show event</a>
+<a href="index.php">show event</a>
+
+<div id="add_body">
+	<h2 align="center">Add Event</h2>
+
 	<form action="#" method="POST">
-	<table align = "center">
-	<tr>
-			<td><b>select Database:</b></td>
-			<td>
-			<select name="dbname" onchange="change(this.value);">
-			<option value="0" selected>----select----</option>
+		<table align="center">	
+			<tr>
+				<td><b>select Database:</b></td>
+				<td><select name="dbname" onchange="change(this.value);">
+					<option value="0" selected>----select----</option>
 <?php	
-			while($row = mysqli_fetch_array($result_db))
-			{
-				echo "<option value = '".$row['Database']."'>".$row['Database']."</option>";
-			}
-?>			</select>
-		<tr id="box">			
-		</tr>
-		<tr><td><b>Event Name:</b></td>
-			<td><input type="text" name="ename"></td>
-		</tr>
-		<tr><td><b>Schedule On:</b></td>
-			<td><select name="schedule" onchange="scheduling(this.value)">
-				<option value="0" selected>----select----</option>
-				<option value="EVERY">EVERY</option>
-				<option value="AT">AT</option>
-				</select></td>
-		</tr>
-		<tr>
-			<td>
-				<div id ="type">
-				</div>		
-			</td>	
-		</tr>
-		<tr>
-			<td><input type="submit" name="submit" value="Add"></td>
-		</tr>
-	</table>
-</form>
+					while($row = mysqli_fetch_array($result_db))
+					{
+						echo "<option value = '".$row['Database']."'>".$row['Database']."</option>";
+					}
+?>					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<div id="box">
+					
+				</div>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Event Name:</b></td>
+				<td><input type="text" name="ename"></td>
+			</tr>
+			<tr>
+				<td><b>Schedule On:</b></td>
+				<td><input type="radio" name="schedule" value="EVERY" onclick="scheduling(this.value)"><b>EVERY</b>
+					<input type="radio" name="schedule" value="AT" onclick="scheduling(this.value)" ><b>AT</b></td>
+			</tr></table>
+			<div id ="type">
+			</div>	
+			
+				<input type="submit" name="submit" value="Add">
+	</form>
+</div>
+
 <?php
 	if(isset($_POST['submit']))
 	{
