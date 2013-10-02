@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html class="posts -moz- js flexbox canvas canvastext postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <link rel="dns-prefetch" href="http://use.typekit.com.com/">
+  <link rel="dns-prefetch" href="http://www.google-analytics.com/">
+  <link rel="dns-prefetch" href="http://assets0.reinteractive.net/">
+  <link rel="dns-prefetch" href="http://assets1.reinteractive.net/">
+  <link rel="dns-prefetch" href="http://assets2.reinteractive.net/">
+  <link rel="dns-prefetch" href="http://assets3.reinteractive.net/">
+  
+  <title>reInteractive: Ruby on Rails 3.2 Blog in 15 minutes Step by Step | Sydney, Australia Ruby on Rails Developers</title>
+
+  <meta name="description" content="reInteractive: Ruby on Rails 3.2 Blog in 15 minutes Step by Step">
+  <meta name="author" content="Leonard Garvey">
+  <script src="rails%20tutorial_files/ga.js" async="" type="text/javascript"></script><script src="rails%20tutorial_files/prefixfree.js"></script>
+  <link data-inprogress="" href="rails%20tutorial_files/application-5efe1c1bb934ac329f4194b26d93c325.css" media="screen" rel="stylesheet" type="text/css">
+
+  <!--[if lt IE 8]>
+    <link href="http://assets2.reinteractive.net/assets/ui-7fe7d0a2be18d15ecb5a6795e7c74897.iehax" media="screen" rel="stylesheet" type="text/css" />
+  <![endif]-->
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black translucent">
+
+  <script type="text/javascript">
+    var MTIProjectId='d43d9d18-6ef7-4fc5-a72e-4b66b3d6dce8';
+     (function() {
+            var mtiTracking = document.createElement('script');
+            mtiTracking.type='text/javascript';
+            mtiTracking.async='true';
+            mtiTracking.src=('https:'==document.location.protocol?'https:':'http:')+'//fast.fonts.com/t/trackingCode.js';
+            (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild( mtiTracking );
+       })();
+  </script><script src="rails%20tutorial_files/trackingCode.js" async="" type="text/javascript"></script>
+  
+  <meta content="authenticity_token" name="csrf-param">
+<meta content="7JbhFebfE6CRJjCVMcnuAtQSZr+/ilAoJaHOcBuqEIU=" name="csrf-token">
+  <link href="http://www.reinteractive.net/feeds.atom" rel="alternate" title="ATOM" type="application/atom+xml">
+<script src="rails%20tutorial_files/embed.js" async="" type="text/javascript"></script><link data-inprogress="" href="rails%20tutorial_files/1.css" rel="stylesheet" type="text/css"><script charset="UTF-8" async="" src="rails%20tutorial_files/alfie.js"></script></head>
+
+
+<body>
+  <header class="main">
+  <div class="container-fluid">
+    <div class="row-fluid" style="position: relative;">
+      <section class="span5">
+        <div class="logo-link">
+          <a href="http://www.reinteractive.net/"><img alt="reInteractive" id="Logo-Mark" src="rails%20tutorial_files/logo-b706a061f50ac2547e01e889e084ae45.jpg"></a>
+            <hgroup>
+    <a href="http://www.reinteractive.net/">
+        <img alt="the reInteractive blog" id="Blog-Header" src="rails%20tutorial_files/logo-type-blog-40a2f8298a392eee5340f87dc22ade46.png">
+        <h4>writings on web development &amp; design</h4>
+</a>  </hgroup>
+
+        </div>
+      </section>
+
+      <nav class="span7">
+        <ul>
+          <li id="About" class=""><a href="http://www.reinteractive.net/about">About</a></li>
+          <li id="Services" class=""><a href="http://www.reinteractive.net/services">Services</a></li>
+          <li id="Solutions" class=" row-last-mobile"><a href="http://www.reinteractive.net/solutions">Solutions</a></li>
+          <li id="CaseStudies" class=""><a href="http://www.reinteractive.net/case_studies">Case Studies</a></li>
+          <li id="Community" class=""><a href="http://www.reinteractive.net/community/index">Community</a></li>
+          <li id="Blog" class="selected"><a href="http://www.reinteractive.net/blog">Blog</a></li>
+          <li id="Team" class=" row-last-mobile"><a href="http://www.reinteractive.net/team">Our Team</a></li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</header>
+  <div class="container-fluid">
+    <article class="content-page blog-post">
+  <section>
+    <header class="blog-header">
+      <img alt="Leonard Garvey" class="author-image" src="rails%20tutorial_files/leonard-garvey.jpg">
+      <h2 class="blog-title"><a href="http://www.reinteractive.net/posts/32-ruby-on-rails-3-2-blog-in-15-minutes-step-by-step">Ruby on Rails 3.2 Blog in 15 minutes Step by Step</a></h2>
+      <h3 class="blog-author">
+        By Leonard Garvey
+      </h3>
+        <div class="team-social-media">
+          <a href="http://www.twitter.com/lgarvey" alt="Follow me on twitter! Go on!" class="twitter"><img alt="Twitter" src="rails%20tutorial_files/twitter-1c2b2adf90d372caa7d00428739002ee.png"></a>
+        </div>
+    </header>
+
+    <h2>Preparation</h2>
+
+<h4>Prerequisites</h4>
+
+<ol>
+<li>A working version of Rails 3.2 which you can install using <a href="http://railsinstaller.org/">Rails Installer</a> for Windows or Mac.</li>
+<li>Sublime Text 2. If you prefer another text editor like vim, emacs or
+ TextMate that's fine too but these instructions will specifically 
+mention Sublime.</li>
+</ol>
+
+
+<h4>Next steps</h4>
+
+<p>Open two command prompts. One of these you'll use to run your local 
+Rails server and the other you'll use for entering all other commands.
+Whenever you need to start or restart the rails server use one of these 
+prompts, for all other command line work you can use the other.</p>
+
+<h2>Setting up our Rails app</h2>
+
+<p><code>rails new quick_blog -T</code></p>
+
+<p>Entering this command into your command prompt will cause Rails to 
+generate a new application and begin to install depedencies for your 
+application. This process may take a few minutes, so you should let it 
+continue. Once it has finished type:</p>
+
+<p><code>cd quick_blog</code></p>
+
+<p>To change into the folder where your application is stored. If you look at the contents of this folder you'll see:</p>
+
+<p><img src="rails%20tutorial_files/default_rails_structure.png" alt="The default Rails application structure"></p>
+
+<p>This is the standard structure of a new Rails application. Once you 
+learn this structure it makes working with Rails easier since everything
+ is in a standard place. Next we'll run this fresh application to check 
+that our Rails install is working properly. Type:</p>
+
+<p><code>rails server</code></p>
+
+<p>Open your web-browser and head to: <a href="http://localhost:3000/">http://localhost:3000</a> you should see something that looks like:</p>
+
+<p><img src="rails%20tutorial_files/rails_default_home.png" alt="Rails default homepage"></p>
+
+<p>Now that you've created the Rails application you should open this 
+folder using Sublime. Open up Sublime, then open the quick_blog folder 
+that was just generated.</p>
+
+<h2>Creating basic functionality</h2>
+
+<p>Now we're ready to get started building an actual blog. In your command prompt press <code>Ctrl-c</code>
+ to stop the Rails server, or open a new command prompt and navigate to 
+your Rails application folder. Then you can use a Rails generator to 
+build some code for you:</p>
+
+<p><code>rails g scaffold Post title body:text</code></p>
+
+<p>You'll be presented with something that looks like:</p>
+
+<p><img src="rails%20tutorial_files/scaffolding_posts.png" alt="Scaffolding posts"></p>
+
+<p>An important file that was generated was the migration file: <code>db/migrate/20130422001725_create_posts.rb</code> Note that you will have a different set of numbers for in yours.</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">CreatePosts</span> &lt; <span style="color:#036;font-weight:bold">ActiveRecord</span>::<span style="color:#036;font-weight:bold">Migration</span>
+  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">change</span>
+    create_table <span style="color:#A60">:posts</span> <span style="color:#080;font-weight:bold">do</span> |t|
+      t.string <span style="color:#A60">:title</span>
+      t.text <span style="color:#A60">:body</span>
+
+      t.timestamps
+    <span style="color:#080;font-weight:bold">end</span>
+  <span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">end</span>
+</pre></div>
+</div>
+
+
+<p>This file is some Ruby code that is a database agnostic way to manage
+ your schema. You can see that this code is to create a table called <code>Posts</code>
+ and to create two columns in this table, a title column and a body 
+column. Finally we need to instruct Rails to apply this to our database.
+ Type:</p>
+
+<p><code>rake db:migrate</code></p>
+
+<p>Once this command has run you can start up your Rails server again with <code>rails server</code> and then navigate to <a href="http://localhost:3000/posts">http://localhost:3000/posts</a> to see the changes you've made to your application.</p>
+
+<p><img src="rails%20tutorial_files/empty_posts_list.png" alt="Empty posts list"></p>
+
+<p>From here you can play around with your application. Go ahead and create a new blog post.</p>
+
+<p><img src="rails%20tutorial_files/filling_out_posts_form.png" alt="Creating a new post"></p>
+
+<p>You'll notice you can create new posts, edit or delete them. We're 
+going to add in some functionality to our new Rails app which enforces a
+ rule that every post must have a title. Open <code>app/models/post.rb</code> and add the line:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>validates_presence_of <span style="color:#A60">:body</span>, <span style="color:#A60">:title</span></pre></div>
+</div>
+
+
+<p>To the code. Your <code>post.rb</code> file should look like:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">Post</span> &lt; <span style="color:#036;font-weight:bold">ActiveRecord</span>::<span style="color:#036;font-weight:bold">Base</span>
+  attr_accessible <span style="color:#A60">:body</span>, <span style="color:#A60">:title</span>
+
+  validates_presence_of <span style="color:#A60">:body</span>, <span style="color:#A60">:title</span>
+<span style="color:#080;font-weight:bold">end</span>
+</pre></div>
+</div>
+
+
+<p>We can check that this works by editing our blog post, deleting the title and clicking <code>Update Post</code>. You'll get an error informing you that you've just attempted to break the rule you just inserted:</p>
+
+<p><img src="rails%20tutorial_files/validation_errors.png" alt="Rails validation error"></p>
+
+<h2>Making things prettier</h2>
+
+<p>Right now our <a href="http://localhost:3000/posts/1">show post page</a> isn't looking very good. We'll open <code>app/views/posts/show.html.erb</code> and make it look like the following:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre> <span style="color:#070">&lt;p</span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">notice</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> notice <span style="font-weight:bold;color:#666">%&gt;</span></span><span style="color:#070">&lt;/p&gt;</span>
+
+ <span style="color:#070">&lt;h2&gt;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> link_to_unless_current <span style="color:#33B">@post</span>.title, <span style="color:#33B">@post</span> <span style="font-weight:bold;color:#666">%&gt;</span></span><span style="color:#070">&lt;/h2&gt;</span>
+ <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> simple_format <span style="color:#33B">@post</span>.body <span style="font-weight:bold;color:#666">%&gt;</span></span>
+
+ <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> link_to <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Edit</span><span style="color:#710">'</span></span>, edit_post_path(<span style="color:#33B">@post</span>) <span style="font-weight:bold;color:#666">%&gt;</span></span> |
+ <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> link_to <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Back</span><span style="color:#710">'</span></span>, posts_path <span style="font-weight:bold;color:#666">%&gt;</span></span>
+</pre></div>
+</div>
+
+
+<p>At this point you can refresh the show post page in your browser to see the changes you've made.</p>
+
+<p>We'll also want to make our blog listing prettier too, we'll use a 
+Rails partial (a partial is simply a reusuable block of HTML code. It's 
+part of a web page) to achieve this. We want our listing and the 
+individual blog pages to look the same so first we'll create a file: <code>app/views/posts/_post.html.erb</code> The underscore in front of the filename here tells Rails that this is a partial. We'll take</p>
+
+<div class="CodeRay">
+  <div class="code"><pre> <span style="color:#070">&lt;h2&gt;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> link_to_unless_current <span style="color:#33B">@post</span>.title, <span style="color:#33B">@post</span> <span style="font-weight:bold;color:#666">%&gt;</span></span><span style="color:#070">&lt;/h2&gt;</span>
+ <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> simple_format <span style="color:#33B">@post</span>.body <span style="font-weight:bold;color:#666">%&gt;</span></span>
+</pre></div>
+</div>
+
+
+<p>Out of <code>app/views/posts/show.html.erb</code> and put it in our <code>_post.html.erb</code> file. After that change all the <code>@post</code> to be <code>post</code> instead. This means your <code>_post.html.erb</code> file will be:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre> <span style="color:#070">&lt;h2&gt;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> link_to_unless_current post.title, post <span style="font-weight:bold;color:#666">%&gt;</span></span><span style="color:#070">&lt;/h2&gt;</span>
+ <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> simple_format post.body <span style="font-weight:bold;color:#666">%&gt;</span></span>
+</pre></div>
+</div>
+
+
+<p>In our <code>show.html.erb</code> file we want insert the code to put our partial into our show view. Insert the code: <code>&lt;%= render :partial =&gt; @post %&gt;</code> to make it look like:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre> <span style="color:#070">&lt;p</span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">notice</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> notice <span style="font-weight:bold;color:#666">%&gt;</span></span><span style="color:#070">&lt;/p&gt;</span>
+
+ <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> render <span style="color:#A60">:partial</span> =&gt; <span style="color:#33B">@post</span> <span style="font-weight:bold;color:#666">%&gt;</span></span>
+
+ <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> link_to <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Edit</span><span style="color:#710">'</span></span>, edit_post_path(<span style="color:#33B">@post</span>) <span style="font-weight:bold;color:#666">%&gt;</span></span> |
+ <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> link_to <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Back</span><span style="color:#710">'</span></span>, posts_path <span style="font-weight:bold;color:#666">%&gt;</span></span>
+</pre></div>
+</div>
+
+
+<p>Save all these files and refresh <a href="http://localhost:3000/posts/1">the show posts page</a>. This is to check that you haven't broken anything with those changes.</p>
+
+<p>Our index page still hasn't changed though so we're going to open the <code>index.html.erb</code> file up and remove the table in there and replace it with the partial again so we're re-using that code:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre> <span style="color:#070">&lt;h1&gt;</span>Listing posts<span style="color:#070">&lt;/h1&gt;</span>
+
+ <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> render <span style="color:#A60">:partial</span> =&gt; <span style="color:#33B">@posts</span> <span style="font-weight:bold;color:#666">%&gt;</span></span>
+
+ <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> link_to <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">New Post</span><span style="color:#710">'</span></span>, new_post_path <span style="font-weight:bold;color:#666">%&gt;</span></span>
+</pre></div>
+</div>
+
+
+<h2>Access control</h2>
+
+<p>One huge problem with our blog is that anyone can create, edit and 
+delete blog posts. Lets fix that. We'll use HTTP Basic authenticate to 
+put a password on actions we don't want everyone accessing. Open <code>app/controllers/posts_controller.rb</code> and add <code>before_filter :authenticate, :except =&gt; [ :index, :show ]</code> on line 2 just below the class declaration. At the bottom of your file put the following code:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>  private
+  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">authenticate</span>
+    authenticate_or_request_with_http_basic <span style="color:#080;font-weight:bold">do</span> |name, password|
+      name == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">admin</span><span style="color:#710">"</span></span> &amp;&amp; password == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">secret</span><span style="color:#710">"</span></span>
+    <span style="color:#080;font-weight:bold">end</span>
+  <span style="color:#080;font-weight:bold">end</span>
+</pre></div>
+</div>
+
+
+<p>Overall your <code>posts_controller.rb</code> should have the following code at the top and the bottom of the file. Note that all the methods are exlcuded here for brevity.</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">PostsController</span> &lt; <span style="color:#036;font-weight:bold">ApplicationController</span>
+  before_filter <span style="color:#A60">:authenticate</span>, <span style="color:#A60">:except</span> =&gt; [ <span style="color:#A60">:index</span>, <span style="color:#A60">:show</span> ]
+  
+  <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#404">/</span></span> <span style="color:#F00;background-color:#FAA">…</span> all your actions go <span style="color:#080;font-weight:bold">in</span> here
+  
+  private
+  <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">authenticate</span>
+    authenticate_or_request_with_http_basic <span style="color:#080;font-weight:bold">do</span> |name, password|
+      name == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">admin</span><span style="color:#710">"</span></span> &amp;&amp; password == <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">secret</span><span style="color:#710">"</span></span>
+    <span style="color:#080;font-weight:bold">end</span>
+  <span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">end</span>  
+</pre></div>
+</div>
+
+
+<p>With that code in place you can try to <a href="http://localhost:3000/posts/new">add a new post</a> and you'll be prompted to enter a username and password.</p>
+
+<p><img src="rails%20tutorial_files/authentication_required.png" alt="image"></p>
+
+<h2>Adding comments</h2>
+
+<h4>Creating a database model and routing</h4>
+
+<p>No blog is complete without comments. Lets add them in. On our command prompt shut down your rails server by hitting <code>Ctrl-C</code> in your command prompt and then type in:</p>
+
+<p><code>rails generate resource Comment post:references body:text</code></p>
+
+<p>Then you'll want to update your database here to reflect the schema change you've just made:</p>
+
+<p><code>rake db:migrate</code></p>
+
+<p>After this you'll need to inform Rails that your Posts will potentially have many Comments. Open <code>app/models/post.rb</code> and add the line: <code>has_many :comments</code> somewhere inside the class. This should look like:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">Post</span> &lt; <span style="color:#036;font-weight:bold">ActiveRecord</span>::<span style="color:#036;font-weight:bold">Base</span>
+  attr_accessible <span style="color:#A60">:body</span>, <span style="color:#A60">:title</span>
+
+  has_many <span style="color:#A60">:comments</span>
+
+  validates_presence_of <span style="color:#A60">:body</span>, <span style="color:#A60">:title</span>
+<span style="color:#080;font-weight:bold">end</span>
+</pre></div>
+</div>
+
+
+<p>The back-end for your comments is almost complete, we only need to 
+configure the url that is used to create your comments. Since comments 
+belong to a post we'll make the URL reflect this. Right now you can see 
+all the configured URLs by typing <code>rake routes</code> in your command prompt. If you do this now you'll get something like the following:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>    comments <span style="color:#036;font-weight:bold">GET</span>    <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">comments(.:format)          comments#index
+             POST   </span><span style="color:#404">/</span></span>comments(.<span style="color:#A60">:format</span>)          comments<span style="color:#777">#create</span>
+ new_comment <span style="color:#036;font-weight:bold">GET</span>    <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">comments</span><span style="color:#404">/</span><span style="color:#C2C">ne</span></span>w(.<span style="color:#A60">:format</span>)      comments<span style="color:#777">#new</span>
+edit_comment <span style="color:#036;font-weight:bold">GET</span>    <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">comments</span><span style="color:#404">/</span></span><span style="color:#A60">:id</span>/edit(.<span style="color:#A60">:format</span>) comments<span style="color:#777">#edit</span>
+     comment <span style="color:#036;font-weight:bold">GET</span>    <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">comments</span><span style="color:#404">/</span></span><span style="color:#A60">:id</span>(.<span style="color:#A60">:format</span>)      comments<span style="color:#777">#show</span>
+             <span style="color:#036;font-weight:bold">PUT</span>    <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">comments</span><span style="color:#404">/</span></span><span style="color:#A60">:id</span>(.<span style="color:#A60">:format</span>)      comments<span style="color:#777">#update</span>
+             <span style="color:#036;font-weight:bold">DELETE</span> <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">comments</span><span style="color:#404">/</span></span><span style="color:#A60">:id</span>(.<span style="color:#A60">:format</span>)      comments<span style="color:#777">#destroy</span>
+       posts <span style="color:#036;font-weight:bold">GET</span>    <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">posts(.:format)             posts#index
+             POST   </span><span style="color:#404">/</span></span>posts(.<span style="color:#A60">:format</span>)             posts<span style="color:#777">#create</span>
+    new_post <span style="color:#036;font-weight:bold">GET</span>    <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">posts</span><span style="color:#404">/</span><span style="color:#C2C">ne</span></span>w(.<span style="color:#A60">:format</span>)         posts<span style="color:#777">#new</span>
+   edit_post <span style="color:#036;font-weight:bold">GET</span>    <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">posts</span><span style="color:#404">/</span></span><span style="color:#A60">:id</span>/edit(.<span style="color:#A60">:format</span>)    posts<span style="color:#777">#edit</span>
+        post <span style="color:#036;font-weight:bold">GET</span>    <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">posts</span><span style="color:#404">/</span></span><span style="color:#A60">:id</span>(.<span style="color:#A60">:format</span>)         posts<span style="color:#777">#show</span>
+             <span style="color:#036;font-weight:bold">PUT</span>    <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">posts</span><span style="color:#404">/</span></span><span style="color:#A60">:id</span>(.<span style="color:#A60">:format</span>)         posts<span style="color:#777">#update</span>
+             <span style="color:#036;font-weight:bold">DELETE</span> <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">posts</span><span style="color:#404">/</span></span><span style="color:#A60">:id</span>(.<span style="color:#A60">:format</span>)         posts<span style="color:#777">#destroy</span>
+</pre></div>
+</div>
+
+
+<p>Your URLs (or routes) are configured in all Rails applications in a file <code>config/routes.rb</code>, open it now and remove the line <code>resources :comments</code>. Re-run <code>rake routes</code> and you'll notice that all the URLs for comments have disappeared. Update your <code>routes.rb</code> file to look like the following:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#036;font-weight:bold">QuickBlog</span>::<span style="color:#036;font-weight:bold">Application</span>.routes.draw <span style="color:#080;font-weight:bold">do</span>
+  resources <span style="color:#A60">:posts</span> <span style="color:#080;font-weight:bold">do</span>
+    resources <span style="color:#A60">:comments</span>, <span style="color:#A60">:only</span> =&gt; [<span style="color:#A60">:create</span>]
+  <span style="color:#080;font-weight:bold">end</span>
+
+  <span style="color:#777"># root :to =&gt; 'welcome#index'</span>
+<span style="color:#080;font-weight:bold">end</span>
+</pre></div>
+</div>
+
+
+<p>Because comments will be visible from the show Post page along with 
+the form for creating them, we don't need to have URLs for displaying 
+comment listings, or individual comments. When you rerun <code>rake routes</code> now you'll see the following line:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>post_comments <span style="color:#036;font-weight:bold">POST</span>   <span style="background-color:hsla(300,100%,50%,0.06)"><span style="color:#404">/</span><span style="color:#808">posts</span><span style="color:#404">/</span></span><span style="color:#A60">:post_id</span>/comments(.<span style="color:#A60">:format</span>) comments<span style="color:#777">#create</span>
+</pre></div>
+</div>
+
+
+<p>Before we're finished with the backend for our commenting system we 
+need to write the action that will create our comments. For more 
+information on actions please read the Rails Guide on <a href="http://guides.rubyonrails.org/action_controller_overview.html">ActionController</a>.</p>
+
+<p>Open <code>app/controllers/comments_controller.rb</code> and and make your code look like the following:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span style="color:#080;font-weight:bold">class</span> <span style="color:#B06;font-weight:bold">CommentsController</span> &lt; <span style="color:#036;font-weight:bold">ApplicationController</span>
+        <span style="color:#080;font-weight:bold">def</span> <span style="color:#06B;font-weight:bold">create</span>
+                <span style="color:#33B">@post</span> = <span style="color:#036;font-weight:bold">Post</span>.find(params[<span style="color:#A60">:post_id</span>])
+                <span style="color:#33B">@comment</span> = <span style="color:#33B">@post</span>.comments.create!(params[<span style="color:#A60">:comment</span>])
+                redirect_to <span style="color:#33B">@post</span>
+        <span style="color:#080;font-weight:bold">end</span>
+<span style="color:#080;font-weight:bold">end</span>
+</pre></div>
+</div>
+
+
+<h4>Putting comments into your HTML view</h4>
+
+<p>You've creating the database model for your comments, migrated your 
+database, informed Rails of the relationship between comments and posts,
+ configured a URL that lets you create your comments and created the 
+controller action that will create the comments. Now you need to display
+ any comments that have been submitted for a post, and allow users to 
+submit comments. Open <code>app/views/posts/show.html.erb</code> and make it look like:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre> <span style="color:#070">&lt;p</span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">notice</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> notice <span style="font-weight:bold;color:#666">%&gt;</span></span><span style="color:#070">&lt;/p&gt;</span>
+
+ <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> render <span style="color:#A60">:partial</span> =&gt; <span style="color:#33B">@post</span> <span style="font-weight:bold;color:#666">%&gt;</span></span>
+
+ <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> link_to <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Edit</span><span style="color:#710">'</span></span>, edit_post_path(<span style="color:#33B">@post</span>) <span style="font-weight:bold;color:#666">%&gt;</span></span> |
+ <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> link_to <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">Back</span><span style="color:#710">'</span></span>, posts_path <span style="font-weight:bold;color:#666">%&gt;</span></span>
+
+ <span style="color:#070">&lt;h2&gt;</span>Comments<span style="color:#070">&lt;/h2&gt;</span>
+ <span style="color:#070">&lt;div</span> <span style="color:#b48">id</span>=<span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">comments</span><span style="color:#710">"</span></span><span style="color:#070">&gt;</span>
+         <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> render <span style="color:#A60">:partial</span> =&gt; <span style="color:#33B">@post</span>.comments <span style="font-weight:bold;color:#666">%&gt;</span></span>
+ <span style="color:#070">&lt;/div&gt;</span>
+</pre></div>
+</div>
+
+
+<p>You'll now need to create a file called <code>app/views/comments/_comment.html.erb</code> with the following contents:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> div_for comment <span style="color:#080;font-weight:bold">do</span> <span style="font-weight:bold;color:#666">%&gt;</span></span>
+        <span style="color:#070">&lt;p&gt;</span>
+                <span style="color:#070">&lt;strong&gt;</span>
+                        Posted <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> time_ago_in_words(comment.created_at) <span style="font-weight:bold;color:#666">%&gt;</span></span> ago
+                <span style="color:#070">&lt;/strong&gt;</span>
+                <span style="color:#070">&lt;br</span><span style="color:#070">/&gt;</span>
+                <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> comment.body <span style="font-weight:bold;color:#666">%&gt;</span></span>
+        <span style="color:#070">&lt;/p&gt;</span>
+<span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%</span> <span style="color:#080;font-weight:bold">end</span> <span style="font-weight:bold;color:#666">%&gt;</span></span>
+</pre></div>
+</div>
+
+
+<p>Back in <code>app/views/posts/show.html.erb</code> you need to add in the form for submitting a comment so add the following code to the bottom of that file.</p>
+
+<div class="CodeRay">
+  <div class="code"><pre><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> form_for [<span style="color:#33B">@post</span>, <span style="color:#036;font-weight:bold">Comment</span>.new] <span style="color:#080;font-weight:bold">do</span> |f| <span style="font-weight:bold;color:#666">%&gt;</span></span>
+        <span style="color:#070">&lt;p&gt;</span>
+                <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> f.label <span style="color:#A60">:body</span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">New comment</span><span style="color:#710">"</span></span> <span style="font-weight:bold;color:#666">%&gt;</span></span><span style="color:#070">&lt;br</span><span style="color:#070">/&gt;</span>
+                <span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> f.text_area <span style="color:#A60">:body</span> <span style="font-weight:bold;color:#666">%&gt;</span></span>
+        <span style="color:#070">&lt;/p&gt;</span>
+        <span style="color:#070">&lt;p&gt;</span><span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%=</span> f.submit <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">Add comment</span><span style="color:#710">"</span></span> <span style="font-weight:bold;color:#666">%&gt;</span></span><span style="color:#070">&lt;/p&gt;</span>
+<span style="background-color:hsla(0,0%,0%,0.07);color:black"><span style="font-weight:bold;color:#666">&lt;%</span> <span style="color:#080;font-weight:bold">end</span> <span style="font-weight:bold;color:#666">%&gt;</span></span>
+</pre></div>
+</div>
+
+
+<p>Comments are now working (if they aren't make sure you restart your <code>rails server</code>) so go ahead and browse to <a href="http://localhost:3000/posts/1">your post</a> and add a new comment.</p>
+
+<h2>Publishing your Blog on the internet</h2>
+
+<p>Heroku is a fantastically simple service that can be used to host 
+Ruby on Rails applications. You'll be able to host your blog on Heroku 
+on their free-tier but first you'll need a Heroku account. Head to <a href="https://www.heroku.com/">https://www.heroku.com/</a>, click Sign Up and create an account. The starter documentation for Heroku is available at: <a href="https://devcenter.heroku.com/articles/quickstart">https://devcenter.heroku.com/articles/quickstart</a>. You've already got an account so you'll need to download the Toolbelt from <a href="https://toolbelt.heroku.com/">https://toolbelt.heroku.com/</a> and set it up on your computer.</p>
+
+<h3>About databases</h3>
+
+<p>Up until this point we've been using SQLite as our database, but 
+unfortunately Heroku doesn't support the use of SQLite. So we're going 
+to be running Postgres instead. Setting this up is easy you'll need to 
+open the <code>Gemfile</code> and make your <code>Gemfile</code> look like:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>source <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">https://rubygems.org</span><span style="color:#710">'</span></span>
+
+gem <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">rails</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">3.2.13</span><span style="color:#710">'</span></span>
+
+group <span style="color:#A60">:development</span>, <span style="color:#A60">:test</span> <span style="color:#080;font-weight:bold">do</span>
+        gem <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sqlite3</span><span style="color:#710">'</span></span>
+<span style="color:#080;font-weight:bold">end</span>
+
+group <span style="color:#A60">:production</span> <span style="color:#080;font-weight:bold">do</span>
+        gem <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">pg</span><span style="color:#710">'</span></span>
+<span style="color:#080;font-weight:bold">end</span>
+
+group <span style="color:#A60">:assets</span> <span style="color:#080;font-weight:bold">do</span>
+  gem <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">sass-rails</span><span style="color:#710">'</span></span>,   <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">~&gt; 3.2.3</span><span style="color:#710">'</span></span>
+  gem <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">coffee-rails</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">~&gt; 3.2.1</span><span style="color:#710">'</span></span>
+
+  gem <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">uglifier</span><span style="color:#710">'</span></span>, <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">&gt;= 1.0.3</span><span style="color:#710">'</span></span>
+<span style="color:#080;font-weight:bold">end</span>
+
+gem <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">'</span><span style="color:#D20">jquery-rails</span><span style="color:#710">'</span></span>
+</pre></div>
+</div>
+
+
+<p>After this run the command <code>bundle install --without=production</code> on your command line.</p>
+
+<h3>Regarding version control</h3>
+
+<p>Heroku also requires that every application is placed under version 
+control before it is deployed. Simply run the following commands on the 
+command prompt to make sure your application is properly controlled:</p>
+
+<div class="CodeRay">
+  <div class="code"><pre>git init
+git add .
+git commit -m <span style="background-color:hsla(0,100%,50%,0.05)"><span style="color:#710">"</span><span style="color:#D20">initial blog commit</span><span style="color:#710">"</span></span>
+</pre></div>
+</div>
+
+
+<h3>Deploying your application</h3>
+
+<p>In the same command prompt you should be ready to deploy your application. First we create our Heroku application:</p>
+
+<p><code>heroku create</code></p>
+
+<p>Now we push our application to Heroku:</p>
+
+<p><code>git push heroku master</code></p>
+
+<p>Finally we setup our database:</p>
+
+<p><code>heroku run rake db:setup</code></p>
+
+<p>This setup should only need to take place the first time you deploy to heroku. Afterwards you may need to run <code>db:migrate</code> instead.</p>
+
+<p>Finally you should be able to browse to the URL that Heroku has given
+ you and check to see that your blog has been deployed properly!</p>
+
+<p>Welcome to Ruby on Rails. If you're this far along you should definitely <a href="http://reinteractive.net/posts/34">head on over to Part 2</a> which goes more in depth with Rails and begins to add more features to the blogging engine.</p>
+
+    <footer>
+      <a href="http://www.reinteractive.net/posts">Return to blog index</a>
+    </footer>
+    <div id="disqus_thread"><iframe verticalscrolling="no" horizontalscrolling="no" src="rails%20tutorial_files/a.html" style="width: 100% ! important; border: medium none ! important; overflow: hidden ! important; height: 935px ! important;" role="complementary" allowtransparency="true" data-disqus-uid="2" id="dsq2" scrolling="no" width="100%" frameborder="0"></iframe></div>
+<script type="text/javascript">
+    var disqus_shortname = 'reinteractive'; // required: replace example with your forum shortname
+    var disqus_developer = 0;
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  </section>
+</article>
+  </div>
+
+  <footer class="main">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+        <ol class="footer-element">
+          <li><strong><a href="http://www.reinteractive.net/blog" class="white">the reInteractive blog</a></strong></li>
+          <li><a href="http://www.reinteractive.net/about" class="white">about</a></li>
+          <li><a href="http://www.reinteractive.net/services" class="white">services</a></li>
+          <li><a href="http://www.reinteractive.net/solutions" class="white">solutions</a></li>
+          <li><a href="http://www.reinteractive.net/case_studies" class="white">case studies</a></li>
+          <li><a href="http://www.reinteractive.net/team" class="white">our team</a></li>
+        </ol>
+        <p class="footer-element">
+          <a href="mailto:enquiries@reinteractive.net">enquiries@reinteractive.net</a> | +61 2 8019 7252
+        </p>
+        <p class="footer-element">
+          Think you’ve got what it takes? <a href="mailto:work@reinteractive.net?subject=Working%20at%20reInteractive" style="bold">We're hiring!</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <a href="http://www.reinteractive.net/admin/login" class="admin-signin"></a>
+  <script src="rails%20tutorial_files/application-91f80c3c3a4cd92501956c8c67fd83ec.js" type="text/javascript"></script>
+  
+    <script type="text/javascript" charset="utf-8">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-13235784-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+
+</body></html>

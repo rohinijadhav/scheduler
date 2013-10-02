@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script src="procedure_files/auth014.js" type="text/javascript"></script><link media="all" href="procedure_files/widget116.css" type="text/css" rel="stylesheet">
+    <meta charset="utf-8">
+    <!--[if IE ]>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <![endif]-->
+    <title>MySQL ::   MySQL 5.0 Reference Manual :: 13.1.9 CREATE PROCEDURE and CREATE FUNCTION Syntax</title>
+
+    
+    <link rel="stylesheet" media="screen" href="procedure_files/mysql.css">
+    <link rel="stylesheet" media="projection" href="procedure_files/mysql.css">
+    <link rel="stylesheet" media="print" href="procedure_files/print.css">
+
+            <link rel="stylesheet" href="procedure_files/docs.css">
+        
+    
+    
+    
+    <link rel="contents" href="http://dev.mysql.com/doc/refman/5.0/en/index.html" title="MySQL Manual"><link rel="start" href="http://dev.mysql.com/doc/refman/5.0/en/index.html" title="MySQL Manual"><link rel="prev" href="http://dev.mysql.com/doc/refman/5.0/en/create-index.html" title="13.1.8 CREATE INDEX Syntax"><link rel="next" href="http://dev.mysql.com/doc/refman/5.0/en/create-table.html?ff=nopfpls" title="13.1.10 CREATE TABLE Syntax"><link rel="up" href="http://dev.mysql.com/doc/refman/5.0/en/sql-syntax-data-definition.html" title="13.1 Data Definition Statements">        <link rel="shortcut icon" href="http://dev.mysql.com/common/themes/sakila/favicon.ico">
+
+        <script src="procedure_files/clear_search_text.js"></script>
+
+    
+        
+    <script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>
+    <!-- The following src attribute is not a typo, it is a protocol-relative URI -->
+    <script type="text/javascript" src="procedure_files/addthis_widget.js"></script><div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; z-index: 100000;"><iframe src="procedure_files/sh137.html" style="height: 1px; width: 1px; position: absolute; z-index: 100000; border: 0px none; left: 0px; top: 0px;" title="AddThis utility frame" id="_atssh49"></iframe></div><script src="procedure_files/core100.js" type="text/javascript"></script>
+
+    
+</head>
+
+<body class="doc">
+
+<div id="container">
+
+<!--UdmComment-->
+<a class="skipToContent" href="#mainContent">Skip navigation links</a>
+
+    <div id="header">
+
+    <div class="left">
+
+    <div id="logo">
+                                            <a href="http://dev.mysql.com/" title="MySQL">
+                            <img src="procedure_files/logo-mysql-110x57.png" alt="MySQL" width="110" height="57"></a>
+            </div>
+            <div id="tagline">The world's most popular open source database</div>
+
+    </div>
+
+    <div class="right">
+        
+        <div id="search_box"> <!-- Start Search -->
+        		<form id="searchform" name="searchform" method="get" action="http://search.oracle.com/search/search">
+			<input id="q" name="q" value="Search" class="swap_value" onfocus="clearSearchText();" type="text">
+			<input id="search_dest" name="group" value="Documentation" type="hidden">
+			<input src="procedure_files/search_g.png" id="go" alt="Search" title="Search" type="image">
+		    </form>        </div> <!-- End Search -->
+
+                <div id="login">
+                     <p><a href="https://dev.mysql.com/auth/login/?dest=http%3a%2f%2fdev.mysql.com%2Fdoc%2Frefman%2F5.0%2Fen%2Fcreate-procedure.html">Login</a> | <a href="https://dev.mysql.com/auth/register/">Register</a></p>
+                </div>
+    </div>
+
+    </div> 
+
+    <!-- MySQL Navigation -->
+    <div id="nav_container">
+
+    <div id="flags">
+        <ul>
+            <li style="position:relative; top:-5px;">
+                <!-- Icons from http://icondock.com/free/vector-social-media-icons //-->
+                <a href="http://www.facebook.com/mysql"><img src="procedure_files/facebook.png" alt="Facebook" title="Join us on Facebook" width="20" height="20"></a>&nbsp;
+                <a href="https://twitter.com/#%21/mysql"><img src="procedure_files/twitter.png" alt="Twitter" title="Follow us on Twitter" width="20" height="20"></a>&nbsp;
+                <a href="http://www.youtube.com/mysqlchannel"><img src="procedure_files/youtube.png" alt="YouTube" title="Visit our YouTube channel" width="20" height="20"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+                            <br>
+                        </ul>
+    </div>
+    
+                        <div id="tab_last">
+        <ul>
+            <li class="first"><a href="http://dev.mysql.com/">Developer Zone</a></li>
+            <li class="second"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li class="current"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+        </ul>
+        </div>
+            
+
+
+    <div id="mysql_menu">
+        <ul>
+	<li class="current"><a class="current " href="http://dev.mysql.com/doc/">MySQL Server</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-enterprise.html">MySQL Enterprise</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-gui.html">MySQL Workbench</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-cluster.html">MySQL Cluster</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-connectors.html">MySQL Connectors</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-topic.html">Topic Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-expert.html">Expert Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-other.html">Other Docs</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-archive.html">Archives</a>
+	
+		
+		
+	</li>
+	
+	<li class="link last"><a href="http://dev.mysql.com/doc/index-about.html">About</a>
+	
+		
+		
+	</li>
+	
+</ul>
+    </div>
+
+        <div id="og_sakila">&nbsp;</div>
+            <div id="og_title">&nbsp;</div>
+
+    </div>
+    <!-- End Navigation Container -->
+
+<!--/UdmComment-->
+
+<div class="page_container">
+    <div class="page_sidebar">
+	<!--UdmCommentTest-->
+
+	<div id="menu_title"></div>
+
+	<div id="menu">
+		<ul>
+			<li class="current"><a class="current subitems" href="http://dev.mysql.com/doc/index.html">Documentation Library</a>
+
+			<ul class="subitems1">
+				 <li><a href="http://dev.mysql.com/doc/refman/5.0/en/index.html"><b>Table of Contents</b></a>
+
+
+				 <ul class="subitems2">
+				 
+				 					 		<li>
+					 	<a href="http://dev.mysql.com/doc/refman/5.7/en/create-procedure.html">MySQL 5.7 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="http://dev.mysql.com/doc/refman/5.6/en/create-procedure.html">MySQL 5.6 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="http://dev.mysql.com/doc/refman/5.5/en/create-procedure.html">MySQL 5.5 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="http://dev.mysql.com/doc/refman/5.1/en/create-procedure.html">MySQL 5.1 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li class="current">MySQL 5.0 Manual
+				 	
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="">MySQL 3.23/4.0/4.1 Manual</a>  					
+				 	</li>
+
+				 
+				 </ul>
+
+
+
+				 </li>
+
+
+			</ul>
+
+
+			</li>
+		</ul>
+
+	 <div class="searchmanual">
+			<form action="http://search.oracle.com/search/search" method="get" id="docsearch">
+		<strong><label for="searchq">Search manual:</label></strong>
+		<br>
+		<input id="searchq" name="q" size="14" type="text">
+		<input id="searchsubmit" value="Go" type="submit">
+		<input id="searchgroup" name="group" value="MySQL" type="hidden">
+	</form>	 </div>
+
+
+	</div>
+
+	
+</div>  
+<!-- Main content -->
+
+<div id="page" class="sidebar">
+
+    
+
+
+
+
+	<!--UdmComment-->
+
+<div id="docheader"><a href="http://dev.mysql.com/doc/refman/5.0/en/index.html"> MySQL 5.0 Reference Manual</a> :: <a href="http://dev.mysql.com/doc/refman/5.0/en/sql-syntax.html">13 SQL Statement Syntax</a> :: <a href="http://dev.mysql.com/doc/refman/5.0/en/sql-syntax-data-definition.html">13.1 Data Definition Statements</a> :: 13.1.9 CREATE PROCEDURE and CREATE FUNCTION Syntax</div>
+
+	 
+	
+
+	
+<script language="javascript">
+
+<!--
+function toggle(what){
+ if(document.getElementById(what).style.display == "none"){
+   document.getElementById(what).style.display = "block";
+ }else{
+   document.getElementById(what).style.display = "none";
+ }
+}
+//-->
+
+</script>
+<noscript></noscript>
+
+<div style="float: right; width: 250px; margin: 0px 0px 8px 8px; background: white">
+	<div style="text-align: right; font-size: 90%; margin-bottom: 4px">
+		<div style="text-align: left;"><a style="text-decoration: none" href="http://dev.mysql.com/doc/refman/5.0/en/create-index.html" title="Previous Section">« 13.1.8 CREATE INDEX Syntax</a></div>
+		<hr style="margin: 0px auto 2px auto" align="center" noshade="noshade" size="1" width="40">		<a style="text-decoration: none" href="http://dev.mysql.com/doc/refman/5.0/en/create-table.html" title="Next Section">13.1.10 CREATE TABLE Syntax  »</a>	</div>
+	<div style="padding: 4px 0px 0px 4px; border: 2px dotted #ccc; border-right: none;">
+		<b>Section Navigation</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" onclick="toggle('sectionnav');" onkeypress="if (event.keyCode == 13) { toggle('sectionnav'); }">Toggle</a>]</small>
+			<ul id="sectionnav">
+				<li class="p"><a href="http://dev.mysql.com/doc/refman/5.0/en/sql-syntax-data-definition.html">13.1 Data Definition Statements</a></li><li><a href="http://dev.mysql.com/doc/refman/5.0/en/alter-database.html">13.1.1 ALTER DATABASE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/alter-function.html">13.1.2 ALTER FUNCTION Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/alter-procedure.html">13.1.3 ALTER PROCEDURE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/alter-table.html">13.1.4 ALTER TABLE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/alter-view.html">13.1.5 ALTER VIEW Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/create-database.html">13.1.6 CREATE DATABASE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/create-function.html">13.1.7 CREATE FUNCTION Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/create-index.html">13.1.8 CREATE INDEX Syntax</a></li>
+<li class="self">13.1.9 CREATE PROCEDURE and CREATE FUNCTION Syntax</li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/create-table.html">13.1.10 CREATE TABLE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/create-trigger.html">13.1.11 CREATE TRIGGER Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/create-view.html">13.1.12 CREATE VIEW Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/drop-database.html">13.1.13 DROP DATABASE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/drop-function.html">13.1.14 DROP FUNCTION Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/drop-index.html">13.1.15 DROP INDEX Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/drop-procedure.html">13.1.16 DROP PROCEDURE and DROP FUNCTION Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/drop-table.html">13.1.17 DROP TABLE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/drop-trigger.html">13.1.18 DROP TRIGGER Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/drop-view.html">13.1.19 DROP VIEW Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/rename-table.html">13.1.20 RENAME TABLE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.0/en/truncate-table.html">13.1.21 TRUNCATE TABLE Syntax</a></li>
+</ul>
+
+					
+	</div>
+
+</div>
+<!--/UdmComment-->
+
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="create-procedure"></a>13.1.9.&nbsp;<code class="literal">CREATE PROCEDURE</code> and
+<code class="literal">CREATE FUNCTION</code> Syntax</h3>
+</div>
+</div>
+</div>
+<a class="indexterm" name="idm46987974784736"></a><a class="indexterm" name="idm46987974783664"></a><pre class="programlisting">CREATE
+    [DEFINER = { <em class="replaceable"><code>user</code></em> | CURRENT_USER }]
+    PROCEDURE <em class="replaceable"><code>sp_name</code></em> ([<em class="replaceable"><code>proc_parameter</code></em>[,...]])
+    [<em class="replaceable"><code>characteristic</code></em> ...] <em class="replaceable"><code>routine_body</code></em>
+
+CREATE
+    [DEFINER = { <em class="replaceable"><code>user</code></em> | CURRENT_USER }]
+    FUNCTION <em class="replaceable"><code>sp_name</code></em> ([<em class="replaceable"><code>func_parameter</code></em>[,...]])
+    RETURNS <em class="replaceable"><code>type</code></em>
+    [<em class="replaceable"><code>characteristic</code></em> ...] <em class="replaceable"><code>routine_body</code></em>
+
+<em class="replaceable"><code>proc_parameter</code></em>:
+    [ IN | OUT | INOUT ] <em class="replaceable"><code>param_name</code></em> <em class="replaceable"><code>type</code></em>
+
+<em class="replaceable"><code>func_parameter</code></em>:
+    <em class="replaceable"><code>param_name</code></em> <em class="replaceable"><code>type</code></em>
+
+<em class="replaceable"><code>type</code></em>:
+    <em class="replaceable"><code>Any valid MySQL data type</code></em>
+
+<em class="replaceable"><code>characteristic</code></em>:
+    COMMENT '<em class="replaceable"><code>string</code></em>'
+  | LANGUAGE SQL
+  | [NOT] DETERMINISTIC
+  | { CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA }
+  | SQL SECURITY { DEFINER | INVOKER }
+
+<em class="replaceable"><code>routine_body</code></em>:
+    <em class="replaceable"><code>Valid SQL routine statement</code></em>
+</pre><p>
+      These statements create stored routines. By default, a routine is
+      associated with the default database. To associate the routine
+      explicitly with a given database, specify the name as
+      <em class="replaceable"><code>db_name.sp_name</code></em> when you create it.
+    </p><p>
+      The <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/create-function.html" title="13.1.7.&nbsp;CREATE FUNCTION Syntax"><code class="literal">CREATE FUNCTION</code></a> statement is
+      also used in MySQL to support UDFs (user-defined functions). See
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.0/en/adding-functions.html" title="21.2.&nbsp;Adding New Functions to MySQL">Section&nbsp;21.2, “Adding New Functions to MySQL”</a>. A UDF can be regarded as an
+      external stored function. Stored functions share their namespace
+      with UDFs. See <a class="xref" href="http://dev.mysql.com/doc/refman/5.0/en/function-resolution.html" title="9.2.3.&nbsp;Function Name Parsing and Resolution">Section&nbsp;9.2.3, “Function Name Parsing and Resolution”</a>, for the
+      rules describing how the server interprets references to different
+      kinds of functions.
+    </p><p>
+      To invoke a stored procedure, use the
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/call.html" title="13.2.1.&nbsp;CALL Syntax"><code class="literal">CALL</code></a> statement (see
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.0/en/call.html" title="13.2.1.&nbsp;CALL Syntax">Section&nbsp;13.2.1, “<code class="literal">CALL</code> Syntax”</a>). To invoke a stored function, refer to it
+      in an expression. The function returns a value during expression
+      evaluation.
+    </p><p>
+      As of MySQL 5.0.3, <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/create-procedure.html" title="13.1.9.&nbsp;CREATE PROCEDURE and CREATE FUNCTION Syntax"><code class="literal">CREATE PROCEDURE</code></a>
+      and <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/create-function.html" title="13.1.7.&nbsp;CREATE FUNCTION Syntax"><code class="literal">CREATE FUNCTION</code></a> require the
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/privileges-provided.html#priv_create-routine"><code class="literal">CREATE ROUTINE</code></a> privilege. They
+      might also require the <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/privileges-provided.html#priv_super"><code class="literal">SUPER</code></a>
+      privilege, depending on the <code class="literal">DEFINER</code> value, as
+      described later in this section. If binary logging is enabled,
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/create-function.html" title="13.1.7.&nbsp;CREATE FUNCTION Syntax"><code class="literal">CREATE FUNCTION</code></a> might require the
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/privileges-provided.html#priv_super"><code class="literal">SUPER</code></a> privilege, as described in
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.0/en/stored-programs-logging.html" title="18.6.&nbsp;Binary Logging of Stored Programs">Section&nbsp;18.6, “Binary Logging of Stored Programs”</a>.
+    </p><p>
+      By default, MySQL automatically grants the
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/privileges-provided.html#priv_alter-routine"><code class="literal">ALTER ROUTINE</code></a> and
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/privileges-provided.html#priv_execute"><code class="literal">EXECUTE</code></a> privileges to the routine
+      creator. This behavior can be changed by disabling the
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/server-system-variables.html#sysvar_automatic_sp_privileges"><code class="literal">automatic_sp_privileges</code></a> system
+      variable. See <a class="xref" href="http://dev.mysql.com/doc/refman/5.0/en/stored-routines-privileges.html" title="18.2.2.&nbsp;Stored Routines and MySQL Privileges">Section&nbsp;18.2.2, “Stored Routines and MySQL Privileges”</a>.
+    </p><p>
+      The <code class="literal">DEFINER</code> and <code class="literal">SQL SECURITY</code>
+      clauses specify the security context to be used when checking
+      access privileges at routine execution time, as described later in
+      this section.
+    </p><p>
+      If the routine name is the same as the name of a built-in SQL
+      function, a syntax error occurs unless you use a space between the
+      name and the following parenthesis when defining the routine or
+      invoking it later. For this reason, avoid using the names of
+      existing SQL functions for your own stored routines.
+    </p><p>
+      The <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/server-sql-mode.html#sqlmode_ignore_space"><code class="literal">IGNORE_SPACE</code></a> SQL mode
+      applies to built-in functions, not to stored routines. It is
+      always permissible to have spaces after a stored routine name,
+      regardless of whether
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/server-sql-mode.html#sqlmode_ignore_space"><code class="literal">IGNORE_SPACE</code></a> is enabled.
+    </p><p>
+      The parameter list enclosed within parentheses must always be
+      present. If there are no parameters, an empty parameter list of
+      <code class="literal">()</code> should be used. Parameter names are not case
+      sensitive.
+    </p><p>
+      Each parameter is an <code class="literal">IN</code> parameter by default.
+      To specify otherwise for a parameter, use the keyword
+      <code class="literal">OUT</code> or <code class="literal">INOUT</code> before the
+      parameter name.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+        Specifying a parameter as <code class="literal">IN</code>,
+        <code class="literal">OUT</code>, or <code class="literal">INOUT</code> is valid
+        only for a <code class="literal">PROCEDURE</code>. For a
+        <code class="literal">FUNCTION</code>, parameters are always regarded as
+        <code class="literal">IN</code> parameters.
+</p>
+</div>
+<p>
+      An <code class="literal">IN</code> parameter passes a value into a
+      procedure. The procedure might modify the value, but the
+      modification is not visible to the caller when the procedure
+      returns. An <code class="literal">OUT</code> parameter passes a value from
+      the procedure back to the caller. Its initial value is
+      <code class="literal">NULL</code> within the procedure, and its value is
+      visible to the caller when the procedure returns. An
+      <code class="literal">INOUT</code> parameter is initialized by the caller,
+      can be modified by the procedure, and any change made by the
+      procedure is visible to the caller when the procedure returns.
+    </p><p>
+      For each <code class="literal">OUT</code> or <code class="literal">INOUT</code>
+      parameter, pass a user-defined variable in the
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/call.html" title="13.2.1.&nbsp;CALL Syntax"><code class="literal">CALL</code></a> statement that invokes the
+      procedure so that you can obtain its value when the procedure
+      returns. If you are calling the procedure from within another
+      stored procedure or function, you can also pass a routine
+      parameter or local routine variable as an <code class="literal">IN</code> or
+      <code class="literal">INOUT</code> parameter.
+    </p><p>
+      Routine parameters cannot be referenced in statements prepared
+      within the routine; see
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.0/en/stored-program-restrictions.html" title="E.1.&nbsp;Restrictions on Stored Programs">Section&nbsp;E.1, “Restrictions on Stored Programs”</a>.
+    </p><p>
+      The following example shows a simple stored procedure that uses an
+      <code class="literal">OUT</code> parameter:
+    </p><pre class="programlisting">mysql&gt; <strong class="userinput"><code>delimiter //</code></strong>
+
+mysql&gt; <strong class="userinput"><code>CREATE PROCEDURE simpleproc (OUT param1 INT)</code></strong>
+    -&gt; <strong class="userinput"><code>BEGIN</code></strong>
+    -&gt;   <strong class="userinput"><code>SELECT COUNT(*) INTO param1 FROM t;</code></strong>
+    -&gt; <strong class="userinput"><code>END//</code></strong>
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; <strong class="userinput"><code>delimiter ;</code></strong>
+
+mysql&gt; <strong class="userinput"><code>CALL simpleproc(@a);</code></strong>
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; <strong class="userinput"><code>SELECT @a;</code></strong>
++------+
+| @a   |
++------+
+| 3    |
++------+
+1 row in set (0.00 sec)
+</pre><p>
+      The example uses the <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/mysql.html" title="4.5.1.&nbsp;mysql — The MySQL Command-Line Tool"><span class="command"><strong>mysql</strong></span></a> client
+      <code class="literal">delimiter</code> command to change the statement
+      delimiter from <code class="literal">;</code> to <code class="literal">//</code> while
+      the procedure is being defined. This enables the
+      <code class="literal">;</code> delimiter used in the procedure body to be
+      passed through to the server rather than being interpreted by
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/mysql.html" title="4.5.1.&nbsp;mysql — The MySQL Command-Line Tool"><span class="command"><strong>mysql</strong></span></a> itself. See
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.0/en/stored-programs-defining.html" title="18.1.&nbsp;Defining Stored Programs">Section&nbsp;18.1, “Defining Stored Programs”</a>.
+    </p><p>
+      The <code class="literal">RETURNS</code> clause may be specified only for a
+      <code class="literal">FUNCTION</code>, for which it is mandatory. It
+      indicates the return type of the function, and the function body
+      must contain a <code class="literal">RETURN
+      <em class="replaceable"><code>value</code></em></code> statement. If the
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/return.html" title="13.6.5.7.&nbsp;RETURN Syntax"><code class="literal">RETURN</code></a> statement returns a value of
+      a different type, the value is coerced to the proper type. For
+      example, if a function specifies an
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/enum.html" title="11.1.6.4.&nbsp;The ENUM Type"><code class="literal">ENUM</code></a> or
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/set.html" title="11.1.6.5.&nbsp;The SET Type"><code class="literal">SET</code></a> value in the
+      <code class="literal">RETURNS</code> clause, but the
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/return.html" title="13.6.5.7.&nbsp;RETURN Syntax"><code class="literal">RETURN</code></a> statement returns an
+      integer, the value returned from the function is the string for
+      the corresponding <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/enum.html" title="11.1.6.4.&nbsp;The ENUM Type"><code class="literal">ENUM</code></a> member of
+      set of <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/set.html" title="11.1.6.5.&nbsp;The SET Type"><code class="literal">SET</code></a> members.
+    </p><p>
+      The following example function takes a parameter, performs an
+      operation using an SQL function, and returns the result. In this
+      case, it is unnecessary to use <code class="literal">delimiter</code>
+      because the function definition contains no internal
+      <code class="literal">;</code> statement delimiters:
+    </p><pre class="programlisting">mysql&gt; <strong class="userinput"><code>CREATE FUNCTION hello (s CHAR(20))</code></strong>
+mysql&gt; <strong class="userinput"><code>RETURNS CHAR(50) DETERMINISTIC</code></strong>
+    -&gt; <strong class="userinput"><code>RETURN CONCAT('Hello, ',s,'!');</code></strong>
+Query OK, 0 rows affected (0.00 sec)
+
+mysql&gt; <strong class="userinput"><code>SELECT hello('world');</code></strong>
++----------------+
+| hello('world') |
++----------------+
+| Hello, world!  |
++----------------+
+1 row in set (0.00 sec)
+</pre><p>
+      Parameter types and function return types can be declared to use
+      any valid data type, except that the <code class="literal">COLLATE</code>
+      attribute cannot be used.
+    </p><p>
+      The <em class="replaceable"><code>routine_body</code></em> consists of a valid
+      SQL routine statement. This can be a simple statement such as
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/select.html" title="13.2.8.&nbsp;SELECT Syntax"><code class="literal">SELECT</code></a> or
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/insert.html" title="13.2.5.&nbsp;INSERT Syntax"><code class="literal">INSERT</code></a>, or a compound statement
+      written using <code class="literal">BEGIN</code> and <code class="literal">END</code>.
+      Compound statements can contain declarations, loops, and other
+      control structure statements. The syntax for these statements is
+      described in <a class="xref" href="http://dev.mysql.com/doc/refman/5.0/en/sql-syntax-compound-statements.html" title="13.6.&nbsp;MySQL Compound-Statement Syntax">Section&nbsp;13.6, “MySQL Compound-Statement Syntax”</a>.
+    </p><p>
+      MySQL permits routines to contain DDL statements, such as
+      <code class="literal">CREATE</code> and <code class="literal">DROP</code>. MySQL also
+      permits stored procedures (but not stored functions) to contain
+      SQL transaction statements such as
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/commit.html" title="13.3.1.&nbsp;START TRANSACTION, COMMIT, and ROLLBACK Syntax"><code class="literal">COMMIT</code></a>. Stored functions may not
+      contain statements that perform explicit or implicit commit or
+      rollback. Support for these statements is not required by the SQL
+      standard, which states that each DBMS vendor may decide whether to
+      permit them.
+    </p><p>
+      Statements that return a result set can be used within a stored
+      procedure but not within a stored function. This prohibition
+      includes <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/select.html" title="13.2.8.&nbsp;SELECT Syntax"><code class="literal">SELECT</code></a> statements that do
+      not have an <code class="literal">INTO
+      <em class="replaceable"><code>var_list</code></em></code> clause and other
+      statements such as <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/show.html" title="13.7.5.&nbsp;SHOW Syntax"><code class="literal">SHOW</code></a>,
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/explain.html" title="13.8.2.&nbsp;EXPLAIN Syntax"><code class="literal">EXPLAIN</code></a>, and
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/check-table.html" title="13.7.2.3.&nbsp;CHECK TABLE Syntax"><code class="literal">CHECK TABLE</code></a>. For statements that
+      can be determined at function definition time to return a result
+      set, a <code class="literal">Not allowed to return a result set from a
+      function</code> error occurs
+      (<a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/error-messages-server.html#error_er_sp_no_retset"><code class="literal">ER_SP_NO_RETSET</code></a>). For statements
+      that can be determined only at runtime to return a result set, a
+      <code class="literal">PROCEDURE %s can't return a result set in the given
+      context</code> error occurs
+      (<a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/error-messages-server.html#error_er_sp_badselect"><code class="literal">ER_SP_BADSELECT</code></a>).
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+        Before MySQL 5.0.10, stored functions created with
+        <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/create-function.html" title="13.1.7.&nbsp;CREATE FUNCTION Syntax"><code class="literal">CREATE FUNCTION</code></a> must not contain
+        references to tables, with limited exceptions. They may include
+        some
+        <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/set-statement.html" title="13.7.4.&nbsp;SET Syntax"><code class="literal">SET</code></a>
+        statements that contain table references, for example
+        <code class="literal">SET a:= (SELECT MAX(id) FROM t)</code>, and
+        <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/select.html" title="13.2.8.&nbsp;SELECT Syntax"><code class="literal">SELECT</code></a> statements that fetch
+        values directly into variables, for example <code class="literal">SELECT i
+        INTO var1 FROM t</code>.
+</p>
+</div>
+<p>
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/use.html" title="13.8.4.&nbsp;USE Syntax"><code class="literal">USE</code></a> statements within stored
+      routines are not permitted. When a routine is invoked, an implicit
+      <code class="literal">USE <em class="replaceable"><code>db_name</code></em></code> is
+      performed (and undone when the routine terminates). This causes
+      the routine to have the given default database while it executes.
+      References to objects in databases other than the routine default
+      database should be qualified with the appropriate database name.
+    </p><p>
+      For additional information about statements that are not permitted
+      in stored routines, see
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.0/en/stored-program-restrictions.html" title="E.1.&nbsp;Restrictions on Stored Programs">Section&nbsp;E.1, “Restrictions on Stored Programs”</a>.
+    </p><p>
+      For information about invoking stored procedures from within
+      programs written in a language that has a MySQL interface, see
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.0/en/call.html" title="13.2.1.&nbsp;CALL Syntax">Section&nbsp;13.2.1, “<code class="literal">CALL</code> Syntax”</a>.
+    </p><p>
+      MySQL stores the <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/server-system-variables.html#sysvar_sql_mode"><code class="literal">sql_mode</code></a> system
+      variable setting in effect when a routine is created or altered,
+      and always executes the routine with this setting in force,
+      <span class="emphasis"><em>regardless of the current server SQL mode when the
+      routine begins executing</em></span>.
+    </p><p>
+      The switch from the SQL mode of the invoker to that of the routine
+      occurs after evaluation of arguments and assignment of the
+      resulting values to routine parameters. If you define a routine in
+      strict SQL mode but invoke it in nonstrict mode, assignment of
+      arguments to routine parameters does not take place in strict
+      mode. If you require that expressions passed to a routine be
+      assigned in strict SQL mode, you should invoke the routine with
+      strict mode in effect.
+    </p><p>
+      The <code class="literal">COMMENT</code> characteristic is a MySQL
+      extension, and may be used to describe the stored routine. This
+      information is displayed by the <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/show-create-procedure.html" title="13.7.5.8.&nbsp;SHOW CREATE PROCEDURE Syntax"><code class="literal">SHOW CREATE
+      PROCEDURE</code></a> and <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/show-create-function.html" title="13.7.5.7.&nbsp;SHOW CREATE FUNCTION Syntax"><code class="literal">SHOW CREATE
+      FUNCTION</code></a> statements.
+    </p><p>
+      The <code class="literal">LANGUAGE</code> characteristic indicates the
+      language in which the routine is written. The server ignores this
+      characteristic; only SQL routines are supported.
+    </p><p>
+      A routine is considered <span class="quote">“<span class="quote">deterministic</span>”</span> if it always
+      produces the same result for the same input parameters, and
+      <span class="quote">“<span class="quote">not deterministic</span>”</span> otherwise. If neither
+      <code class="literal">DETERMINISTIC</code> nor <code class="literal">NOT
+      DETERMINISTIC</code> is given in the routine definition, the
+      default is <code class="literal">NOT DETERMINISTIC</code>. To declare that a
+      function is deterministic, you must specify
+      <code class="literal">DETERMINISTIC</code> explicitly.
+    </p><p>
+      Assessment of the nature of a routine is based on the
+      <span class="quote">“<span class="quote">honesty</span>”</span> of the creator: MySQL does not check that a
+      routine declared <code class="literal">DETERMINISTIC</code> is free of
+      statements that produce nondeterministic results. However,
+      misdeclaring a routine might affect results or affect performance.
+      Declaring a nondeterministic routine as
+      <code class="literal">DETERMINISTIC</code> might lead to unexpected results
+      by causing the optimizer to make incorrect execution plan choices.
+      Declaring a deterministic routine as
+      <code class="literal">NONDETERMINISTIC</code> might diminish performance by
+      causing available optimizations not to be used. Prior to MySQL
+      5.0.44, the <code class="literal">DETERMINISTIC</code> characteristic is
+      accepted, but not used by the optimizer.
+    </p><p>
+      If binary logging is enabled, the <code class="literal">DETERMINISTIC</code>
+      characteristic affects which routine definitions MySQL accepts.
+      See <a class="xref" href="http://dev.mysql.com/doc/refman/5.0/en/stored-programs-logging.html" title="18.6.&nbsp;Binary Logging of Stored Programs">Section&nbsp;18.6, “Binary Logging of Stored Programs”</a>.
+    </p><p>
+      A routine that contains the <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/date-and-time-functions.html#function_now"><code class="literal">NOW()</code></a>
+      function (or its synonyms) or
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/mathematical-functions.html#function_rand"><code class="literal">RAND()</code></a> is nondeterministic, but it
+      might still be replication-safe. For
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/date-and-time-functions.html#function_now"><code class="literal">NOW()</code></a>, the binary log includes the
+      timestamp and replicates correctly.
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/mathematical-functions.html#function_rand"><code class="literal">RAND()</code></a> also replicates correctly as
+      long as it is called only a single time during the execution of a
+      routine. (You can consider the routine execution timestamp and
+      random number seed as implicit inputs that are identical on the
+      master and slave.)
+    </p><p>
+      Several characteristics provide information about the nature of
+      data use by the routine. In MySQL, these characteristics are
+      advisory only. The server does not use them to constrain what
+      kinds of statements a routine will be permitted to execute.
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          <code class="literal">CONTAINS SQL</code> indicates that the routine
+          does not contain statements that read or write data. This is
+          the default if none of these characteristics is given
+          explicitly. Examples of such statements are <code class="literal">SET @x =
+          1</code> or <code class="literal">DO RELEASE_LOCK('abc')</code>,
+          which execute but neither read nor write data.
+        </p></li><li class="listitem"><p>
+          <code class="literal">NO SQL</code> indicates that the routine contains
+          no SQL statements.
+        </p></li><li class="listitem"><p>
+          <code class="literal">READS SQL DATA</code> indicates that the routine
+          contains statements that read data (for example,
+          <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/select.html" title="13.2.8.&nbsp;SELECT Syntax"><code class="literal">SELECT</code></a>), but not statements
+          that write data.
+        </p></li><li class="listitem"><p>
+          <code class="literal">MODIFIES SQL DATA</code> indicates that the
+          routine contains statements that may write data (for example,
+          <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/insert.html" title="13.2.5.&nbsp;INSERT Syntax"><code class="literal">INSERT</code></a> or
+          <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/delete.html" title="13.2.2.&nbsp;DELETE Syntax"><code class="literal">DELETE</code></a>).
+</p></li></ul>
+</div>
+<p>
+      The <code class="literal">SQL SECURITY</code> characteristic can be
+      <code class="literal">DEFINER</code> or <code class="literal">INVOKER</code> to
+      specify the security context; that is, whether the routine
+      executes using the privileges of the account named in the routine
+      <code class="literal">DEFINER</code> clause or the user who invokes it. This
+      account must have permission to access the database with which the
+      routine is associated. The default value is
+      <code class="literal">DEFINER</code>. As of MySQL 5.0.3, the user who
+      invokes the routine must have the
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/privileges-provided.html#priv_execute"><code class="literal">EXECUTE</code></a> privilege for it, as must
+      the <code class="literal">DEFINER</code> account if the routine executes in
+      definer security context.
+    </p><p>
+      The <code class="literal">DEFINER</code> clause specifies the MySQL account
+      to be used when checking access privileges at routine execution
+      time for routines that have the <code class="literal">SQL SECURITY
+      DEFINER</code> characteristic. The <code class="literal">DEFINER</code>
+      clause was added in MySQL 5.0.20.
+    </p><p>
+      If a <em class="replaceable"><code>user</code></em> value is given for the
+      <code class="literal">DEFINER</code> clause, it should be a MySQL account
+      specified as
+      <code class="literal">'<em class="replaceable"><code>user_name</code></em>'@'<em class="replaceable"><code>host_name</code></em>'</code>
+      (the same format used in the <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/grant.html" title="13.7.1.3.&nbsp;GRANT Syntax"><code class="literal">GRANT</code></a>
+      statement), <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/information-functions.html#function_current-user"><code class="literal">CURRENT_USER</code></a>, or
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/information-functions.html#function_current-user"><code class="literal">CURRENT_USER()</code></a>. The default
+      <code class="literal">DEFINER</code> value is the user who executes the
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/create-procedure.html" title="13.1.9.&nbsp;CREATE PROCEDURE and CREATE FUNCTION Syntax"><code class="literal">CREATE PROCEDURE</code></a> or
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/create-function.html" title="13.1.7.&nbsp;CREATE FUNCTION Syntax"><code class="literal">CREATE FUNCTION</code></a> or statement. This
+      is the same as specifying <code class="literal">DEFINER =
+      CURRENT_USER</code> explicitly.
+    </p><p>
+      If you specify the <code class="literal">DEFINER</code> clause, these rules
+      determine the legal <code class="literal">DEFINER</code> user values:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          If you do not have the <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/privileges-provided.html#priv_super"><code class="literal">SUPER</code></a>
+          privilege, the only legal <em class="replaceable"><code>user</code></em>
+          value is your own account, either specified literally or by
+          using <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/information-functions.html#function_current-user"><code class="literal">CURRENT_USER</code></a>. You cannot
+          set the definer to some other account.
+        </p></li><li class="listitem"><p>
+          If you have the <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/privileges-provided.html#priv_super"><code class="literal">SUPER</code></a>
+          privilege, you can specify any syntactically legal account
+          name. If the account does not actually exist, a warning is
+          generated.
+        </p></li><li class="listitem"><p>
+          Although it is possible to create a routine with a nonexistent
+          <code class="literal">DEFINER</code> account, an error occurs at routine
+          execution time if the <code class="literal">SQL SECURITY</code> value is
+          <code class="literal">DEFINER</code> but the definer account does not
+          exist.
+</p></li></ul>
+</div>
+<p>
+      For more information about stored routine security, see
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.0/en/stored-programs-security.html" title="18.5.&nbsp;Access Control for Stored Programs and Views">Section&nbsp;18.5, “Access Control for Stored Programs and Views”</a>.
+    </p><p>
+      Within a stored routine that is defined with the <code class="literal">SQL
+      SECURITY DEFINER</code> characteristic,
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/information-functions.html#function_current-user"><code class="literal">CURRENT_USER</code></a> returns the routine's
+      <code class="literal">DEFINER</code> value. For information about user
+      auditing within stored routines, see
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.0/en/account-activity-auditing.html" title="6.3.8.&nbsp;SQL-Based MySQL Account Activity Auditing">Section&nbsp;6.3.8, “SQL-Based MySQL Account Activity Auditing”</a>.
+    </p><p>
+      Consider the following procedure, which displays a count of the
+      number of MySQL accounts listed in the
+      <code class="literal">mysql.user</code> table:
+    </p><pre class="programlisting">CREATE DEFINER = 'admin'@'localhost' PROCEDURE account_count()
+BEGIN
+  SELECT 'Number of accounts:', COUNT(*) FROM mysql.user;
+END;
+</pre><p>
+      The procedure is assigned a <code class="literal">DEFINER</code> account of
+      <code class="literal">'admin'@'localhost'</code> no matter which user
+      defines it. It executes with the privileges of that account no
+      matter which user invokes it (because the default security
+      characteristic is <code class="literal">DEFINER</code>). The procedure
+      succeeds or fails depending on whether invoker has the
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/privileges-provided.html#priv_execute"><code class="literal">EXECUTE</code></a> privilege for it and
+      <code class="literal">'admin'@'localhost'</code> has the
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/privileges-provided.html#priv_select"><code class="literal">SELECT</code></a> privilege for the
+      <code class="literal">mysql.user</code> table.
+    </p><p>
+      Now suppose that the procedure is defined with the <code class="literal">SQL
+      SECURITY INVOKER</code> characteristic:
+    </p><pre class="programlisting">CREATE DEFINER = 'admin'@'localhost' PROCEDURE account_count()
+SQL SECURITY INVOKER
+BEGIN
+  SELECT 'Number of accounts:', COUNT(*) FROM mysql.user;
+END;
+</pre><p>
+      The procedure still has a <code class="literal">DEFINER</code> of
+      <code class="literal">'admin'@'localhost'</code>, but in this case, it
+      executes with the privileges of the invoking user. Thus, the
+      procedure succeeds or fails depending on whether the invoker has
+      the <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/privileges-provided.html#priv_execute"><code class="literal">EXECUTE</code></a> privilege for it and
+      the <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/privileges-provided.html#priv_select"><code class="literal">SELECT</code></a> privilege for the
+      <code class="literal">mysql.user</code> table.
+    </p><p>
+      As of MySQL 5.0.18, the handles the data type of a routine
+      parameter, local routine variable created with
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/declare.html" title="13.6.3.&nbsp;DECLARE Syntax"><code class="literal">DECLARE</code></a>, or function return value
+      as follows:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          Assignments are checked for data type mismatches and overflow.
+          Conversion and overflow problems result in warnings, or errors
+          in strict SQL mode.
+        </p></li><li class="listitem"><p>
+          Only scalar values can be assigned. For example, a statement
+          such as <code class="literal">SET x = (SELECT 1, 2)</code> is invalid.
+        </p></li><li class="listitem"><p>
+          For character data types, if there is a <code class="literal">CHARACTER
+          SET</code> attribute in the declaration, the specified
+          character set and its default collation are used. If there is
+          no such attribute, as of MySQL 5.0.25, the database character
+          set and collation that are in effect at the time the server
+          loads the routine into the routine cache are used. (These are
+          given by the values of the
+          <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/server-system-variables.html#sysvar_character_set_database"><code class="literal">character_set_database</code></a> and
+          <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/server-system-variables.html#sysvar_collation_database"><code class="literal">collation_database</code></a> system
+          variables.) If the database character set or collation change
+          while the routine is in the cache, routine execution is
+          unaffected by the change until the next time the server
+          reloads the routine into the cache. The
+          <code class="literal">COLLATE</code> attribute is not supported. (This
+          includes use of <code class="literal">BINARY</code>, which in this
+          context specifies the binary collation of the character set.)
+        </p><p>
+          If you change the database default character set or collation,
+          stored routines that use the database defaults must be dropped
+          and recreated so that they use the new defaults.
+</p></li></ul>
+</div>
+<p>
+      Before MySQL 5.0.18, parameters, return values, and local
+      variables are treated as items in expressions, and are subject to
+      automatic (silent) conversion and truncation. Stored functions
+      ignore the <a class="link" href="http://dev.mysql.com/doc/refman/5.0/en/server-system-variables.html#sysvar_sql_mode"><code class="literal">sql_mode</code></a> setting.
+</p>
+</div>
+<div class="copyright-footer">
+    Copyright © 1997, 2013, Oracle and/or its affiliates. All
+    rights reserved.
+<a href="http://dev.mysql.com/doc/refman/5.0/en/preface.html#legalnotice">Legal Notices</a>
+</div>
+<!--UdmComment--><div id="docnav"><a rel="prev" href="http://dev.mysql.com/doc/refman/5.0/en/create-index.html" title="13.1.8 CREATE INDEX Syntax">Previous</a> / <a rel="next" href="http://dev.mysql.com/doc/refman/5.0/en/create-table.html" title="13.1.10 CREATE TABLE Syntax">Next</a> / <a rel="up" href="http://dev.mysql.com/doc/refman/5.0/en/sql-syntax-data-definition.html" title="13.1 Data Definition Statements">Up</a> / <a rel="contents" href="http://dev.mysql.com/doc/refman/5.0/en/index.html">Table of Contents</a></div><!--/UdmComment--><br class="clear"><!--UdmComment--><div id="comments"><h1>User Comments</h1><table id="c9403" class="commentdetails" summary="" border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td>Posted by John Hirbour on April 8 2008 5:33pm</td><td align="right">[<a href="http://dev.mysql.com/doc/mysql/comment.php?id=9403&amp;action=delete">Delete</a>] [<a href="http://dev.mysql.com/doc/mysql/comment.php?id=9403">Edit</a>]</td></tr></tbody></table><p class="commenttext">if you are using the Pear DB package you just need to add<br><br>'client_flags' =&gt; 65536<br><br>do your DSN array if you are getting: "can't retun a result set in the given context"<br></p><table id="c9800" class="commentdetails" summary="" border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td>Posted by Sander Stuurwold on November 14 2008 3:23pm</td><td align="right">[<a href="http://dev.mysql.com/doc/mysql/comment.php?id=9800&amp;action=delete">Delete</a>] [<a href="http://dev.mysql.com/doc/mysql/comment.php?id=9800">Edit</a>]</td></tr></tbody></table><p class="commenttext">I
+ do most of the time Microsoft SQL Server, so I needed some time to look
+ how to create a function with variables... here it is. The function 
+gets an XML value from a char field based on the tag...<br><br>Sample:<br><br>CREATE FUNCTION fnGetXMLinfoVraag4 (xmlTag varchar(30),message text) returns varchar(255)<br>begin<br>declare lenField int;<br>declare xmlTagBegin varchar(30);<br>declare xmlTagEnd varchar(30);<br>declare fieldresult varchar(255);<br>set xmlTagBegin = concat('&lt;', xmlTag, '&gt;');<br>set xmlTagEnd = concat('&lt;/', xmlTag, '&gt;');<br>set lenField = length(xmlTag) + 2;<br>set fieldresult = case when locate(xmlTagBegin,message) = 0 then ''<br>else
+ substring(message,locate(xmlTagBegin,message) + 
+lenField,locate(xmlTagEnd,message) - (locate(xmlTagBegin,message) + 
+lenField)) end;<br>return fieldresult;<br>end<br><br>When binlogging (for f.e. replication) is enabled the syntax should be<br>extended like next:<br><br>CREATE FUNCTION fnGetXMLinfoVraag4 (xmlTag varchar(30),message text) returns varchar(255)<br>DETERMINISTIC<br>READS SQL DATA<br>begin<br>declare lenField int;<br>declare xmlTagBegin varchar(30);<br>declare xmlTagEnd varchar(30);<br>declare fieldresult varchar(255);<br>set xmlTagBegin = concat('&lt;', xmlTag, '&gt;');<br>set xmlTagEnd = concat('&lt;/', xmlTag, '&gt;');<br>set lenField = length(xmlTag) + 2;<br>set fieldresult = case when locate(xmlTagBegin,message) = 0 then ''<br>else
+ substring(message,locate(xmlTagBegin,message) + 
+lenField,locate(xmlTagEnd,message) - (locate(xmlTagBegin,message) + 
+lenField)) end;<br>return fieldresult;<br>end<br><br></p><table id="c11573" class="commentdetails" summary="" border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td>Posted by Lesley B on November 8 2010 7:26pm</td><td align="right">[<a href="http://dev.mysql.com/doc/mysql/comment.php?id=11573&amp;action=delete">Delete</a>] [<a href="http://dev.mysql.com/doc/mysql/comment.php?id=11573">Edit</a>]</td></tr></tbody></table><p class="commenttext">An example using varchar and character sets<br><br>delimiter //<br>CREATE FUNCTION db.fnfullname ( id smallint(5) unsigned ) RETURNS varchar(160) CHARACTER SET utf8<br>
+  COMMENT 'Returns the full name of person in db.people table referenced
+ by id where FirstName and FamilyName are not null but MiddleName may be
+ null'<br>  DETERMINISTIC<br>  READS SQL DATA<br>  BEGIN<br>    DECLARE fulname varchar(160) CHARACTER SET utf8;<br>
+    SELECT CONCAT_WS(' ', db.people.FirstName, db.people.MiddleName, 
+db.people.FamilyName) into fulname from db.people where db.people.id=id;<br>    RETURN fulname;<br>  END<br>  //<br><br>delimiter ;<br><br></p><table id="c11816" class="commentdetails" summary="" border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td>Posted by Yogesh Gadiya on April 6 2011 7:01am</td><td align="right">[<a href="http://dev.mysql.com/doc/mysql/comment.php?id=11816&amp;action=delete">Delete</a>] [<a href="http://dev.mysql.com/doc/mysql/comment.php?id=11816">Edit</a>]</td></tr></tbody></table><p class="commenttext">Sample for Procedure with insert to trace error logs<br><br>DELIMITER $$<br>CREATE DEFINER=`root`@`localhost` PROCEDURE `add_error_log`(<br>  `error_level` int(11),<br>  `error_level_name` varchar(512),<br>  `error_message` longtext,<br>  `error_file` text,<br>  `error_line` int(11),<br>  `error_context` longtext,<br>  `error_query_string` longtext,<br>  `error_time` text ,<br>  `user_id` int(11),<br>  `post_data` longtext,<br>  `user_msg` text)<br>BEGIN<br>
+	INSERT INTO tbl_error_log(error_level, error_level_name, error_message,
+ error_file,error_line, error_context,error_query_string,error_time, 
+user_id, post_data, user_msg)<br>   values(error_level, 
+error_level_name, error_message, error_file,error_line, 
+error_context,error_query_string, error_time, user_id, post_data, 
+user_msg);<br>END$$<br></p><table id="c12112" class="commentdetails" summary="" border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td>Posted by Brett Vandale on December 14 2011 5:06pm</td><td align="right">[<a href="http://dev.mysql.com/doc/mysql/comment.php?id=12112&amp;action=delete">Delete</a>] [<a href="http://dev.mysql.com/doc/mysql/comment.php?id=12112">Edit</a>]</td></tr></tbody></table><p class="commenttext">I
+ didn't find a lot of examples for MySQL Stored Procs so I thought I'd 
+add one.  This one uses a temp table and iterates through the rows.  It 
+was a pain in the butt to debug in phpMyAdmin.  There was a lot of 
+dropping and re-creating.<br><br>############################<br><br>delimiter $$<br><br>create procedure assignKeywords( currCID int )<br>begin<br>	<br>	declare currKeywordID int;<br>	declare currTitle varchar(255);<br>	declare currKeyword varchar(255);<br>	declare currContent text;<br>	declare keywordsCSV varchar(255);<br><br>	-- get content<br>	select id, title, content from content where id = currCID into currCID, currTitle, currContent;<br><br>	-- create the keywords temp table to iterate<br>	drop temporary table if exists keywords_temp;<br>	create temporary table keywords_temp as<br>		select id, display_val from vars where name = 'KEYWORDS' order by display_order desc;<br><br>	set keywordsCSV = ",";<br>	while (select count(*) from keywords_temp) &gt; 0<br>	do<br><br>		select id, display_val from keywords_temp limit 1 into currKeywordID, currKeyword;<br><br>		-- search the content for current keyword<br>		if instr(currContent,currKeyword) &gt; 0 || instr(currTitle,currKeyword) &gt; 0<br>		then<br>			set keywordsCSV = CONCAT(keywordsCSV, currKeywordID);<br>			set keywordsCSV = CONCAT(keywordsCSV, ",");<br>		end if;<br><br>		delete from keywords_temp where id = currKeywordID;<br><br>	end while;<br><br>	drop temporary table if exists keywords_temp;<br>	<br>	update content set keywords = keywordsCSV where id = currCID;<br><br>end;<br><br>###############################<br></p><table id="c12121" class="commentdetails" summary="" border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td>Posted by Rafal Jaworowski on December 28 2011 4:25pm</td><td align="right">[<a href="http://dev.mysql.com/doc/mysql/comment.php?id=12121&amp;action=delete">Delete</a>] [<a href="http://dev.mysql.com/doc/mysql/comment.php?id=12121">Edit</a>]</td></tr></tbody></table><p class="commenttext">CREATE TABLE IF NOT EXIST Osob<br>(<br>O_Id int NOT NULL,<br>OrderNo int NOT NULL,<br>P_Id int,<br>PRIMARY KEY (P_Id)<br>);<br>CREATE TABLE uzytkownicy2<br>(<br>O_Id int NOT NULL,<br>OrderNo int NOT NULL,<br>P_Id int,<br>PRIMARY KEY (O_Id),<br>FOREIGN KEY (P_Id) References Osob(P_Id)<br>);<br>-----------------------------------<br>INSERT INTO `osob`(`O_Id`, `OrderNo`, `P_Id`) VALUES (1,2,3)<br>INSERT INTO `uzytkownicy2`(`O_Id`, `OrderNo`, `P_Id`) VALUES (1,2,3)<br>-----------------------------------<br>DELIMITER $$<br>	CREATE PROCEDURE wam2(OUT param1 INT)<br>	BEGIN<br>	SELECT COUNT(*) INTO param1 FROM trenowanie_mysql.osob;<br>	END$$<br>	DELIMITER ;<br>------------------------------------<br>CALL wam2(@a);<br></p><p><a href="http://dev.mysql.com/doc/mysql/comment.php?sect=create-procedure">Add your own comment.</a></p></div><!--UdmComment--><div id="docnav"><a href="#">Top</a> / <a rel="prev" href="http://dev.mysql.com/doc/refman/5.0/en/create-index.html" title="13.1.8 CREATE INDEX Syntax">Previous</a> / <a rel="next" href="http://dev.mysql.com/doc/refman/5.0/en/create-table.html" title="13.1.10 CREATE TABLE Syntax">Next</a> / <a rel="up" href="http://dev.mysql.com/doc/refman/5.0/en/sql-syntax-data-definition.html" title="13.1 Data Definition Statements">Up</a> / <a rel="contents" href="http://dev.mysql.com/doc/refman/5.0/en/index.html">Table of Contents</a></div><!--/UdmComment--></div></div>
+
+
+
+
+
+</div> <!--End Container -->
+
+
+
+
+  
+ 
+<div id="footer">
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/">Developer Zone</a></li>
+	    <li><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/articles/">Developer Articles</a></li>
+			<li><a href="http://dev.mysql.com/news-and-events/">News &amp; Events</a></li>
+            <li><a href="http://forums.mysql.com/">Forums</a></li>
+			<li><a href="http://lists.mysql.com/">Lists</a></li>
+            <li><a href="http://bugs.mysql.com/">Bugs</a></li>
+            <li><a href="http://dev.mysql.com/worklog/">Worklog</a></li>
+			            <li><a href="http://planet.mysql.com/">Planet MySQL</a></li>
+			            <li><a href="http://labs.mysql.com/">Labs</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql/">MySQL Community Server</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql-proxy/">MySQL Proxy</a></li>
+            <li><a href="http://dev.mysql.com/downloads/cluster/">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/downloads/workbench/">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/downloads/connector/">MySQL Connectors</a></li>
+            <li><a href="http://downloads.mysql.com/archives.php">Archives</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/doc/">MySQL Reference Manuals</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-gui.html">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-expert.html">Expert Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-topic.html">Topic Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-cluster.html">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-other.html">Other Documents</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-about.html">About</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-archive.html">Archives</a></li>
+        </ul>
+    </div>
+
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://www.mysql.com/about/">About MySQL</a></li>
+            <li><a href="http://www.mysql.com/about/contact/">Contact Us</a></li>
+                         <li><a href="http://www.mysql.com/buy-mysql/">How to Buy</a></li>
+			<li><a href="http://www.mysql.com/partners/">Partners</a></li>
+            <li><a href="http://www.mysql.com/about/jobs/">Job Opportunities</a></li>
+            <li><a href="http://www.mysql.com/sitemap.html">Site Map</a></li>
+	            </ul>
+	</div>
+
+	<div class="links">
+		<ul>
+			<li class="top"><a href="http://www.mysql.com/about/legal/">Legal</a></li>
+			<li><a href="http://www.mysql.com/about/legal/">Legal Policies</a></li>
+			<li><a href="http://www.oracle.com/us/legal/privacy/index.htm">Your Privacy Rights</a></li>
+			<li><a href="http://www.oracle.com/us/legal/terms/index.html">Terms of Use</a></li>
+			<li><a href="http://www.oracle.com/us/legal/third-party-trademarks/index.html">Trademark Policy</a></li>
+			<li><a href="http://www.oracle.com/technetwork/community/oca-486395.html">Contributor Agreement</a></li>
+		</ul>
+	</div>
+
+
+    <div id="search" class="en">
+	        <form id="footer_search" action="http://search.oracle.com/search/search" method="get">
+            <input id="f_q" name="q" class="swap_value" onfocus="clearSearchText();" type="text">
+	    <input name="group" value="Documentation" type="hidden">
+	    <input src="procedure_files/footer_search_g.png" id="f_go" alt="Search" title="Search" type="image">
+        </form>    </div>
+
+</div><!-- End Footer -->
+		<div id="copyright-oracle"><a href="http://www.oracle.com/"><img src="procedure_files/logo-oracle-red-91x22.gif" alt="Oracle" width="91" height="22"></a>&nbsp;&nbsp;<span>© 2013, Oracle Corporation and/or its affiliates</span></div>
+
+
+<script src="procedure_files/s_code_remote.js"></script><script type="text/javascript" src="procedure_files/metrics_group1.js"></script>
+
+
+</body></html>

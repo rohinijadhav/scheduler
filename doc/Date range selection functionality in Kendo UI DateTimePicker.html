@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html class="k-ff k-ff23 k-silver"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Kendo UI DateTimePicker control handles both dates and times. Learn more about the time/date selection functionality by playing with this demo.">
+    <title>Date range selection functionality in Kendo UI DateTimePicker</title>
+    <link rel="shortcut icon" href="http://demos.kendoui.com/favicon.ico">
+    <link href="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/kendo_004.css" rel="stylesheet">
+    <link href="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/kendo_005.css" rel="stylesheet">
+    <link href="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/kendo.css" rel="stylesheet">
+    <link href="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/kendo_002.css" rel="stylesheet">
+    <link href="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/kendo_003.css" rel="stylesheet">
+    <link href="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/telerik-navigation.css" rel="stylesheet">
+<script src="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/ga.js"></script><script>var _gaq=[["_setAccount","UA-23480938-1"],["_setDomainName",".kendoui.com"],["_addIgnoredRef","kendoui.com"],["_trackPageview"]];(function(d,s){var g=d.createElement(s),e=d.getElementsByTagName(s)[0];g.src="//www.google-analytics.com/ga.js";e.parentNode.insertBefore(g,e);}(document,"script"))</script> 
+    <link href="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/examples.css" rel="stylesheet">
+    <script src="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/jquery-1.js"></script>
+    <script src="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/kendo_002.js"></script>
+    <script src="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/kendo.js"></script>
+    <script src="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/examples.js"></script>
+    <script src="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/console.js"></script>
+    <script src="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/prettify.js"></script>
+    <script src="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/telerik-navigation.js"></script>
+</head>
+<body>
+    <div id="telerik-navi">
+  <div id="telerik-main">
+    <ul id="telerik-products" class="inner">
+      <li class="dev-tools">
+        <a href="http://www.telerik.com/developer-productivity-tools.aspx" onclick="_gaq.push(['_trackPageview', '/top-nav/site-nav/dev-tools']);">
+          <h2><small>.NET Developer Tools </small>DevTools</h2>
+          <p>UI Controls For</p>
+          <ul>
+            <li>• ASP.NET AJAX, ASP.NET MVC</li>
+            <li>• WPF, Silverlight, WinForms</li>
+            <li>• Windows 8, Windows Phone</li>
+          </ul>
+          <p>Reporting and Data Access Tools</p><br>
+          <p>Productivity Tools</p>
+          <ul>
+            <li>• Refactoring and Code Analysis</li>
+            <li>• Mocking, Decompiling, Tracing</li>
+          </ul>
+          <p>DevCraft Value Bundles</p>
+        </a>
+      </li>
+      <li class="kendo">
+        <a href="http://www.kendoui.com/" onclick="_gaq.push(['_trackPageview', '/top-nav/site-nav/kendo-ui']);">
+          <h2><small>HTML5 / JavaScript Development </small>Kendo UI</h2>
+          <p>Everything you need to build sites and mobile apps with JavaScript and HTML5</p>
+        </a>
+      </li>
+      <li class="icenium">
+        <a href="http://www.icenium.com/" onclick="_gaq.push(['_trackPageview', '/top-nav/site-nav/icenium']);">
+          <h2><small>Hybrid Mobile Development </small>Icenium</h2>
+          <p>Cross-platform Mobile Development Tool with cloud-based architecture</p>
+        </a>
+      </li>
+      <li class="test-studio">
+        <a href="http://www.telerik.com/automated-testing-tools/" onclick="_gaq.push(['_trackPageview', '/top-nav/site-nav/test-studio']);">
+          <h2><small>Software Testing Tools </small>Test Studio</h2>
+          <p>One easy tool for Functional, Performance, Load and Mobile software testing</p>
+        </a>
+      </li>
+      <li class="eqatec">
+        <a href="http://www.telerik.com/analytics/" onclick="_gaq.push(['_trackPageview', '/top-nav/site-nav/eqatec']);">
+          <h2><small>Application Analytics </small>EQATEC</h2>
+          <p>Real-time usage monitoring and app insights for mobile, web and desktop applications.</p>
+        </a>
+      </li>
+      <li class="sitefinity">
+        <a href="http://www.sitefinity.com/" onclick="_gaq.push(['_trackPageview', '/top-nav/site-nav/sitefinity']);">
+          <h2><small>Online Business Platform </small>Sitefinity CMS</h2>
+          <p>Everything for your online business - content management, ecommerce, emarketing</p>
+        </a>
+      </li>
+      <li class="team-pulse">
+        <a href="http://www.telerik.com/agile-project-management-tools/" onclick="_gaq.push(['_trackPageview', '/top-nav/site-nav/teampulse']);">
+          <h2><small>Agile Project Management </small>TeamPulse</h2>
+          <p>Simple and intuitive project management and collaboration software</p>
+        </a>
+      </li>
+    </ul>
+
+    <div id="sitenav-contacts">
+      <div class="inner">
+        <div class="call-us">
+          <h3>Contact us</h3>
+          <span>We are here for you.</span>
+        </div>
+        <ul>
+          <li class="us">+1‒888‒365‒2779</li>
+          <li class="uk">+44‒20‒7291‒0580</li>
+          <li class="bg">+359‒2‒8099850</li>
+          <li class="de">+49‒89‒2441642‒70</li>
+          <li class="au">+61‒2‒8090‒1465</li>
+          <li class="mail"><a href="mailto:sales@telerik.com" onclick="_gaq.push(['_trackPageview', '/top-nav/site-nav/sales-mail']);">sales@telerik.com</a></li>
+        </ul>
+        <a href="http://www.telerik.com/account" class="your-account" onclick="_gaq.push(['_trackPageview', '/top-nav/site-nav/sign-in']);">Your account <span>Access to your products, updates and support</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div id="telerik-bar">
+    <div class="inner">
+      <a id="telerik-logo" href="http://www.telerik.com/" title="Telerik" onclick="_gaq.push(['_trackPageview', '/top-nav/site-nav/telerik-logo']);"><img src="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/telerik-logo.png" alt="Telerik" width="107" height="35"><span id="telerik-slogan"></span></a>
+      <span id="toggle-main">Product Families</span>
+
+      <ul id="telerik-menu">         
+          <li id="toggle-about-us-menu">ABOUT US<span class="arrow"></span>
+            <div id="telerik-about-us-panel" class="telerik-menu-panel">
+              <h3>About Telerik</h3>
+              <ul>
+                <li><a href="http://www.telerik.com/company.aspx" onclick="_gaq.push(['_trackPageview', '/top-nav/company']);">Company</a></li>
+                <li><a href="http://www.telerik.com/company/press-center.aspx" onclick="_gaq.push(['_trackPageview', '/top-nav/press-center']);">Press Center</a></li>
+                <li><a href="http://www.telerik.com/company/customers.aspx" onclick="_gaq.push(['_trackPageview', '/top-nav/customers']);">Customers</a></li>
+                <li><a href="http://www.telerik.com/community.aspx" onclick="_gaq.push(['_trackPageview', '/top-nav/community']);">Community</a></li>
+                <li><a href="http://www.telerik.com/company/careers.aspx" onclick="_gaq.push(['_trackPageview', '/top-nav/careers']);">Careers</a></li>
+                <li><a href="http://www.telerik.com/company/contact-us.aspx" onclick="_gaq.push(['_trackPageview', '/top-nav/contacts']);">Contacts</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+    </div>
+  </div>
+</div>
+    <div id="header">
+    <div class="centerWrap floatWrap">
+        <h1><a href="http://demos.kendoui.com/" id="logo">Kendo UI - the Art of Web Development</a></h1>
+        <ul class="kendo-nav">
+    <li><a href="#expand">Products <span>▼</span></a>
+        <ol class="submenu-box">
+            <li><a href="http://www.kendoui.com/web.aspx">Kendo UI Web</a></li>
+            <li><a href="http://www.kendoui.com/mobile.aspx">Kendo UI Mobile</a></li>
+            <li><a href="http://www.kendoui.com/dataviz.aspx">Kendo UI DataViz</a></li>
+            <li><a href="http://www.kendoui.com/server-wrappers.aspx">Server Side Wrappers</a></li>
+        </ol>
+    </li>
+    <li class="active"><a href="http://demos.kendoui.com/">Demos</a></li>
+    <li><a href="http://www.kendoui.com/purchase.aspx" onclick="_gaq.push(['_trackPageview', '/top-nav/purchase']);">Purchase</a></li>
+    <li><a href="http://www.kendoui.com/download.aspx" class="get-kendoui" onclick="_gaq.push(['_trackPageview','/download-button']);">Download</a></li>
+</ul>
+
+    </div>
+</div>
+
+<div id="banner"></div>
+
+<div class="suite-demos-nav">
+    <ul class="centerWrap floatWrap">
+        <li><a href="http://demos.kendoui.com/">Overview</a><em></em></li>
+        <li class="active"><a id="web" class="selected" href="http://demos.kendoui.com/web/overview/index.html">Web Demos</a></li>
+        <li><a id="mobile" class="" href="http://demos.kendoui.com/mobile">Mobile Demos</a></li>
+        <li><a id="dataviz" class="" href="http://demos.kendoui.com/dataviz/overview/index.html">DataViz Demos</a></li>
+        <li><a href="http://demos.kendoui.com/themebuilder/web.html">Theme Builders</a></li>
+    </ul>
+</div>
+
+
+    <div class="demos-nav widgetGrid">
+        <div class="centerWrap floatWrap">
+                <div class="wideCol floatWrap ">
+                    <h2>UI Widgets</h2>
+                    <ul>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/autocomplete/index.html" target="">AutoComplete </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/calendar/index.html" target="">Calendar </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/colorpicker/index.html" target="">ColorPicker </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/combobox/index.html" target="">ComboBox </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/datepicker/index.html" target="">DatePicker </a>
+                                </li>
+                                <li class="active">
+                                    <a href="http://demos.kendoui.com/web/datetimepicker/index.html" target="">DateTimePicker </a>
+                                </li>
+</ul><ul>                                <li>
+                                    <a href="http://demos.kendoui.com/web/dropdownlist/index.html" target="">DropDownList </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/editor/index.html" target="">Editor </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/grid/index.html" target="">Grid </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/listview/index.html" target="">ListView </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/menu/index.html" target="">Menu </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/multiselect/index.html" target="">MultiSelect </a>
+                                </li>
+</ul><ul>                                <li>
+                                    <a href="http://demos.kendoui.com/web/numerictextbox/index.html" target="">NumericTextBox </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/panelbar/index.html" target="">PanelBar </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/scheduler/index.html" target="">Scheduler </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/slider/index.html" target="">Slider </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/splitter/index.html" target="">Splitter </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/tabstrip/index.html" target="">TabStrip </a>
+                                </li>
+</ul><ul>                                <li>
+                                    <a href="http://demos.kendoui.com/web/timepicker/index.html" target="">TimePicker </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/tooltip/index.html" target="">Tooltip </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/treeview/index.html" target="">TreeView </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/upload/index.html" target="">Upload </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/window/index.html" target="">Window </a>
+                                </li>
+</ul>
+                </div>
+                <div class="narrowCol floatWrap framework">
+                    <h2>Framework</h2>
+                    <ul>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/datasource/index.html" target="">DataSource </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/templates/index.html" target="">Templates </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/mvvm/index.html" target="">MVVM </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/spa/index.html" target="">Single-Page App </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/fx/expand.html" target="">Effects </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/dragdrop/index.html" target="">Drag &amp; Drop </a>
+                                </li>
+</ul><ul>                                <li>
+                                    <a href="http://demos.kendoui.com/web/validator/index.html" target="">Validator </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/globalization/index.html" target="">Globalization </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/styling/index.html" target="">Styling </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/web/integration/index.html" target="">Integration </a>
+                                </li>
+</ul>
+                </div>
+                <div class="narrowCol floatWrap dashboards">
+                    <h2>Sample Applications</h2>
+                    <ul>
+                                <li>
+                                    <a href="http://demos.kendoui.com/websushi/" target="_blank">
+                                        <img src="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/websushi-dash.gif" alt="websushi">
+                                    </a>
+                                    <a href="http://demos.kendoui.com/websushi/" target="_blank">Sushi </a>
+                                </li>
+                                <li>
+                                    <a href="http://demos.kendoui.com/aeroviewr/" target="_blank">
+                                        <img src="Date%20range%20selection%20functionality%20in%20Kendo%20UI%20DateTimePicker_files/aeroviewr-dash.gif" alt="aeroviewr">
+                                    </a>
+                                    <a href="http://demos.kendoui.com/aeroviewr/" target="_blank">AeroViewr </a>
+                                </li>
+</ul>
+                </div>
+
+
+        </div>
+    </div>
+
+    <div class="flowers-left"><div class="flowers-right">
+        <div class="centerWrap floatWrap" id="mainWrap">
+            <div id="themeWrap" style="">
+                <span class="k-theme-chooser" data-role="themechooser" id="themeChooser"><span class="tc-choose-theme">Choose theme:</span><a class="tc-link k-state-selected" href="#"><span class="tc-theme-name">Silver</span><span class="k-icon k-i-arrow-s"></span></a></span>
+            </div>
+
+            <div id="mainWrapInner" class="floatWrap clear"><ul style="display: none;" class="tc-theme-container"><li class="tc-theme"><a href="#" class="tc-link" data-value="default"><span class="tc-color" style="background-color: #ef6f1c"></span><span class="tc-color" style="background-color: #e24b17"></span><span class="tc-color" style="background-color: #5a4b43"></span><span class="tc-color" style="background-color: #ededed"></span><span class="tc-theme-name">Default</span></a></li><li class="tc-theme"><a href="#" class="tc-link" data-value="blueopal"><span class="tc-color" style="background-color: #076186"></span><span class="tc-color" style="background-color: #7ed3f6"></span><span class="tc-color" style="background-color: #94c0d2"></span><span class="tc-color" style="background-color: #daecf4"></span><span class="tc-theme-name">Blue Opal</span></a></li><li class="tc-theme"><a href="#" class="tc-link" data-value="bootstrap"><span class="tc-color" style="background-color: #0044cc"></span><span class="tc-color" style="background-color: #0088cc"></span><span class="tc-color" style="background-color: #333333"></span><span class="tc-color" style="background-color: #e6e6e6"></span><span class="tc-theme-name">Bootstrap</span></a></li><li class="tc-theme"><a href="#" class="tc-link active" data-value="silver"><span class="tc-color" style="background-color: #298bc8"></span><span class="tc-color" style="background-color: #515967"></span><span class="tc-color" style="background-color: #bfc6d0"></span><span class="tc-color" style="background-color: #eaeaec"></span><span class="tc-theme-name">Silver</span></a></li><li class="tc-theme"><a href="#" class="tc-link" data-value="uniform"><span class="tc-color" style="background-color: #666666"></span><span class="tc-color" style="background-color: #cccccc"></span><span class="tc-color" style="background-color: #e7e7e7"></span><span class="tc-color" style="background-color: #ffffff"></span><span class="tc-theme-name">Uniform</span></a></li><li class="tc-theme"><a href="#" class="tc-link" data-value="metro"><span class="tc-color" style="background-color: #8ebc00"></span><span class="tc-color" style="background-color: #787878"></span><span class="tc-color" style="background-color: #e5e5e5"></span><span class="tc-color" style="background-color: #ffffff"></span><span class="tc-theme-name">Metro</span></a></li><li class="tc-theme"><a href="#" class="tc-link" data-value="black"><span class="tc-color" style="background-color: #0167cc"></span><span class="tc-color" style="background-color: #4698e9"></span><span class="tc-color" style="background-color: #272727"></span><span class="tc-color" style="background-color: #000000"></span><span class="tc-theme-name">Black</span></a></li><li class="tc-theme"><a href="#" class="tc-link" data-value="metroblack"><span class="tc-color" style="background-color: #00aba9"></span><span class="tc-color" style="background-color: #0e0e0e"></span><span class="tc-color" style="background-color: #333333"></span><span class="tc-color" style="background-color: #565656"></span><span class="tc-theme-name">Metro Black</span></a></li><li class="tc-theme"><a href="#" class="tc-link" data-value="highcontrast"><span class="tc-color" style="background-color: #b11e9c"></span><span class="tc-color" style="background-color: #880275"></span><span class="tc-color" style="background-color: #664e62"></span><span class="tc-color" style="background-color: #1b141a"></span><span class="tc-theme-name">High Contrast</span></a></li><li class="tc-theme"><a href="#" class="tc-link" data-value="moonlight"><span class="tc-color" style="background-color: #ee9f05"></span><span class="tc-color" style="background-color: #40444f"></span><span class="tc-color" style="background-color: #2f3640"></span><span class="tc-color" style="background-color: #212a33"></span><span class="tc-theme-name">Moonlight</span></a></li><li class="tc-theme"><a href="#" class="tc-link" data-value="flat"><span class="tc-color" style="background-color: #363940"></span><span class="tc-color" style="background-color: #2eb3a6"></span><span class="tc-color" style="background-color: #10c4b2"></span><span class="tc-color" style="background-color: #ffffff"></span><span class="tc-theme-name">Flat</span></a></li></ul>
+<div id="examples-nav">
+    <div id="nav-pager">
+    <a class="prev k-link" href="http://demos.kendoui.com/web/datetimepicker/index.html" data-widget="/web/datepicker/navigation.html">Prev</a>
+    &nbsp;|&nbsp;
+    <a class="next k-link" href="http://demos.kendoui.com/web/datetimepicker/template.html" data-widget="/web/dropdownlist/index.html">Next</a>
+</div>
+
+    <ul id="examples-list">
+            <li class="">
+                <a href="http://demos.kendoui.com/web/datetimepicker/index.html">Basic usage</a>
+            </li>
+            <li class="active">
+                <a href="http://demos.kendoui.com/web/datetimepicker/rangeselection.html">Range selection</a>
+            </li>
+            <li class="">
+                <a href="http://demos.kendoui.com/web/datetimepicker/template.html">Customizing templates</a>
+            </li>
+            <li class="">
+                <a href="http://demos.kendoui.com/web/datetimepicker/events.html">Events</a>
+            </li>
+            <li class="">
+                <a href="http://demos.kendoui.com/web/datetimepicker/api.html">API</a>
+            </li>
+            <li class="">
+                <a href="http://demos.kendoui.com/web/datetimepicker/rtl.html">RTL support</a>
+            </li>
+            <li class="">
+                <a href="http://demos.kendoui.com/web/datetimepicker/navigation.html">Keyboard navigation</a>
+            </li>
+    </ul>
+
+
+<a href="http://www.kendoui.com/download.aspx" class="get-kendoui">Get Kendo UI</a>
+</div>
+
+            
+
+<div id="main">
+    <h1 id="exampleTitle">
+            <span class="exampleIcon dateTimePickerIcon"></span>
+            <strong>DateTimePicker /</strong> Range selection    </h1>
+
+    <div style="visibility: visible; opacity: 1;" id="exampleWrap">
+        <script>preventFOUC()</script>
+
+
+        <div id="example" class="k-content">
+            <div class="demo-section" style="width: 535px;">
+                <label for="start">Start date:</label>
+                <span class="k-widget k-datetimepicker k-header" style=""><span class="k-picker-wrap k-state-default"><input value="9/27/2013 6:00 AM" aria-activedescendant="start_option_selected" aria-label="Current focused date is 9/27/2013 6:00:00 AM" aria-readonly="false" aria-disabled="false" aria-expanded="false" aria-haspopup="true" role="textbox" class="k-input" style="width: 100%;" data-role="datetimepicker" id="start" type="text"><span unselectable="on" class="k-select"><span aria-controls="start_dateview" role="button" unselectable="on" class="k-icon k-i-calendar">select</span><span aria-controls="start_timeview" role="button" unselectable="on" class="k-icon k-i-clock">select</span></span></span></span>
+
+                <label for="end" style="margin-left:3em">End date:</label>
+                <span class="k-widget k-datetimepicker k-header" style=""><span class="k-picker-wrap k-state-default"><input value="Invalid Date" aria-label="Current focused date is null" aria-readonly="false" aria-disabled="false" aria-expanded="false" aria-haspopup="true" role="textbox" class="k-input" style="width: 100%;" data-role="datetimepicker" id="end" type="text"><span unselectable="on" class="k-select"><span aria-controls="end_dateview" role="button" unselectable="on" class="k-icon k-i-calendar">select</span><span aria-controls="end_timeview" role="button" unselectable="on" class="k-icon k-i-clock">select</span></span></span></span>
+            </div>
+            <script>
+                $(document).ready(function() {
+                    function startChange() {
+                        var startDate = start.value(),
+                        endDate = end.value();
+
+                        if (startDate) {
+                            startDate = new Date(startDate);
+                            startDate.setDate(startDate.getDate());
+                            end.min(startDate);
+                        } else if (endDate) {
+                            start.max(new Date(endDate));
+                        } else {
+                            endDate = new Date();
+                            start.max(endDate);
+                            end.min(endDate);
+                        }
+                    }
+
+                    function endChange() {
+                        var endDate = end.value(),
+                        startDate = start.value();
+
+                        if (endDate) {
+                            endDate = new Date(endDate);
+                            endDate.setDate(endDate.getDate());
+                            start.max(endDate);
+                        } else if (startDate) {
+                            end.min(new Date(startDate));
+                        } else {
+                            endDate = new Date();
+                            start.max(endDate);
+                            end.min(endDate);
+                        }
+                    }
+
+                    var today = new Date(kendo.format('{0:MM-dd-yyyy}', new Date()))
+
+                    var start = $("#start").kendoDateTimePicker({
+                        value: today,
+                        change: startChange,
+                        parseFormats: ["MM/dd/yyyy"]
+                    }).data("kendoDateTimePicker");
+
+                    var end = $("#end").kendoDateTimePicker({
+                        value: today,
+                        change: endChange,
+                        parseFormats: ["MM/dd/yyyy"]
+                    }).data("kendoDateTimePicker");
+
+                    start.max(end.value());
+                    end.min(start.value());
+                });
+            </script>
+
+            <style scoped="">
+                #example .k-datetimepicker {
+                    vertical-align: middle;
+                }
+
+                #example h3 {
+                    clear: both;
+                }
+
+                #example .code-sample {
+                    width: 60%;
+                    float:left;
+                    margin-bottom: 20px;
+                }
+
+                #example .output {
+                    width: 24%;
+                    margin-left: 4%;
+                    float:left;
+                }
+            </style>
+        </div>
+    </div>
+
+        <div style="min-height: 525px;" aria-activedescendant="codeStrip_ts_active" role="tablist" class="k-widget k-header k-tabstrip" tabindex="0" data-role="tabstrip" id="codeStrip">
+                <a class="documentation-link k-link" href="http://docs.kendoui.com/api/web/datetimepicker"><span class="documentation-icon"></span>Documentation</a>
+
+            <ul class="k-tabstrip-items k-reset"><li id="codeStrip_ts_active" aria-selected="true" style="" aria-controls="codeStrip-1" role="tab" class="k-item k-state-default k-first k-tab-on-top k-state-active"><a class="k-link">HTML</a></li><li aria-controls="codeStrip-2" role="tab" class="k-item k-state-default"><a class="k-link">ASP.NET MVC</a></li><li aria-controls="codeStrip-3" role="tab" class="k-item k-state-default"><a class="k-link">JSP</a></li><li aria-controls="codeStrip-4" role="tab" class="k-item k-state-default k-last"><a class="k-link">PHP</a></li></ul>
+               <div aria-activedescendant="HTML_ts_active" style="opacity: 1; display: block;" aria-expanded="true" role="tabpanel" class="k-widget k-header k-tabstrip k-content k-state-active" tabindex="0" data-role="tabstrip" id="codeStrip-1">
+               <ul class="k-tabstrip-items k-reset"><li id="HTML_ts_active" aria-selected="true" style="" aria-controls="HTML-1" role="tab" class="k-item k-state-default k-first k-last k-tab-on-top k-state-active"><a class="k-link">rangeselection.html</a></li></ul> 
+               <div style="opacity: 1; display: block;" aria-expanded="true" id="HTML-1" class="k-content k-state-active"><pre style="" class="prettyprint prettyprinted"><span class="dec">&lt;!DOCTYPE html&gt;</span><span class="pln">
+</span><span class="tag">&lt;html&gt;</span><span class="pln">
+</span><span class="tag">&lt;head&gt;</span><span class="pln">
+    </span><span class="tag">&lt;title&gt;&lt;/title&gt;</span><span class="pln">
+    </span><span class="tag">&lt;link</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"styles/kendo.common.min.css"</span><span class="pln"> </span><span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
+    </span><span class="tag">&lt;link</span><span class="pln"> </span><span class="atn">href</span><span class="pun">=</span><span class="atv">"styles/kendo.default.min.css"</span><span class="pln"> </span><span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
+    </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"js/jquery.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span><span class="pln">
+    </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"js/kendo.all.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span><span class="pln">
+</span><span class="tag">&lt;/head&gt;</span><span class="pln">
+</span><span class="tag">&lt;body&gt;</span><span class="pln">
+    
+        </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"example"</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"k-content"</span><span class="tag">&gt;</span><span class="pln">
+            </span><span class="tag">&lt;div</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"demo-section"</span><span class="pln"> </span><span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">535px</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">
+                </span><span class="tag">&lt;label</span><span class="pln"> </span><span class="atn">for</span><span class="pun">=</span><span class="atv">"start"</span><span class="tag">&gt;</span><span class="pln">Start date:</span><span class="tag">&lt;/label&gt;</span><span class="pln">
+                </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"start"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
+
+                </span><span class="tag">&lt;label</span><span class="pln"> </span><span class="atn">for</span><span class="pun">=</span><span class="atv">"end"</span><span class="pln"> </span><span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">margin</span><span class="pun">-</span><span class="pln">left</span><span class="pun">:</span><span class="lit">3em</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">End date:</span><span class="tag">&lt;/label&gt;</span><span class="pln">
+                </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">id</span><span class="pun">=</span><span class="atv">"end"</span><span class="tag">/&gt;</span><span class="pln">
+            </span><span class="tag">&lt;/div&gt;</span><span class="pln">
+            </span><span class="tag">&lt;script&gt;</span><span class="pln">
+                $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                    </span><span class="kwd">function</span><span class="pln"> startChange</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                        </span><span class="kwd">var</span><span class="pln"> startDate </span><span class="pun">=</span><span class="pln"> start</span><span class="pun">.</span><span class="pln">value</span><span class="pun">(),</span><span class="pln">
+                        endDate </span><span class="pun">=</span><span class="pln"> end</span><span class="pun">.</span><span class="pln">value</span><span class="pun">();</span><span class="pln">
+
+                        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">startDate</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                            startDate </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">(</span><span class="pln">startDate</span><span class="pun">);</span><span class="pln">
+                            startDate</span><span class="pun">.</span><span class="pln">setDate</span><span class="pun">(</span><span class="pln">startDate</span><span class="pun">.</span><span class="pln">getDate</span><span class="pun">());</span><span class="pln">
+                            end</span><span class="pun">.</span><span class="pln">min</span><span class="pun">(</span><span class="pln">startDate</span><span class="pun">);</span><span class="pln">
+                        </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">endDate</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                            start</span><span class="pun">.</span><span class="pln">max</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">(</span><span class="pln">endDate</span><span class="pun">));</span><span class="pln">
+                        </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                            endDate </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">();</span><span class="pln">
+                            start</span><span class="pun">.</span><span class="pln">max</span><span class="pun">(</span><span class="pln">endDate</span><span class="pun">);</span><span class="pln">
+                            end</span><span class="pun">.</span><span class="pln">min</span><span class="pun">(</span><span class="pln">endDate</span><span class="pun">);</span><span class="pln">
+                        </span><span class="pun">}</span><span class="pln">
+                    </span><span class="pun">}</span><span class="pln">
+
+                    </span><span class="kwd">function</span><span class="pln"> endChange</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                        </span><span class="kwd">var</span><span class="pln"> endDate </span><span class="pun">=</span><span class="pln"> end</span><span class="pun">.</span><span class="pln">value</span><span class="pun">(),</span><span class="pln">
+                        startDate </span><span class="pun">=</span><span class="pln"> start</span><span class="pun">.</span><span class="pln">value</span><span class="pun">();</span><span class="pln">
+
+                        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">endDate</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                            endDate </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">(</span><span class="pln">endDate</span><span class="pun">);</span><span class="pln">
+                            endDate</span><span class="pun">.</span><span class="pln">setDate</span><span class="pun">(</span><span class="pln">endDate</span><span class="pun">.</span><span class="pln">getDate</span><span class="pun">());</span><span class="pln">
+                            start</span><span class="pun">.</span><span class="pln">max</span><span class="pun">(</span><span class="pln">endDate</span><span class="pun">);</span><span class="pln">
+                        </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">startDate</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                            end</span><span class="pun">.</span><span class="pln">min</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">(</span><span class="pln">startDate</span><span class="pun">));</span><span class="pln">
+                        </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                            endDate </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">();</span><span class="pln">
+                            start</span><span class="pun">.</span><span class="pln">max</span><span class="pun">(</span><span class="pln">endDate</span><span class="pun">);</span><span class="pln">
+                            end</span><span class="pun">.</span><span class="pln">min</span><span class="pun">(</span><span class="pln">endDate</span><span class="pun">);</span><span class="pln">
+                        </span><span class="pun">}</span><span class="pln">
+                    </span><span class="pun">}</span><span class="pln">
+
+                    </span><span class="kwd">var</span><span class="pln"> today </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">(</span><span class="pln">kendo</span><span class="pun">.</span><span class="pln">format</span><span class="pun">(</span><span class="str">'{0:MM-dd-yyyy}'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">()))</span><span class="pln">
+
+                    </span><span class="kwd">var</span><span class="pln"> start </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="str">"#start"</span><span class="pun">).</span><span class="pln">kendoDateTimePicker</span><span class="pun">({</span><span class="pln">
+                        value</span><span class="pun">:</span><span class="pln"> today</span><span class="pun">,</span><span class="pln">
+                        change</span><span class="pun">:</span><span class="pln"> startChange</span><span class="pun">,</span><span class="pln">
+                        parseFormats</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">"MM/dd/yyyy"</span><span class="pun">]</span><span class="pln">
+                    </span><span class="pun">}).</span><span class="pln">data</span><span class="pun">(</span><span class="str">"kendoDateTimePicker"</span><span class="pun">);</span><span class="pln">
+
+                    </span><span class="kwd">var</span><span class="pln"> end </span><span class="pun">=</span><span class="pln"> $</span><span class="pun">(</span><span class="str">"#end"</span><span class="pun">).</span><span class="pln">kendoDateTimePicker</span><span class="pun">({</span><span class="pln">
+                        value</span><span class="pun">:</span><span class="pln"> today</span><span class="pun">,</span><span class="pln">
+                        change</span><span class="pun">:</span><span class="pln"> endChange</span><span class="pun">,</span><span class="pln">
+                        parseFormats</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="str">"MM/dd/yyyy"</span><span class="pun">]</span><span class="pln">
+                    </span><span class="pun">}).</span><span class="pln">data</span><span class="pun">(</span><span class="str">"kendoDateTimePicker"</span><span class="pun">);</span><span class="pln">
+
+                    start</span><span class="pun">.</span><span class="pln">max</span><span class="pun">(</span><span class="pln">end</span><span class="pun">.</span><span class="pln">value</span><span class="pun">());</span><span class="pln">
+                    end</span><span class="pun">.</span><span class="pln">min</span><span class="pun">(</span><span class="pln">start</span><span class="pun">.</span><span class="pln">value</span><span class="pun">());</span><span class="pln">
+                </span><span class="pun">});</span><span class="pln">
+            </span><span class="tag">&lt;/script&gt;</span><span class="pln">
+
+            </span><span class="tag">&lt;style</span><span class="pln"> </span><span class="atn">scoped</span><span class="tag">&gt;</span><span class="pln">
+                </span><span class="com">#example .k-datetimepicker {</span><span class="pln">
+                    vertical</span><span class="pun">-</span><span class="pln">align</span><span class="pun">:</span><span class="pln"> middle</span><span class="pun">;</span><span class="pln">
+                </span><span class="pun">}</span><span class="pln">
+
+                </span><span class="com">#example h3 {</span><span class="pln">
+                    clear</span><span class="pun">:</span><span class="pln"> both</span><span class="pun">;</span><span class="pln">
+                </span><span class="pun">}</span><span class="pln">
+
+                </span><span class="com">#example .code-sample {</span><span class="pln">
+                    width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">60</span><span class="pun">%;</span><span class="pln">
+                    </span><span class="kwd">float</span><span class="pun">:</span><span class="pln">left</span><span class="pun">;</span><span class="pln">
+                    margin</span><span class="pun">-</span><span class="pln">bottom</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20px</span><span class="pun">;</span><span class="pln">
+                </span><span class="pun">}</span><span class="pln">
+
+                </span><span class="com">#example .output {</span><span class="pln">
+                    width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">24</span><span class="pun">%;</span><span class="pln">
+                    margin</span><span class="pun">-</span><span class="pln">left</span><span class="pun">:</span><span class="pln"> </span><span class="lit">4</span><span class="pun">%;</span><span class="pln">
+                    </span><span class="kwd">float</span><span class="pun">:</span><span class="pln">left</span><span class="pun">;</span><span class="pln">
+                </span><span class="pun">}</span><span class="pln">
+            </span><span class="tag">&lt;/style&gt;</span><span class="pln">
+        </span><span class="tag">&lt;/div&gt;</span><span class="pln">
+
+
+</span><span class="tag">&lt;/body&gt;</span><span class="pln">
+</span><span class="tag">&lt;/html&gt;</span></pre></div></div>
+               <script>
+               var minHeightFlag = false;
+               $("#HTML").kendoTabStrip({
+                    animation: {
+                        open: {
+                            effects: "fadeIn"
+                        }
+                    },
+                    contentUrls: [
+                        "/source?path=~%2FViews%2Fweb%2Fdatetimepicker%2Frangeselection.cshtml"
+                    ],
+                    contentLoad: function(e) {
+                        prettyPrint();
+                        if (!minHeightFlag) {
+                            var cs = $("#codeStrip");
+                            cs.css("min-height", cs.height());
+                        }
+                    }
+               });
+               </script>
+               <div aria-expanded="false" aria-hidden="true" role="tabpanel" class="k-widget k-header k-tabstrip k-content" tabindex="0" data-role="tabstrip" id="codeStrip-2">
+               <ul class="k-tabstrip-items k-reset"><li aria-controls="ASP-NET-MVC-1" role="tab" class="k-item k-state-default k-first"><a class="k-link">rangeselection.aspx</a></li><li aria-controls="ASP-NET-MVC-2" role="tab" class="k-item k-state-default"><a class="k-link">rangeselection.cshtml</a></li><li aria-controls="ASP-NET-MVC-3" role="tab" class="k-item k-state-default k-last"><a class="k-link">RangeSelectionController.cs</a></li></ul> 
+               <div id="ASP-NET-MVC-1" class="k-content"></div><div id="ASP-NET-MVC-2" class="k-content"></div><div id="ASP-NET-MVC-3" class="k-content"></div></div>
+               <script>
+               var minHeightFlag = false;
+               $("#ASP-NET-MVC").kendoTabStrip({
+                    animation: {
+                        open: {
+                            effects: "fadeIn"
+                        }
+                    },
+                    contentUrls: [
+                        "/source?path=~%2Fsrc%2Faspnetmvc%2Fviews%2Faspx%2Fweb%2Fdatetimepicker%2Frangeselection.aspx","/source?path=~%2Fsrc%2Faspnetmvc%2Fviews%2Frazor%2Fweb%2Fdatetimepicker%2Frangeselection.cshtml","/source?path=~%2Fsrc%2Faspnetmvc%2Fcontrollers%2Fweb%2FDateTimePicker%2FRangeSelectionController.cs"
+                    ],
+                    contentLoad: function(e) {
+                        prettyPrint();
+                        if (!minHeightFlag) {
+                            var cs = $("#codeStrip");
+                            cs.css("min-height", cs.height());
+                        }
+                    }
+               });
+               </script>
+               <div aria-expanded="false" aria-hidden="true" role="tabpanel" class="k-widget k-header k-tabstrip k-content" tabindex="0" data-role="tabstrip" id="codeStrip-3">
+               <ul class="k-tabstrip-items k-reset"><li aria-controls="JSP-1" role="tab" class="k-item k-state-default k-first"><a class="k-link">rangeselection.jsp</a></li><li aria-controls="JSP-2" role="tab" class="k-item k-state-default k-last"><a class="k-link">RangeSelectionController.java</a></li></ul> 
+               <div id="JSP-1" class="k-content"></div><div id="JSP-2" class="k-content"></div></div>
+               <script>
+               var minHeightFlag = false;
+               $("#JSP").kendoTabStrip({
+                    animation: {
+                        open: {
+                            effects: "fadeIn"
+                        }
+                    },
+                    contentUrls: [
+                        "/source?path=~%2Fsrc%2Fjsp%2Fviews%2Fweb%2Fdatetimepicker%2Frangeselection.jsp","/source?path=~%2Fsrc%2Fjsp%2Fcontrollers%2Fdatetimepicker%2FRangeSelectionController.java"
+                    ],
+                    contentLoad: function(e) {
+                        prettyPrint();
+                        if (!minHeightFlag) {
+                            var cs = $("#codeStrip");
+                            cs.css("min-height", cs.height());
+                        }
+                    }
+               });
+               </script>
+               <div aria-expanded="false" aria-hidden="true" role="tabpanel" class="k-widget k-header k-tabstrip k-content" tabindex="0" data-role="tabstrip" id="codeStrip-4">
+               <ul class="k-tabstrip-items k-reset"><li aria-controls="PHP-1" role="tab" class="k-item k-state-default k-first k-last"><a class="k-link">rangeselection.php</a></li></ul> 
+               <div id="PHP-1" class="k-content"></div></div>
+               <script>
+               var minHeightFlag = false;
+               $("#PHP").kendoTabStrip({
+                    animation: {
+                        open: {
+                            effects: "fadeIn"
+                        }
+                    },
+                    contentUrls: [
+                        "/source?path=~%2Fsrc%2Fphp%2Fweb%2Fdatetimepicker%2Frangeselection.php"
+                    ],
+                    contentLoad: function(e) {
+                        prettyPrint();
+                        if (!minHeightFlag) {
+                            var cs = $("#codeStrip");
+                            cs.css("min-height", cs.height());
+                        }
+                    }
+               });
+               </script>
+        </div>
+        <script>
+            $("#codeStrip").kendoTabStrip({
+                animation: {
+                    open: {
+                        effects: "fadeIn"
+                    }
+                },
+                select: function(e) {
+                    var tabstrip = $(e.contentElement).data("kendoTabStrip");
+                    if (tabstrip.select().length == 0) {
+                        tabstrip.select(0);
+                    }
+                }
+            }).find("li:first").click();
+
+        </script>
+</div>
+
+<script>
+    setTimeout(function(){ prettyPrint(); }, 100);
+
+    document.title = "Date range selection functionality in Kendo UI DateTimePicker";
+
+</script>
+
+
+<script>
+    setTimeout(function(){ prettyPrint(); }, 100);
+
+    document.title = "Kendo UI Date and Time picker example";
+
+</script>
+
+
+            </div>
+
+        </div>
+    </div></div>
+
+    <div id="footer">
+    <div class="centerWrap">
+        <ul class="bottom-nav">
+            <li><a href="http://www.kendoui.com/">Home</a></li>
+            <li><a href="http://www.kendoui.com/web.aspx">Web</a></li>
+            <li><a href="http://www.kendoui.com/mobile.aspx">Mobile</a></li>
+            <li><a href="http://www.kendoui.com/dataviz.aspx">DataViz</a></li>
+            <li><a href="http://www.kendoui.com/server-wrappers.aspx">Server Wrappers</a></li>
+            <li><a href="http://www.kendoui.com/whitepapers.aspx">Whitepapers</a></li>
+            <li><a href="http://www.kendoui.com/surveys.aspx">Surveys</a></li>
+            <li><a href="http://www.kendoui.com/chrome.aspx">Chrome</a></li>
+            <li><a href="http://www.icenium.com/" target="_blank">Icenium</a></li>
+            <li><a href="http://www.kendoui.com/contact.aspx">Contact Us</a></li>
+        </ul>
+
+        <p>Take your time to truly experience the power of Kendo UI.</p>
+        <p><a href="http://www.kendoui.com/download.aspx">Download</a> your Kendo UI and jumpstart your development with the available <a href="http://www.kendoui.com/get-help.aspx">support resources</a>.</p>
+        <p>If you have any questions, do not hesitate to contact us at <a href="mailto:clientservice@kendoui.com">clientservice@kendoui.com</a>.</p>
+
+        <div id="social">
+            <h2>Get Social!</h2>
+
+            <ul>
+                <li><a href="http://twitter.com/#%21/KendoUI" class="icon tw" title="Follow us on Twitter">Follow us on Twitter</a></li>
+                <li><a href="http://www.facebook.com/KendoUI" class="icon fb" title="Become a fan on Facebook">Become a fan on Facebook</a></li>
+                <li><a href="https://plus.google.com/117798269023828336983/posts" class="icon gplus" title="Follow us on Google+">Follow us on Google+</a></li>
+                <li><a href="http://www.kendoui.com/blogs/blogs.rss" class="icon rss" title="Subscribe to our RSS feed">Subscribe to our RSS feed</a></li>
+            </ul>
+        </div>
+
+        <p id="copy">Copyright © 2011 - 2013 Telerik Inc. All rights reserved.</p>
+    </div>
+</div>
+
+
+    <script>
+
+        if ("pushState" in history) {
+            $(".demos-nav").on("click", "a", function(e) {
+                var a = $(this),
+                    li = a.parent();
+
+                if (a.attr("target")) {
+                    return;
+                }
+
+                e.preventDefault();
+
+                if (li.hasClass("active")) {
+                    return;
+                }
+
+                Application.loadWidget(a.attr("href"));
+            });
+        }
+
+        $("#themeChooser").kendoThemeChooser();
+
+        $("#deviceChooser").mobileOsChooser({
+            container: "#mobile-application-container"
+        });
+
+            
+                applyCurrentTheme();
+            
+
+    </script>
+
+
+<div style="width: 209px; height: 234px; margin-left: -2px; padding-left: 2px; padding-right: 2px; padding-bottom: 4px; overflow: hidden; display: none; position: absolute; top: 444.733px; z-index: 10002; left: 533px;" class="k-animation-container"><div style="display: none; font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-stretch: normal; font-style: normal; font-weight: 400; line-height: 14px; transform: translateY(-234px); position: absolute;" data-role="popup" id="start_dateview" class="k-calendar-container k-popup k-group k-reset" aria-hidden="true"></div></div><div style="width: 180px; height: 206px; margin-left: -2px; padding-left: 2px; padding-right: 2px; padding-bottom: 4px; overflow: hidden; display: none; position: absolute; top: 444.733px; z-index: 10002; left: 533px;" class="k-animation-container"><div style="height: 200px; display: none; font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-stretch: normal; font-style: normal; font-weight: 400; line-height: 14px; width: 174px; position: absolute; transform: translateY(-206px);" data-role="popup" class="k-list-container k-popup k-group k-reset"><ul id="start_timeview" style="overflow: auto;" tabindex="-1" role="listbox" aria-hidden="true" unselectable="on" class="k-list k-reset"><li tabindex="-1" role="option" class="k-item" unselectable="on">12:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">12:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">1:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">1:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">2:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">2:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">3:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">3:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">4:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">4:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">5:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">5:30 AM</li><li aria-selected="true" id="start_option_selected" tabindex="-1" role="option" class="k-item k-state-selected" unselectable="on">6:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">6:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">7:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">7:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">8:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">8:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">9:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">9:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">10:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">10:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">11:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">11:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">12:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">12:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">1:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">1:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">2:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">2:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">3:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">3:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">4:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">4:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">5:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">5:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">6:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">6:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">7:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">7:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">8:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">8:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">9:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">9:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">10:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">10:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">11:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">11:30 PM</li></ul></div></div><div style="width: 209px; height: 234px; margin-left: -2px; padding-left: 2px; padding-right: 2px; padding-bottom: 4px; overflow: hidden; display: none; position: absolute; top: 444.733px; z-index: 10002; left: 807px;" class="k-animation-container"><div style="display: none; font-family: Arial,Helvetica,sans-serif; font-size: 12px; font-stretch: normal; font-style: normal; font-weight: 400; line-height: 14px; position: absolute; transform: translateY(-234px);" data-role="popup" id="end_dateview" class="k-calendar-container k-popup k-group k-reset" aria-hidden="true"><div class="k-widget k-calendar" data-role="calendar" style="" id="20d4dc02-1019-470a-9fe8-a38fb9307190"><div class="k-header"><a aria-disabled="true" href="#" role="button" class="k-link k-nav-prev k-state-disabled"><span class="k-icon k-i-arrow-w"></span></a><a aria-disabled="false" href="#" role="button" aria-live="assertive" aria-atomic="true" class="k-link k-nav-fast">September 2013</a><a aria-disabled="false" href="#" role="button" class="k-link k-nav-next"><span class="k-icon k-i-arrow-e"></span></a></div><table aria-activedescendant="20d4dc02-1019-470a-9fe8-a38fb9307190_cell_selected" tabindex="0" role="grid" class="k-content" cellspacing="0"><thead><tr role="row"><th scope="col" title="Sunday">Su</th><th scope="col" title="Monday">Mo</th><th scope="col" title="Tuesday">Tu</th><th scope="col" title="Wednesday">We</th><th scope="col" title="Thursday">Th</th><th scope="col" title="Friday">Fr</th><th scope="col" title="Saturday">Sa</th></tr></thead><tbody><tr role="row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr role="row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr role="row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr role="row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr><tr role="row"><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td id="20d4dc02-1019-470a-9fe8-a38fb9307190_cell_selected" aria-selected="true" class="k-today k-state-focused"><a tabindex="-1" class="k-link" href="#" data-value="2013/8/27" title="Friday, September 27, 2013">27</a></td><td class="k-weekend"><a tabindex="-1" class="k-link" href="#" data-value="2013/8/28" title="Saturday, September 28, 2013">28</a></td></tr><tr role="row"><td class="k-weekend"><a tabindex="-1" class="k-link" href="#" data-value="2013/8/29" title="Sunday, September 29, 2013">29</a></td><td><a tabindex="-1" class="k-link" href="#" data-value="2013/8/30" title="Monday, September 30, 2013">30</a></td><td class="k-other-month"><a tabindex="-1" class="k-link" href="#" data-value="2013/9/1" title="Tuesday, October 01, 2013">1</a></td><td class="k-other-month"><a tabindex="-1" class="k-link" href="#" data-value="2013/9/2" title="Wednesday, October 02, 2013">2</a></td><td class="k-other-month"><a tabindex="-1" class="k-link" href="#" data-value="2013/9/3" title="Thursday, October 03, 2013">3</a></td><td class="k-other-month"><a tabindex="-1" class="k-link" href="#" data-value="2013/9/4" title="Friday, October 04, 2013">4</a></td><td class="k-other-month k-weekend"><a tabindex="-1" class="k-link" href="#" data-value="2013/9/5" title="Saturday, October 05, 2013">5</a></td></tr></tbody></table><div class="k-footer"><a title="Friday, September 27, 2013" href="#" class="k-link k-state-disabled">Friday, September 27, 2013</a></div></div></div></div><div style="position: absolute; height: 200px; display: none;" data-role="popup" class="k-list-container k-popup k-group k-reset"><ul id="end_timeview" style="overflow: auto;" tabindex="-1" role="listbox" aria-hidden="true" unselectable="on" class="k-list k-reset"><li tabindex="-1" role="option" class="k-item" unselectable="on">12:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">12:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">1:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">1:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">2:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">2:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">3:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">3:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">4:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">4:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">5:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">5:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">6:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">6:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">7:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">7:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">8:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">8:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">9:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">9:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">10:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">10:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">11:00 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">11:30 AM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">12:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">12:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">1:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">1:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">2:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">2:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">3:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">3:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">4:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">4:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">5:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">5:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">6:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">6:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">7:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">7:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">8:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">8:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">9:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">9:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">10:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">10:30 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">11:00 PM</li><li tabindex="-1" role="option" class="k-item" unselectable="on">11:30 PM</li></ul></div></body></html>

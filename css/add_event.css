@@ -1,0 +1,14 @@
+#add_body 
+{ 
+	position: absolute;
+	margin-right: 200px;
+	margin-left: 200px;
+	margin-top: 100px;
+	margin-bottom: 200px;
+	width: 70%; 
+	height: 60%; 
+	background-color:#b0c4de;
+	vertical-align: center;
+	text-align: center;
+}
+

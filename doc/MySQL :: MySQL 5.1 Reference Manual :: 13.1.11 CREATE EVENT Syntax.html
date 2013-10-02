@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script src="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/auth014.js" type="text/javascript"></script><link media="all" href="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/widget115.css" type="text/css" rel="stylesheet">
+    <meta charset="utf-8">
+    <!--[if IE ]>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <![endif]-->
+    <title>MySQL ::   MySQL 5.1 Reference Manual :: 13.1.11 CREATE EVENT Syntax</title>
+
+    
+    <link rel="stylesheet" media="screen" href="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/mysql.css">
+    <link rel="stylesheet" media="projection" href="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/mysql.css">
+    <link rel="stylesheet" media="print" href="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/print.css">
+
+            <link rel="stylesheet" href="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/docs.css">
+        
+    
+    
+    
+    <link rel="contents" href="http://dev.mysql.com/doc/refman/5.1/en/index.html" title="MySQL Manual"><link rel="start" href="http://dev.mysql.com/doc/refman/5.1/en/index.html" title="MySQL Manual"><link rel="prev" href="http://dev.mysql.com/doc/refman/5.1/en/create-database.html" title="13.1.10 CREATE DATABASE Syntax"><link rel="next" href="http://dev.mysql.com/doc/refman/5.1/en/create-function.html?ff=nopfpls" title="13.1.12 CREATE FUNCTION Syntax"><link rel="up" href="http://dev.mysql.com/doc/refman/5.1/en/sql-syntax-data-definition.html" title="13.1 Data Definition Statements">        <link rel="shortcut icon" href="http://dev.mysql.com/common/themes/sakila/favicon.ico">
+
+        <script src="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/clear_search_text.js"></script>
+
+    
+        
+    <script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>
+    <!-- The following src attribute is not a typo, it is a protocol-relative URI -->
+    <script type="text/javascript" src="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/addthis_widget.js"></script><div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; z-index: 100000;"><iframe src="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/sh136.html" style="height: 1px; width: 1px; position: absolute; z-index: 100000; border: 0px none; left: 0px; top: 0px;" title="AddThis utility frame" id="_atssh356"></iframe></div><script src="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/core098.js" type="text/javascript"></script>
+
+    
+</head>
+
+<body class="doc">
+
+<div id="container">
+
+<!--UdmComment-->
+<a class="skipToContent" href="#mainContent">Skip navigation links</a>
+
+    <div id="header">
+
+    <div class="left">
+
+    <div id="logo">
+                                            <a href="http://dev.mysql.com/" title="MySQL">
+                            <img src="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/logo-mysql-110x57.png" alt="MySQL" width="110" height="57"></a>
+            </div>
+            <div id="tagline">The world's most popular open source database</div>
+
+    </div>
+
+    <div class="right">
+        
+        <div id="search_box"> <!-- Start Search -->
+        		<form id="searchform" name="searchform" method="get" action="http://search.oracle.com/search/search">
+			<input id="q" name="q" value="Search" class="swap_value" onfocus="clearSearchText();" type="text">
+			<input id="search_dest" name="group" value="Documentation" type="hidden">
+			<input src="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/search_g.png" id="go" alt="Search" title="Search" type="image">
+		    </form>        </div> <!-- End Search -->
+
+                <div id="login">
+                     <p><a href="https://dev.mysql.com/auth/login/?dest=http%3a%2f%2fdev.mysql.com%2Fdoc%2Frefman%2F5.1%2Fen%2Fcreate-event.html">Login</a> | <a href="https://dev.mysql.com/auth/register/">Register</a></p>
+                </div>
+    </div>
+
+    </div> 
+
+    <!-- MySQL Navigation -->
+    <div id="nav_container">
+
+    <div id="flags">
+        <ul>
+            <li style="position:relative; top:-5px;">
+                <!-- Icons from http://icondock.com/free/vector-social-media-icons //-->
+                <a href="http://www.facebook.com/mysql"><img src="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/facebook.png" alt="Facebook" title="Join us on Facebook" width="20" height="20"></a>&nbsp;
+                <a href="https://twitter.com/#%21/mysql"><img src="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/twitter.png" alt="Twitter" title="Follow us on Twitter" width="20" height="20"></a>&nbsp;
+                <a href="http://www.youtube.com/mysqlchannel"><img src="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/youtube.png" alt="YouTube" title="Visit our YouTube channel" width="20" height="20"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>
+                            <br>
+                        </ul>
+    </div>
+    
+                        <div id="tab_last">
+        <ul>
+            <li class="first"><a href="http://dev.mysql.com/">Developer Zone</a></li>
+            <li class="second"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li class="current"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+        </ul>
+        </div>
+            
+
+
+    <div id="mysql_menu">
+        <ul>
+	<li class="current"><a class="current " href="http://dev.mysql.com/doc/">MySQL Server</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-enterprise.html">MySQL Enterprise</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-gui.html">MySQL Workbench</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-cluster.html">MySQL Cluster</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-connectors.html">MySQL Connectors</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-topic.html">Topic Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-expert.html">Expert Guides</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-other.html">Other Docs</a>
+	
+		
+		
+	</li>
+	
+	<li class="link"><a href="http://dev.mysql.com/doc/index-archive.html">Archives</a>
+	
+		
+		
+	</li>
+	
+	<li class="link last"><a href="http://dev.mysql.com/doc/index-about.html">About</a>
+	
+		
+		
+	</li>
+	
+</ul>
+    </div>
+
+        <div id="og_sakila">&nbsp;</div>
+            <div id="og_title">&nbsp;</div>
+
+    </div>
+    <!-- End Navigation Container -->
+
+<!--/UdmComment-->
+
+<div class="page_container">
+    <div class="page_sidebar">
+	<!--UdmCommentTest-->
+
+	<div id="menu_title"></div>
+
+	<div id="menu">
+		<ul>
+			<li class="current"><a class="current subitems" href="http://dev.mysql.com/doc/index.html">Documentation Library</a>
+
+			<ul class="subitems1">
+				 <li><a href="http://dev.mysql.com/doc/refman/5.1/en/index.html"><b>Table of Contents</b></a>
+
+
+				 <ul class="subitems2">
+				 
+				 					 		<li>
+					 	<a href="http://dev.mysql.com/doc/refman/5.7/en/create-event.html">MySQL 5.7 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="http://dev.mysql.com/doc/refman/5.6/en/create-event.html">MySQL 5.6 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="http://dev.mysql.com/doc/refman/5.5/en/create-event.html">MySQL 5.5 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li class="current">MySQL 5.1 Manual
+				 	
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="">MySQL 5.0 Manual</a>  					
+				 	</li>
+
+				 
+				 					 		<li>
+					 	<a href="">MySQL 3.23/4.0/4.1 Manual</a>  					
+				 	</li>
+
+				 
+				 </ul>
+
+
+
+				 </li>
+
+
+			</ul>
+
+
+			</li>
+		</ul>
+
+	 <div class="searchmanual">
+			<form action="http://search.oracle.com/search/search" method="get" id="docsearch">
+		<strong><label for="searchq">Search manual:</label></strong>
+		<br>
+		<input id="searchq" name="q" size="14" type="text">
+		<input id="searchsubmit" value="Go" type="submit">
+		<input id="searchgroup" name="group" value="MySQL" type="hidden">
+	</form>	 </div>
+
+
+	</div>
+
+	
+</div>  
+<!-- Main content -->
+
+<div id="page" class="sidebar">
+
+    
+
+
+
+
+	<!--UdmComment-->
+
+<div id="docheader"><a href="http://dev.mysql.com/doc/refman/5.1/en/index.html"> MySQL 5.1 Reference Manual</a> :: <a href="http://dev.mysql.com/doc/refman/5.1/en/sql-syntax.html">13 SQL Statement Syntax</a> :: <a href="http://dev.mysql.com/doc/refman/5.1/en/sql-syntax-data-definition.html">13.1 Data Definition Statements</a> :: 13.1.11 CREATE EVENT Syntax</div>
+
+	 
+	
+
+	
+<script language="javascript">
+
+<!--
+function toggle(what){
+ if(document.getElementById(what).style.display == "none"){
+   document.getElementById(what).style.display = "block";
+ }else{
+   document.getElementById(what).style.display = "none";
+ }
+}
+//-->
+
+</script>
+<noscript></noscript>
+
+<div style="float: right; width: 250px; margin: 0px 0px 8px 8px; background: white">
+	<div style="text-align: right; font-size: 90%; margin-bottom: 4px">
+		<div style="text-align: left;"><a style="text-decoration: none" href="http://dev.mysql.com/doc/refman/5.1/en/create-database.html" title="Previous Section">« 13.1.10 CREATE DATABASE Syntax</a></div>
+		<hr style="margin: 0px auto 2px auto" align="center" noshade="noshade" size="1" width="40">		<a style="text-decoration: none" href="http://dev.mysql.com/doc/refman/5.1/en/create-function.html" title="Next Section">13.1.12 CREATE FUNCTION Syntax  »</a>	</div>
+	<div style="padding: 4px 0px 0px 4px; border: 2px dotted #ccc; border-right: none;">
+		<b>Section Navigation</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[<a href="#" onclick="toggle('sectionnav');" onkeypress="if (event.keyCode == 13) { toggle('sectionnav'); }">Toggle</a>]</small>
+			<ul id="sectionnav">
+				<li class="p"><a href="http://dev.mysql.com/doc/refman/5.1/en/sql-syntax-data-definition.html">13.1 Data Definition Statements</a></li><li><a href="http://dev.mysql.com/doc/refman/5.1/en/alter-database.html">13.1.1 ALTER DATABASE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/alter-event.html">13.1.2 ALTER EVENT Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/alter-logfile-group.html">13.1.3 ALTER LOGFILE GROUP Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/alter-function.html">13.1.4 ALTER FUNCTION Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/alter-procedure.html">13.1.5 ALTER PROCEDURE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/alter-server.html">13.1.6 ALTER SERVER Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/alter-table.html">13.1.7 ALTER TABLE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/alter-tablespace.html">13.1.8 ALTER TABLESPACE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/alter-view.html">13.1.9 ALTER VIEW Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/create-database.html">13.1.10 CREATE DATABASE Syntax</a></li>
+<li class="self">13.1.11 CREATE EVENT Syntax</li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/create-function.html">13.1.12 CREATE FUNCTION Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/create-index.html">13.1.13 CREATE INDEX Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/create-logfile-group.html">13.1.14 CREATE LOGFILE GROUP Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/create-procedure.html">13.1.15 CREATE PROCEDURE and CREATE FUNCTION Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/create-server.html">13.1.16 CREATE SERVER Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/create-table.html">13.1.17 CREATE TABLE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/create-tablespace.html">13.1.18 CREATE TABLESPACE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/create-trigger.html">13.1.19 CREATE TRIGGER Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/create-view.html">13.1.20 CREATE VIEW Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/drop-database.html">13.1.21 DROP DATABASE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/drop-event.html">13.1.22 DROP EVENT Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/drop-function.html">13.1.23 DROP FUNCTION Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/drop-index.html">13.1.24 DROP INDEX Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/drop-logfile-group.html">13.1.25 DROP LOGFILE GROUP Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/drop-procedure.html">13.1.26 DROP PROCEDURE and DROP FUNCTION Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/drop-server.html">13.1.27 DROP SERVER Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/drop-table.html">13.1.28 DROP TABLE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/drop-tablespace.html">13.1.29 DROP TABLESPACE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/drop-trigger.html">13.1.30 DROP TRIGGER Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/drop-view.html">13.1.31 DROP VIEW Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/rename-database.html">13.1.32 RENAME DATABASE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/rename-table.html">13.1.33 RENAME TABLE Syntax</a></li>
+<li><a href="http://dev.mysql.com/doc/refman/5.1/en/truncate-table.html">13.1.34 TRUNCATE TABLE Syntax</a></li>
+</ul>
+
+					
+	</div>
+
+</div>
+<!--/UdmComment-->
+
+<div class="section">
+<div class="titlepage">
+<div>
+<div>
+<h3 class="title"><a name="create-event"></a>13.1.11.&nbsp;<code class="literal">CREATE EVENT</code> Syntax</h3>
+
+</div>
+
+</div>
+
+</div>
+<a class="indexterm" name="idm46972108661936"></a><a class="indexterm" name="idm46972108660448"></a><a class="indexterm" name="idm46972108658960"></a><pre class="programlisting">CREATE
+    [DEFINER = { <em class="replaceable"><code>user</code></em> | CURRENT_USER }]
+    EVENT
+    [IF NOT EXISTS]
+    <em class="replaceable"><code>event_name</code></em>
+    ON SCHEDULE <em class="replaceable"><code>schedule</code></em>
+    [ON COMPLETION [NOT] PRESERVE]
+    [ENABLE | DISABLE | DISABLE ON SLAVE]
+    [COMMENT '<em class="replaceable"><code>comment</code></em>']
+    DO <em class="replaceable"><code>event_body</code></em>;
+
+<em class="replaceable"><code>schedule</code></em>:
+    AT <em class="replaceable"><code>timestamp</code></em> [+ INTERVAL <em class="replaceable"><code>interval</code></em>] ...
+  | EVERY <em class="replaceable"><code>interval</code></em>
+    [STARTS <em class="replaceable"><code>timestamp</code></em> [+ INTERVAL <em class="replaceable"><code>interval</code></em>] ...]
+    [ENDS <em class="replaceable"><code>timestamp</code></em> [+ INTERVAL <em class="replaceable"><code>interval</code></em>] ...]
+
+<em class="replaceable"><code>interval</code></em>:
+    <em class="replaceable"><code>quantity</code></em> {YEAR | QUARTER | MONTH | DAY | HOUR | MINUTE |
+              WEEK | SECOND | YEAR_MONTH | DAY_HOUR | DAY_MINUTE |
+              DAY_SECOND | HOUR_MINUTE | HOUR_SECOND | MINUTE_SECOND}
+</pre><p>
+      This statement creates and schedules a new event. The event will
+      not run unless the Event Scheduler is enabled. For information
+      about checking Event Scheduler status and enabling it if
+      necessary, see <a class="xref" href="http://dev.mysql.com/doc/refman/5.1/en/events-configuration.html" title="19.4.2.&nbsp;Event Scheduler Configuration">Section&nbsp;19.4.2, “Event Scheduler Configuration”</a>.
+    </p><p>
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/create-event.html" title="13.1.11.&nbsp;CREATE EVENT Syntax"><code class="literal">CREATE EVENT</code></a> requires the
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/privileges-provided.html#priv_event"><code class="literal">EVENT</code></a> privilege for the schema in
+      which the event is to be created. It might also require the
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/privileges-provided.html#priv_super"><code class="literal">SUPER</code></a> privilege, depending on the
+      <code class="literal">DEFINER</code> value, as described later in this
+      section.
+    </p><p>
+      The minimum requirements for a valid <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/create-event.html" title="13.1.11.&nbsp;CREATE EVENT Syntax"><code class="literal">CREATE
+      EVENT</code></a> statement are as follows:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          The keywords <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/create-event.html" title="13.1.11.&nbsp;CREATE EVENT Syntax"><code class="literal">CREATE EVENT</code></a> plus
+          an event name, which uniquely identifies the event within a
+          database schema. (Prior to MySQL 5.1.12, the event name needed
+          to be unique only among events created by the same user within
+          a schema.)
+        </p></li><li class="listitem"><p>
+          An <code class="literal">ON SCHEDULE</code> clause, which determines
+          when and how often the event executes.
+        </p></li><li class="listitem"><p>
+          A <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/do.html" title="13.2.3.&nbsp;DO Syntax"><code class="literal">DO</code></a> clause, which contains the
+          SQL statement to be executed by an event.
+</p></li></ul>
+</div>
+<p>
+      This is an example of a minimal <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/create-event.html" title="13.1.11.&nbsp;CREATE EVENT Syntax"><code class="literal">CREATE
+      EVENT</code></a> statement:
+    </p><pre class="programlisting">CREATE EVENT myevent
+    ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL 1 HOUR
+    DO
+      UPDATE myschema.mytable SET mycol = mycol + 1;
+</pre><p>
+      The previous statement creates an event named
+      <code class="literal">myevent</code>. This event executes once—one
+      hour following its creation—by running an SQL statement that
+      increments the value of the <code class="literal">myschema.mytable</code>
+      table's <code class="literal">mycol</code> column by 1.
+    </p><p>
+      The <em class="replaceable"><code>event_name</code></em> must be a valid MySQL
+      identifier with a maximum length of 64 characters. Event names are
+      not case sensitive, so you cannot have two events named
+      <code class="literal">myevent</code> and <code class="literal">MyEvent</code> in the
+      same schema. In general, the rules governing event names are the
+      same as those for names of stored routines. See
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.1/en/identifiers.html" title="9.2.&nbsp;Schema Object Names">Section&nbsp;9.2, “Schema Object Names”</a>.
+    </p><p>
+      An event is associated with a schema. If no schema is indicated as
+      part of <em class="replaceable"><code>event_name</code></em>, the default
+      (current) schema is assumed. To create an event in a specific
+      schema, qualify the event name with a schema using
+      <code class="literal"><em class="replaceable"><code>schema_name</code></em>.<em class="replaceable"><code>event_name</code></em></code>
+      syntax.
+    </p><p>
+      The <code class="literal">DEFINER</code> clause specifies the MySQL account
+      to be used when checking access privileges at event execution
+      time. If a <em class="replaceable"><code>user</code></em> value is given, it
+      should be a MySQL account specified as
+      <code class="literal">'<em class="replaceable"><code>user_name</code></em>'@'<em class="replaceable"><code>host_name</code></em>'</code>
+      (the same format used in the <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/grant.html" title="13.7.1.3.&nbsp;GRANT Syntax"><code class="literal">GRANT</code></a>
+      statement), <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/information-functions.html#function_current-user"><code class="literal">CURRENT_USER</code></a>, or
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/information-functions.html#function_current-user"><code class="literal">CURRENT_USER()</code></a>. The default
+      <code class="literal">DEFINER</code> value is the user who executes the
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/create-event.html" title="13.1.11.&nbsp;CREATE EVENT Syntax"><code class="literal">CREATE EVENT</code></a> statement. This is the
+      same as specifying <code class="literal">DEFINER = CURRENT_USER</code>
+      explicitly.
+    </p><p>
+      If you specify the <code class="literal">DEFINER</code> clause, these rules
+      determine the valid <code class="literal">DEFINER</code> user values:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          If you do not have the <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/privileges-provided.html#priv_super"><code class="literal">SUPER</code></a>
+          privilege, the only permitted <em class="replaceable"><code>user</code></em>
+          value is your own account, either specified literally or by
+          using <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/information-functions.html#function_current-user"><code class="literal">CURRENT_USER</code></a>. You cannot
+          set the definer to some other account.
+        </p></li><li class="listitem"><p>
+          If you have the <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/privileges-provided.html#priv_super"><code class="literal">SUPER</code></a>
+          privilege, you can specify any syntactically valid account
+          name. If the account does not actually exist, a warning is
+          generated.
+        </p></li><li class="listitem"><p>
+          Although it is possible to create an event with a nonexistent
+          <code class="literal">DEFINER</code> account, an error occurs at event
+          execution time if the account does not exist.
+</p></li></ul>
+</div>
+<p>
+      For more information about event security, see
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.1/en/stored-programs-security.html" title="19.6.&nbsp;Access Control for Stored Programs and Views">Section&nbsp;19.6, “Access Control for Stored Programs and Views”</a>.
+    </p><p>
+      The <code class="literal">DEFINER</code> clause was added in MySQL 5.1.17.
+    </p><p>
+      Within an event, the <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/information-functions.html#function_current-user"><code class="literal">CURRENT_USER()</code></a>
+      function returns the account used to check privileges at event
+      execution time, which is the <code class="literal">DEFINER</code> user. For
+      information about user auditing within events, see
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.1/en/account-activity-auditing.html" title="6.3.8.&nbsp;SQL-Based MySQL Account Activity Auditing">Section&nbsp;6.3.8, “SQL-Based MySQL Account Activity Auditing”</a>.
+    </p><p>
+      <code class="literal">IF NOT EXISTS</code> has the same meaning for
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/create-event.html" title="13.1.11.&nbsp;CREATE EVENT Syntax"><code class="literal">CREATE EVENT</code></a> as for
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/create-table.html" title="13.1.17.&nbsp;CREATE TABLE Syntax"><code class="literal">CREATE TABLE</code></a>: If an event named
+      <em class="replaceable"><code>event_name</code></em> already exists in the same
+      schema, no action is taken, and no error results. (However, a
+      warning is generated in such cases.)
+    </p><p>
+      The <code class="literal">ON SCHEDULE</code> clause determines when, how
+      often, and for how long the <em class="replaceable"><code>event_body</code></em>
+      defined for the event repeats. This clause takes one of two forms:
+</p>
+<div class="itemizedlist">
+<ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem"><p>
+          <code class="literal">AT <em class="replaceable"><code>timestamp</code></em></code> is
+          used for a one-time event. It specifies that the event
+          executes one time only at the date and time given by
+          <em class="replaceable"><code>timestamp</code></em>, which must include both
+          the date and time, or must be an expression that resolves to a
+          datetime value. You may use a value of either the
+          <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/datetime.html" title="11.3.1.&nbsp;The DATE, DATETIME, and TIMESTAMP Types"><code class="literal">DATETIME</code></a> or
+          <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/datetime.html" title="11.3.1.&nbsp;The DATE, DATETIME, and TIMESTAMP Types"><code class="literal">TIMESTAMP</code></a> type for this
+          purpose. If the date is in the past, a warning occurs, as
+          shown here:
+        </p><pre class="programlisting">mysql&gt; <strong class="userinput"><code>SELECT NOW();</code></strong>
++---------------------+
+| NOW()               |
++---------------------+
+| 2006-02-10 23:59:01 |
++---------------------+
+1 row in set (0.04 sec)
+
+mysql&gt; <strong class="userinput"><code>CREATE EVENT e_totals</code></strong>
+    -&gt;     <strong class="userinput"><code>ON SCHEDULE AT '2006-02-10 23:59:00'</code></strong>
+    -&gt;     <strong class="userinput"><code>DO INSERT INTO test.totals VALUES (NOW());</code></strong>
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql&gt; <strong class="userinput"><code>SHOW WARNINGS\G</code></strong>
+*************************** 1. row ***************************
+  Level: Note
+   Code: 1588
+Message: Event execution time is in the past and ON COMPLETION NOT
+         PRESERVE is set. The event was dropped immediately after
+         creation.
+</pre><p>
+          <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/create-event.html" title="13.1.11.&nbsp;CREATE EVENT Syntax"><code class="literal">CREATE EVENT</code></a> statements which
+          are themselves invalid—for whatever reason—fail
+          with an error.
+        </p><p>
+          You may use <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/date-and-time-functions.html#function_current-timestamp"><code class="literal">CURRENT_TIMESTAMP</code></a>
+          to specify the current date and time. In such a case, the
+          event acts as soon as it is created.
+        </p><p>
+          To create an event which occurs at some point in the future
+          relative to the current date and time—such as that
+          expressed by the phrase <span class="quote">“<span class="quote">three weeks from
+          now</span>”</span>—you can use the optional clause <code class="literal">+
+          INTERVAL <em class="replaceable"><code>interval</code></em></code>. The
+          <em class="replaceable"><code>interval</code></em> portion consists of two
+          parts, a quantity and a unit of time, and follows the same
+          syntax rules that govern intervals used in the
+          <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/date-and-time-functions.html#function_date-add"><code class="literal">DATE_ADD()</code></a> function (see
+          <a class="xref" href="http://dev.mysql.com/doc/refman/5.1/en/date-and-time-functions.html" title="12.7.&nbsp;Date and Time Functions">Section&nbsp;12.7, “Date and Time Functions”</a>. The units keywords
+          are also the same, except that you cannot use any units
+          involving microseconds when defining an event. With some
+          interval types, complex time units may be used. For example,
+          <span class="quote">“<span class="quote">two minutes and ten seconds</span>”</span> can be expressed as
+          <code class="literal">+ INTERVAL '2:10' MINUTE_SECOND</code>.
+        </p><p>
+          You can also combine intervals. For example, <code class="literal">AT
+          CURRENT_TIMESTAMP + INTERVAL 3 WEEK + INTERVAL 2 DAY</code>
+          is equivalent to <span class="quote">“<span class="quote">three weeks and two days from
+          now</span>”</span>. Each portion of such a clause must begin with
+          <code class="literal">+ INTERVAL</code>.
+        </p></li><li class="listitem"><p>
+          To repeat actions at a regular interval, use an
+          <code class="literal">EVERY</code> clause. The <code class="literal">EVERY</code>
+          keyword is followed by an <em class="replaceable"><code>interval</code></em>
+          as described in the previous discussion of the
+          <code class="literal">AT</code> keyword. (<code class="literal">+ INTERVAL</code>
+          is <span class="emphasis"><em>not</em></span> used with
+          <code class="literal">EVERY</code>.) For example, <code class="literal">EVERY 6
+          WEEK</code> means <span class="quote">“<span class="quote">every six weeks</span>”</span>.
+        </p><p>
+          Although <code class="literal">+ INTERVAL</code> clauses are not
+          permitted in an <code class="literal">EVERY</code> clause, you can use
+          the same complex time units permitted in a <code class="literal">+
+          INTERVAL</code>.
+        </p><p>
+          An <code class="literal">EVERY</code> clause may contain an optional
+          <code class="literal">STARTS</code> clause. <code class="literal">STARTS</code> is
+          followed by a <em class="replaceable"><code>timestamp</code></em> value that
+          indicates when the action should begin repeating, and may also
+          use <code class="literal">+ INTERVAL
+          <em class="replaceable"><code>interval</code></em></code> to specify an
+          amount of time <span class="quote">“<span class="quote">from now</span>”</span>. For example,
+          <code class="literal">EVERY 3 MONTH STARTS CURRENT_TIMESTAMP + INTERVAL 1
+          WEEK</code> means <span class="quote">“<span class="quote">every three months, beginning one
+          week from now</span>”</span>. Similarly, you can express <span class="quote">“<span class="quote">every
+          two weeks, beginning six hours and fifteen minutes from
+          now</span>”</span> as <code class="literal">EVERY 2 WEEK STARTS CURRENT_TIMESTAMP
+          + INTERVAL '6:15' HOUR_MINUTE</code>. Not specifying
+          <code class="literal">STARTS</code> is the same as using <code class="literal">STARTS
+          CURRENT_TIMESTAMP</code>—that is, the action
+          specified for the event begins repeating immediately upon
+          creation of the event.
+        </p><p>
+          An <code class="literal">EVERY</code> clause may contain an optional
+          <code class="literal">ENDS</code> clause. The <code class="literal">ENDS</code>
+          keyword is followed by a <em class="replaceable"><code>timestamp</code></em>
+          value that tells MySQL when the event should stop repeating.
+          You may also use <code class="literal">+ INTERVAL
+          <em class="replaceable"><code>interval</code></em></code> with
+          <code class="literal">ENDS</code>; for instance, <code class="literal">EVERY 12 HOUR
+          STARTS CURRENT_TIMESTAMP + INTERVAL 30 MINUTE ENDS
+          CURRENT_TIMESTAMP + INTERVAL 4 WEEK</code> is equivalent to
+          <span class="quote">“<span class="quote">every twelve hours, beginning thirty minutes from now,
+          and ending four weeks from now</span>”</span>. Not using
+          <code class="literal">ENDS</code> means that the event continues
+          executing indefinitely.
+        </p><p>
+          <code class="literal">ENDS</code> supports the same syntax for complex
+          time units as <code class="literal">STARTS</code> does.
+        </p><p>
+          You may use <code class="literal">STARTS</code>,
+          <code class="literal">ENDS</code>, both, or neither in an
+          <code class="literal">EVERY</code> clause.
+        </p><p>
+          If a repeating event does not terminate within its scheduling
+          interval, the result may be multiple instances of the event
+          executing simultaneously. If this is undesirable, you should
+          institute a mechanism to prevent simultaneous instances. For
+          example, you could use the
+          <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/miscellaneous-functions.html#function_get-lock"><code class="literal">GET_LOCK()</code></a> function, or row or
+          table locking.
+</p></li></ul>
+</div>
+<p>
+      The <code class="literal">ON SCHEDULE</code> clause may use expressions
+      involving built-in MySQL functions and user variables to obtain
+      any of the <em class="replaceable"><code>timestamp</code></em> or
+      <em class="replaceable"><code>interval</code></em> values which it contains. You
+      may not use stored functions or user-defined functions in such
+      expressions, nor may you use any table references; however, you
+      may use <code class="literal">SELECT FROM DUAL</code>. This is true for both
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/create-event.html" title="13.1.11.&nbsp;CREATE EVENT Syntax"><code class="literal">CREATE EVENT</code></a> and
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/alter-event.html" title="13.1.2.&nbsp;ALTER EVENT Syntax"><code class="literal">ALTER EVENT</code></a> statements. Beginning
+      with MySQL 5.1.13, references to stored functions, user-defined
+      functions, and tables in such cases are specifically not
+      permitted, and fail with an error (see Bug #22830).
+    </p><p>
+      Times in the <code class="literal">ON SCHEDULE</code> clause are interpreted
+      using the current session
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/server-system-variables.html#sysvar_time_zone"><code class="literal">time_zone</code></a> value. This becomes the
+      event time zone; that is, the time zone that is used for event
+      scheduling and is in effect within the event as it executes. These
+      times are converted to UTC and stored along with the event time
+      zone in the <code class="literal">mysql.event</code> table. This enables
+      event execution to proceed as defined regardless of any subsequent
+      changes to the server time zone or daylight saving time effects.
+      For additional information about representation of event times,
+      see <a class="xref" href="http://dev.mysql.com/doc/refman/5.1/en/events-metadata.html" title="19.4.4.&nbsp;Event Metadata">Section&nbsp;19.4.4, “Event Metadata”</a>. See also
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.1/en/show-events.html" title="13.7.5.19.&nbsp;SHOW EVENTS Syntax">Section&nbsp;13.7.5.19, “<code class="literal">SHOW EVENTS</code> Syntax”</a>, and <a class="xref" href="http://dev.mysql.com/doc/refman/5.1/en/events-table.html" title="20.7.&nbsp;The INFORMATION_SCHEMA EVENTS Table">Section&nbsp;20.7, “The <code class="literal">INFORMATION_SCHEMA EVENTS</code> Table”</a>.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+        Prior to MySQL 5.1.17, the event time zone is not stored. The
+        <code class="literal">mysql.event</code> table must be updated before
+        events created in earlier releases can be created, altered,
+        viewed, or used in MySQL 5.1.17 or later. You can use
+        <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/mysql-upgrade.html" title="4.4.8.&nbsp;mysql_upgrade — Check and Upgrade MySQL Tables"><span class="command"><strong>mysql_upgrade</strong></span></a> for this (see
+        <a class="xref" href="http://dev.mysql.com/doc/refman/5.1/en/mysql-upgrade.html" title="4.4.8.&nbsp;mysql_upgrade — Check and Upgrade MySQL Tables">Section&nbsp;4.4.8, “<span class="command"><strong>mysql_upgrade</strong></span> — Check and Upgrade MySQL Tables”</a>).
+</p>
+</div>
+<p>
+      Normally, once an event has expired, it is immediately dropped.
+      You can override this behavior by specifying <code class="literal">ON
+      COMPLETION PRESERVE</code>. Using <code class="literal">ON COMPLETION NOT
+      PRESERVE</code> merely makes the default nonpersistent behavior
+      explicit.
+    </p><p>
+      You can create an event but prevent it from being active using the
+      <code class="literal">DISABLE</code> keyword. Alternatively, you can use
+      <code class="literal">ENABLE</code> to make explicit the default status,
+      which is active. This is most useful in conjunction with
+      <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/alter-event.html" title="13.1.2.&nbsp;ALTER EVENT Syntax"><code class="literal">ALTER EVENT</code></a> (see
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.1/en/alter-event.html" title="13.1.2.&nbsp;ALTER EVENT Syntax">Section&nbsp;13.1.2, “<code class="literal">ALTER EVENT</code> Syntax”</a>).
+    </p><p>
+      Beginning with MySQL 5.1.18, a third value may also appear in
+      place of <code class="literal">ENABLED</code> or
+      <code class="literal">DISABLED</code>; <code class="literal">DISABLE ON SLAVE</code>
+      is set for the status of an event on a replication slave to
+      indicate that the event was created on the master and replicated
+      to the slave, but is not executed on the slave. See
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.1/en/replication-features-invoked.html" title="16.4.1.11.&nbsp;Replication of Invoked Features">Section&nbsp;16.4.1.11, “Replication of Invoked Features”</a>.
+    </p><p>
+      You may supply a comment for an event using a
+      <code class="literal">COMMENT</code> clause.
+      <em class="replaceable"><code>comment</code></em> may be any string of up to 64
+      characters that you wish to use for describing the event. The
+      comment text, being a string literal, must be surrounded by
+      quotation marks.
+    </p><p>
+      The <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/do.html" title="13.2.3.&nbsp;DO Syntax"><code class="literal">DO</code></a> clause specifies an action
+      carried by the event, and consists of an SQL statement. Nearly any
+      valid MySQL statement that can be used in a stored routine can
+      also be used as the action statement for a scheduled event. (See
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.1/en/stored-program-restrictions.html" title="E.1.&nbsp;Restrictions on Stored Programs">Section&nbsp;E.1, “Restrictions on Stored Programs”</a>.) For example, the
+      following event <code class="literal">e_hourly</code> deletes all rows from
+      the <code class="literal">sessions</code> table once per hour, where this
+      table is part of the <code class="literal">site_activity</code> schema:
+    </p><pre class="programlisting">CREATE EVENT e_hourly
+    ON SCHEDULE
+      EVERY 1 HOUR
+    COMMENT 'Clears out sessions table each hour.'
+    DO
+      DELETE FROM site_activity.sessions;
+</pre><p>
+      MySQL stores the <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/server-system-variables.html#sysvar_sql_mode"><code class="literal">sql_mode</code></a> system
+      variable setting in effect when an event is created or altered,
+      and always executes the event with this setting in force,
+      <span class="emphasis"><em>regardless of the current server SQL mode when the event
+      begins executing</em></span>.
+    </p><p>
+      A <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/create-event.html" title="13.1.11.&nbsp;CREATE EVENT Syntax"><code class="literal">CREATE EVENT</code></a> statement that
+      contains an <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/alter-event.html" title="13.1.2.&nbsp;ALTER EVENT Syntax"><code class="literal">ALTER EVENT</code></a> statement
+      in its <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/do.html" title="13.2.3.&nbsp;DO Syntax"><code class="literal">DO</code></a> clause appears to
+      succeed; however, when the server attempts to execute the
+      resulting scheduled event, the execution fails with an error.
+</p>
+<div xmlns="http://www.w3.org/1999/xhtml" class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+
+<div class="admon-title">
+Note
+</div>
+<p xmlns="">
+        Statements such as <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/select.html" title="13.2.8.&nbsp;SELECT Syntax"><code class="literal">SELECT</code></a> or
+        <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/show.html" title="13.7.5.&nbsp;SHOW Syntax"><code class="literal">SHOW</code></a> that merely return a result
+        set have no effect when used in an event; the output from these
+        is not sent to the MySQL Monitor, nor is it stored anywhere.
+        However, you can use statements such as
+        <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/select.html" title="13.2.8.&nbsp;SELECT Syntax"><code class="literal">SELECT ...
+        INTO</code></a> and
+        <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/insert-select.html" title="13.2.5.1.&nbsp;INSERT ... SELECT Syntax"><code class="literal">INSERT INTO ...
+        SELECT</code></a> that store a result. (See the next example in
+        this section for an instance of the latter.)
+</p>
+</div>
+<p>
+      The schema to which an event belongs is the default schema for
+      table references in the <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/do.html" title="13.2.3.&nbsp;DO Syntax"><code class="literal">DO</code></a> clause.
+      Any references to tables in other schemas must be qualified with
+      the proper schema name. (In MySQL 5.1.6, all tables referenced in
+      event <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/do.html" title="13.2.3.&nbsp;DO Syntax"><code class="literal">DO</code></a> clauses had to include a
+      reference to the schema.)
+    </p><p>
+      As with stored routines, you can use compound-statement syntax in
+      the <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/do.html" title="13.2.3.&nbsp;DO Syntax"><code class="literal">DO</code></a> clause by using the
+      <code class="literal">BEGIN</code> and <code class="literal">END</code> keywords, as
+      shown here:
+    </p><pre class="programlisting">delimiter |
+
+CREATE EVENT e_daily
+    ON SCHEDULE
+      EVERY 1 DAY
+    COMMENT 'Saves total number of sessions then clears the table each day'
+    DO
+      BEGIN
+        INSERT INTO site_activity.totals (time, total)
+          SELECT CURRENT_TIMESTAMP, COUNT(*)
+            FROM site_activity.sessions;
+        DELETE FROM site_activity.sessions;
+      END |
+
+delimiter ;
+</pre><p>
+      This example uses the <code class="literal">delimiter</code> command to
+      change the statement delimiter. See
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.1/en/stored-programs-defining.html" title="19.1.&nbsp;Defining Stored Programs">Section&nbsp;19.1, “Defining Stored Programs”</a>.
+    </p><p>
+      More complex compound statements, such as those used in stored
+      routines, are possible in an event. This example uses local
+      variables, an error handler, and a flow control construct:
+    </p><pre class="programlisting">delimiter |
+
+CREATE EVENT e
+    ON SCHEDULE
+      EVERY 5 SECOND
+    DO
+      BEGIN
+        DECLARE v INTEGER;
+        DECLARE CONTINUE HANDLER FOR SQLEXCEPTION BEGIN END;
+
+        SET v = 0;
+
+        WHILE v &lt; 5 DO
+          INSERT INTO t1 VALUES (0);
+          UPDATE t2 SET s1 = s1 + 1;
+          SET v = v + 1;
+        END WHILE;
+    END |
+
+delimiter ;
+</pre><p>
+      There is no way to pass parameters directly to or from events;
+      however, it is possible to invoke a stored routine with parameters
+      within an event:
+    </p><pre class="programlisting">CREATE EVENT e_call_myproc
+    ON SCHEDULE
+      AT CURRENT_TIMESTAMP + INTERVAL 1 DAY
+    DO CALL myproc(5, 27);
+</pre><p>
+      If an event's definer has the <a class="link" href="http://dev.mysql.com/doc/refman/5.1/en/privileges-provided.html#priv_super"><code class="literal">SUPER</code></a>
+      privilege, the event can read and write global variables. As
+      granting this privilege entails a potential for abuse, extreme
+      care must be taken in doing so.
+    </p><p>
+      Generally, any statements that are valid in stored routines may be
+      used for action statements executed by events. For more
+      information about statements permitted within stored routines, see
+      <a class="xref" href="http://dev.mysql.com/doc/refman/5.1/en/stored-routines-syntax.html" title="19.2.1.&nbsp;Stored Routine Syntax">Section&nbsp;19.2.1, “Stored Routine Syntax”</a>. You can create an event
+      as part of a stored routine, but an event cannot be created by
+      another event.
+</p>
+</div>
+<div class="copyright-footer">
+    Copyright © 1997, 2013, Oracle and/or its affiliates. All
+    rights reserved.
+<a href="http://dev.mysql.com/doc/refman/5.1/en/preface.html#legalnotice">Legal Notices</a>
+</div>
+<!--UdmComment--><div id="docnav"><a rel="prev" href="http://dev.mysql.com/doc/refman/5.1/en/create-database.html" title="13.1.10 CREATE DATABASE Syntax">Previous</a> / <a rel="next" href="http://dev.mysql.com/doc/refman/5.1/en/create-function.html" title="13.1.12 CREATE FUNCTION Syntax">Next</a> / <a rel="up" href="http://dev.mysql.com/doc/refman/5.1/en/sql-syntax-data-definition.html" title="13.1 Data Definition Statements">Up</a> / <a rel="contents" href="http://dev.mysql.com/doc/refman/5.1/en/index.html">Table of Contents</a></div><!--/UdmComment--><br class="clear"><!--UdmComment--><div id="comments"><h1>User Comments</h1><p><a href="http://dev.mysql.com/doc/mysql/comment.php?sect=create-event">Add your own comment.</a></p></div><!--UdmComment--><div id="docnav"><a href="#">Top</a> / <a rel="prev" href="http://dev.mysql.com/doc/refman/5.1/en/create-database.html" title="13.1.10 CREATE DATABASE Syntax">Previous</a> / <a rel="next" href="http://dev.mysql.com/doc/refman/5.1/en/create-function.html" title="13.1.12 CREATE FUNCTION Syntax">Next</a> / <a rel="up" href="http://dev.mysql.com/doc/refman/5.1/en/sql-syntax-data-definition.html" title="13.1 Data Definition Statements">Up</a> / <a rel="contents" href="http://dev.mysql.com/doc/refman/5.1/en/index.html">Table of Contents</a></div><!--/UdmComment--></div></div>
+
+
+
+
+
+</div> <!--End Container -->
+
+
+
+
+  
+ 
+<div id="footer">
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/">Developer Zone</a></li>
+	    <li><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/articles/">Developer Articles</a></li>
+			<li><a href="http://dev.mysql.com/news-and-events/">News &amp; Events</a></li>
+            <li><a href="http://forums.mysql.com/">Forums</a></li>
+			<li><a href="http://lists.mysql.com/">Lists</a></li>
+            <li><a href="http://bugs.mysql.com/">Bugs</a></li>
+            <li><a href="http://dev.mysql.com/worklog/">Worklog</a></li>
+			            <li><a href="http://planet.mysql.com/">Planet MySQL</a></li>
+			            <li><a href="http://labs.mysql.com/">Labs</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/downloads/">Downloads</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql/">MySQL Community Server</a></li>
+            <li><a href="http://dev.mysql.com/downloads/mysql-proxy/">MySQL Proxy</a></li>
+            <li><a href="http://dev.mysql.com/downloads/cluster/">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/downloads/workbench/">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/downloads/connector/">MySQL Connectors</a></li>
+            <li><a href="http://downloads.mysql.com/archives.php">Archives</a></li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://dev.mysql.com/doc/">Documentation</a></li>
+            <li><a href="http://dev.mysql.com/doc/">MySQL Reference Manuals</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-gui.html">MySQL Workbench</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-expert.html">Expert Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-topic.html">Topic Guides</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-cluster.html">MySQL Cluster</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-other.html">Other Documents</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-about.html">About</a></li>
+            <li><a href="http://dev.mysql.com/doc/index-archive.html">Archives</a></li>
+        </ul>
+    </div>
+
+
+    <div class="links">
+        <ul>
+            <li class="top"><a href="http://www.mysql.com/about/">About MySQL</a></li>
+            <li><a href="http://www.mysql.com/about/contact/">Contact Us</a></li>
+                         <li><a href="http://www.mysql.com/buy-mysql/">How to Buy</a></li>
+			<li><a href="http://www.mysql.com/partners/">Partners</a></li>
+            <li><a href="http://www.mysql.com/about/jobs/">Job Opportunities</a></li>
+            <li><a href="http://www.mysql.com/sitemap.html">Site Map</a></li>
+	            </ul>
+	</div>
+
+	<div class="links">
+		<ul>
+			<li class="top"><a href="http://www.mysql.com/about/legal/">Legal</a></li>
+			<li><a href="http://www.mysql.com/about/legal/">Legal Policies</a></li>
+			<li><a href="http://www.oracle.com/us/legal/privacy/index.htm">Your Privacy Rights</a></li>
+			<li><a href="http://www.oracle.com/us/legal/terms/index.html">Terms of Use</a></li>
+			<li><a href="http://www.oracle.com/us/legal/third-party-trademarks/index.html">Trademark Policy</a></li>
+			<li><a href="http://www.oracle.com/technetwork/community/oca-486395.html">Contributor Agreement</a></li>
+		</ul>
+	</div>
+
+
+    <div id="search" class="en">
+	        <form id="footer_search" action="http://search.oracle.com/search/search" method="get">
+            <input id="f_q" name="q" class="swap_value" onfocus="clearSearchText();" type="text">
+	    <input name="group" value="Documentation" type="hidden">
+	    <input src="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/footer_search_g.png" id="f_go" alt="Search" title="Search" type="image">
+        </form>    </div>
+
+</div><!-- End Footer -->
+		<div id="copyright-oracle"><a href="http://www.oracle.com/"><img src="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/logo-oracle-red-91x22.gif" alt="Oracle" width="91" height="22"></a>&nbsp;&nbsp;<span>© 2013, Oracle Corporation and/or its affiliates</span></div>
+
+
+<script src="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/s_code_remote.js"></script><script type="text/javascript" src="MySQL%20::%20MySQL%205.1%20Reference%20Manual%20::%2013.1.11%20CREATE%20EVENT%20Syntax_files/metrics_group1.js"></script>
+
+
+</body></html>
