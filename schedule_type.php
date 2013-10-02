@@ -39,4 +39,8 @@ $result['output'].='</table>';
 }
 echo json_encode($result);
 ?>
+<<<<<<< HEAD
 				
+=======
+				
+>>>>>>> 371443c14b82b539ce366cc2f333aebcca697373

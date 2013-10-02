@@ -3,8 +3,14 @@
 $result=array();
 $result['output']='';
 
+<<<<<<< HEAD
 $result['output'].='<b>select job:</b>';
 $result['output'].='<select name="jobname">';
+=======
+$result['output'].='<table>';
+$result['output'].='<td><b>select job:</b></td>';
+$result['output'].='<td><select name="jobname">';
+>>>>>>> 371443c14b82b539ce366cc2f333aebcca697373
 	
 	$con = mysqli_connect("localhost", "root", "root", "scheduler") or die("Error in Connection:".mysqli_error($con));
 
@@ -21,7 +27,11 @@ $result['output'].='<select name="jobname">';
 	}
 
 	
+<<<<<<< HEAD
 $result['output'].='</select>';
+=======
+$result['output'].='</select></td></table>';
+>>>>>>> 371443c14b82b539ce366cc2f333aebcca697373
 
 
 echo json_encode($result);

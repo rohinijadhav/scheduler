@@ -48,4 +48,8 @@ mysql> DROP PROCEDURE IF EXISTS world.job;
 	{
 		echo "no folder";
 	}	
+<<<<<<< HEAD
 ?>    
+=======
+?>    
+>>>>>>> 371443c14b82b539ce366cc2f333aebcca697373

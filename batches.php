@@ -35,17 +35,28 @@
 </head>
 <body>
 
+<<<<<<< HEAD
 <?php
 
 $con = mysqli_connect("localhost", "root", "root", "scheduler") or die("Error in Connection:".mysqli_error($con));
+=======
+
+<?php
+
+$con = mysqli_connect("localhost", "root", "root", "scheduler") or die("Error in Connection:".mysqli_error($con));
+	
+>>>>>>> 371443c14b82b539ce366cc2f333aebcca697373
 
 ?>
 	<!-- show Jobs(store proccedure) table -->
 
 	<h2 align="center"> Job Details </h2>
+<<<<<<< HEAD
 	
 	<a href="index.php">show events</a>
 
+=======
+>>>>>>> 371443c14b82b539ce366cc2f333aebcca697373
 	<table border ="1" align="center">
 		<tr>
 			<th>Database</th>
@@ -68,6 +79,10 @@ $con = mysqli_connect("localhost", "root", "root", "scheduler") or die("Error in
 		
 	while($row_job = mysqli_fetch_array($result_job))
 	{ 
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 371443c14b82b539ce366cc2f333aebcca697373
 ?>		
 		<tr>
 			<td><?php echo $db = $row_job['Db']; ?></td>

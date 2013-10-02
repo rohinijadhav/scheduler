@@ -71,7 +71,13 @@ mysqli_query($con,$sql) or die("Error in Set Event Schedule:".mysqli_error($con)
 	<h2 align="center">Events Details</h2>
 	<table border ="1" align="center">
 		<tr>
+<<<<<<< HEAD
 			<th>Name</th>
+=======
+			<th>Database</th>
+			<th>Name</th>
+			<th>Definer</th>
+>>>>>>> 371443c14b82b539ce366cc2f333aebcca697373
 			<th>Time zone</th>
 			<th>Type</th>
 			<th>Execute at</th>
@@ -92,8 +98,15 @@ mysqli_query($con,$sql) or die("Error in Set Event Schedule:".mysqli_error($con)
 	while($row_event = mysqli_fetch_array($result_event))
 	{ 
 			
+<<<<<<< HEAD
 ?>		<tr>	
 			<td><?php echo $row_event['Name']; ?></td>
+=======
+?>		<tr>
+			<td><?php echo $row_event['Db']; ?></td>
+			<td><?php echo $row_event['Name']; ?></td>
+			<td><?php echo $row_event['Definer']; ?></td>
+>>>>>>> 371443c14b82b539ce366cc2f333aebcca697373
 			<td><?php echo $row_event['Time zone']; ?></td>
 			<td><?php echo $row_event['Type']; ?></td>
 			<?php

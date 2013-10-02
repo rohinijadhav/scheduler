@@ -4,12 +4,15 @@
 	<link rel="stylesheet" type="text/css" href="css/add_event.css">
 	<script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
 	<script type="text/javascript">
+<<<<<<< HEAD
       	$('#datetimepicker').datetimepicker({
       	  format: 'dd/MM/yyyy hh:mm:ss',
       	  language: 'pt-BR'
       	});
     </script>	
 	<script type="text/javascript">
+=======
+>>>>>>> 371443c14b82b539ce366cc2f333aebcca697373
 	$=jquery;
 	function change(db)
 	{

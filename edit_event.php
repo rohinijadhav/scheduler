@@ -87,4 +87,8 @@
 	<input type="hidden" name ="jobname" value="<?php echo substr($detail, strpos($detail, ' CALL ')+6);?>" >
 </form>
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 371443c14b82b539ce366cc2f333aebcca697373
